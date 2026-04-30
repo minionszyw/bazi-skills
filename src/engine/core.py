@@ -13,11 +13,6 @@ from src.engine.algorithms.geju import GejuResult
 from src.engine.algorithms.analysis import AnalysisResult
 from src.engine.algorithms.stars import Star
 
-# 补救 1.1.3: 环境快照
-class EnvironmentSnapshot(BaseModel):
-    processed_at: str = Field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    original_request: BaziRequest
-
 class MonthCommandResult(BaseModel):
     current: str
     detail: str
@@ -26,9 +21,8 @@ class FiveElementsResult(BaseModel):
     scores: Dict[str, float]
     states: Dict[str, str]
 
-# 补救 2.4.1: 完整聚合模型
 class BaziResult(BaseModel):
-    environment: EnvironmentSnapshot
+    processed_at: str = Field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     request: BaziRequest
     birth_solar_datetime: str  # 校正后的实际公历出生时刻
     birth_lunar_datetime: str  # 校正后的实际农历出生时刻
@@ -96,9 +90,6 @@ class BaziEngine:
         from src.engine.algorithms.stars import StarDetector
         stars = StarDetector.detect(ctx, tracer)
         
-        # 4. 构建快照
-        env = EnvironmentSnapshot(original_request=request)
-        
         # 过滤掉库自带的星座信息
         import re
         solar_full = ctx.solar.toFullString()
@@ -110,7 +101,6 @@ class BaziEngine:
         clean_lunar = re.sub(zodiac_pattern, "", lunar_full)
         
         return BaziResult(
-            environment=env,
             request=request,
             birth_solar_datetime=clean_solar,
             birth_lunar_datetime=clean_lunar,
