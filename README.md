@@ -46,6 +46,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 | `--month-mode` | | 否 | `SOLAR_TERM`(默认) / `LUNAR_MONTH` |
 | `--zi-shi-mode` | | 否 | `LATE_ZI_IN_DAY`(默认) / `NEXT_DAY` |
 | `--date` | `-d` | 否 | 查询指定日期的流年/流月/流日，格式：`YYYY-MM-DD` |
+| `--xiao-yun` | | 否 | 展开每步大运的小运列表（默认折叠） |
 
 
 ## 📋 API 契约
@@ -81,8 +82,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
     "start_solar": "1997-06-29 05:13:18 星期日",
     "start_age": 5,
     "da_yun": [
-      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅",
-        "xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ] },
+      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅", "xiao_yun": [] },
       ...
     ],
     "before_start_xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ],
