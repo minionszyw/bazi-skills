@@ -46,6 +46,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 | `--time-mode` | | 否 | `TRUE_SOLAR`(默认) / `MEAN_SOLAR` |
 | `--month-mode` | | 否 | `SOLAR_TERM`(默认) / `LUNAR_MONTH` |
 | `--zi-shi-mode` | | 否 | `LATE_ZI_IN_DAY`(默认) / `NEXT_DAY` |
+| `--date` | `-d` | 否 | 查询指定日期的流年/流月/流日，格式：`YYYY-MM-DD` |
 
 
 ## 📋 API 契约
@@ -82,10 +83,11 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
     "start_age": 5,
     "da_yun": [
       { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅",
-        "liu_nian": [ { "year": 1997, "gan_zhi": "丁丑", "xun": "甲戌", "liu_yue": [ { "month": 0, "gan_zhi": "壬寅", "liu_ri": [] }, ... ] }, ... ] },
+        "xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ] },
       ...
     ],
-    "before_start_xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ]
+    "before_start_xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ],
+    "query": null
   },
   "auxiliary": {
     "year_di_shi": "病", "month_di_shi": "病", "day_di_shi": "长生", "time_di_shi": "长生",
@@ -103,6 +105,18 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
   "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
   "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ],
   "analysis_trace": [ { "module": "预处理", "desc": "...", "value": null }, ... ]
+}
+```
+
+传入 `--date` 时，`fortune.query` 返回该日期的完整运程上下文：
+
+```json
+"query": {
+  "date": "2030-03-15",
+  "da_yun":   { "gan_zhi": "丁巳", "start_year": 2027, "start_age": 35 },
+  "liu_nian": { "year": 2030, "gan_zhi": "庚戌", "xun": "甲辰" },
+  "liu_yue":  { "month": 3, "gan_zhi": "己卯" },
+  "liu_ri":   { "day": 15, "gan_zhi": "己酉" }
 }
 ```
 

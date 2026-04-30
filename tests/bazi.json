@@ -1,5 +1,5 @@
 {
-  "processed_at": "2026-04-30 22:43:59",
+  "processed_at": "2026-04-30 22:47:16",
   "request": {
     "name": "张三",
     "gender": 1,
@@ -550,27 +550,7 @@
         "gan_zhi": "辛亥"
       }
     ],
-    "query": {
-      "date": "2030-03-15",
-      "da_yun": {
-        "gan_zhi": "丁巳",
-        "start_year": 2027,
-        "start_age": 35
-      },
-      "liu_nian": {
-        "year": 2030,
-        "gan_zhi": "庚戌",
-        "xun": "甲辰"
-      },
-      "liu_yue": {
-        "month": 3,
-        "gan_zhi": "己卯"
-      },
-      "liu_ri": {
-        "day": 15,
-        "gan_zhi": "己酉"
-      }
-    }
+    "query": null
   },
   "auxiliary": {
     "year_di_shi": "病",
