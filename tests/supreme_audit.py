@@ -4,7 +4,7 @@ from src.engine.models import BaziRequest, CalendarType, TimeMode, MonthMode, Zi
 
 def run_supreme_audit():
     engine = BaziEngine()
-    with open("data/regression_test_full.json", "r", encoding="utf-8") as f:
+    with open("tests/regression_test_full.json", "r", encoding="utf-8") as f:
         cases = json.load(f)
 
     print("\n" + "═"*120)

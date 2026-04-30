@@ -66,10 +66,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 
 ```json
 {
-  "environment": {
-    "processed_at": "2026-04-30 21:42:02",
-    "original_request": { ... }
-  },
+  "processed_at": "2026-04-30 21:42:02",
   "request": { ... },
   "birth_solar_datetime": "1993-09-19 05:13:18 星期日",
   "birth_lunar_datetime": "一九九三年八月初四 癸酉年 ...",
