@@ -5,7 +5,7 @@ from src.engine.models import BaziRequest, TraceStep
 from src.engine.preprocessor import Preprocessor, BaziContext
 from src.engine.utils import Tracer
 from src.engine.extractor import (
-    CoreExtractor, FortuneExtractor, AuxiliaryExtractor, 
+    CoreExtractor, FortuneExtractor, AuxiliaryExtractor,
     CoreChart, FortuneData, AuxiliaryChart
 )
 from src.engine.algorithms.interactions import Interaction
@@ -41,7 +41,7 @@ class BaziEngine:
     def __init__(self):
         self.preprocessor = Preprocessor()
 
-    def arrange(self, request: BaziRequest, skip_liu_yue: bool = False) -> BaziResult:
+    def arrange(self, request: BaziRequest, query_date: Optional[str] = None) -> BaziResult:
         tracer = Tracer()
         
         # 1. 预处理
@@ -53,8 +53,10 @@ class BaziEngine:
         core_chart = CoreExtractor.extract(ctx)
         tracer.record("核心命盘", "四柱提取完成")
         
-        fortune_data = FortuneExtractor.extract(ctx, skip_liu_yue=skip_liu_yue)
+        fortune_data = FortuneExtractor.extract(ctx)
         tracer.record("动态运程", "起运时间与大运计算完成")
+        if query_date:
+            fortune_data.query = FortuneExtractor.query_date(ctx, fortune_data.da_yun, query_date)
         
         auxiliary_chart = AuxiliaryExtractor.extract(ctx)
         tracer.record("辅助命盘", "胎元、命宫等神煞计算完成")

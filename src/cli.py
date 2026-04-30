@@ -27,6 +27,8 @@ def build_parser() -> argparse.ArgumentParser:
                    help="月柱模式（默认 SOLAR_TERM 节气定月）")
     p.add_argument("--zi-shi-mode", default="LATE_ZI_IN_DAY", choices=["LATE_ZI_IN_DAY", "NEXT_DAY"],
                    help="子时换日规则（默认 LATE_ZI_IN_DAY 晚子时不换日）")
+    p.add_argument("--date", "-d", default=None,
+                   help="查询特定日期的流年/流月/流日，格式：YYYY-MM-DD")
     return p
 
 
@@ -50,7 +52,7 @@ def main():
 
     engine = BaziEngine()
     try:
-        result = engine.arrange(req)
+        result = engine.arrange(req, query_date=args.date)
     except ValueError as e:
         print(json.dumps({"error": str(e)}, ensure_ascii=False), file=sys.stderr)
         sys.exit(1)

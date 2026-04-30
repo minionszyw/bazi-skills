@@ -30,21 +30,6 @@ class CoreChart(BaseModel):
     jie_qi: JieQiContext
 
 # --- 动态运程 ---
-class LiuRiData(BaseModel):
-    day: int
-    gan_zhi: str
-
-class LiuYueData(BaseModel):
-    month: int
-    gan_zhi: str
-    liu_ri: List[LiuRiData] = []
-
-class LiuNianData(BaseModel):
-    year: int
-    gan_zhi: str
-    xun: str
-    liu_yue: List[LiuYueData] = []
-
 class XiaoYunData(BaseModel):
     index: int
     gan_zhi: str
@@ -55,14 +40,40 @@ class DaYunData(BaseModel):
     start_age: int
     gan_zhi: str
     xun: str
-    liu_nian: List[LiuNianData] = []
     xiao_yun: List[XiaoYunData] = []
+
+# --- 日期查询结果 ---
+class DaYunQueryData(BaseModel):
+    gan_zhi: str
+    start_year: int
+    start_age: int
+
+class LiuNianQueryData(BaseModel):
+    year: int
+    gan_zhi: str
+    xun: str
+
+class LiuYueQueryData(BaseModel):
+    month: int
+    gan_zhi: str
+
+class LiuRiQueryData(BaseModel):
+    day: int
+    gan_zhi: str
+
+class FortuneQueryResult(BaseModel):
+    date: str
+    da_yun: Optional[DaYunQueryData]
+    liu_nian: LiuNianQueryData
+    liu_yue: LiuYueQueryData
+    liu_ri: LiuRiQueryData
 
 class FortuneData(BaseModel):
     start_solar: str
     start_age: int
     da_yun: List[DaYunData]
-    before_start_xiao_yun: List[XiaoYunData] = [] # 起运前的小运
+    before_start_xiao_yun: List[XiaoYunData] = []
+    query: Optional[FortuneQueryResult] = None
 
 # --- 辅助命盘 ---
 class AuxiliaryChart(BaseModel):
@@ -150,67 +161,88 @@ class CoreExtractor:
 
 class FortuneExtractor:
     @staticmethod
-    def extract(ctx: BaziContext, skip_liu_yue: bool = False) -> FortuneData:
+    def extract(ctx: BaziContext) -> FortuneData:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
-        
+
         if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
             eight_char.setSect(1)
         else:
             eight_char.setSect(2)
-            
+
         yun = eight_char.getYun(ctx.request.gender)
-        
+
         da_yun_list = []
         before_start_xiao_yun = []
-        
+
         for i, dy in enumerate(yun.getDaYun()):
-            xiao_yun_objs = []
-            for xy in dy.getXiaoYun():
-                xiao_yun_objs.append(XiaoYunData(index=xy.getIndex(), gan_zhi=xy.getGanZhi()))
-            
+            xiao_yun_objs = [XiaoYunData(index=xy.getIndex(), gan_zhi=xy.getGanZhi()) for xy in dy.getXiaoYun()]
+
             if i == 0:
                 before_start_xiao_yun = xiao_yun_objs
                 continue
-            
-            ln_list = []
-            for ln in dy.getLiuNian():
-                ly_list = []
-                if not skip_liu_yue:
-                    for ly in ln.getLiuYue():
-                        month_val = 0
-                        try:
-                            month_val = ly.getMonth()
-                        except AttributeError:
-                            month_val = ly.getIndex()
-                            
-                        ly_list.append(LiuYueData(
-                            month=month_val, 
-                            gan_zhi=ly.getGanZhi()
-                        ))
-                
-                ln_list.append(LiuNianData(
-                    year=ln.getYear(),
-                    gan_zhi=ln.getGanZhi(),
-                    xun=ln.getXun(),
-                    liu_yue=ly_list
-                ))
-                
+
             da_yun_list.append(DaYunData(
                 index=i,
                 start_year=dy.getStartYear(),
                 start_age=dy.getStartAge(),
                 gan_zhi=dy.getGanZhi(),
                 xun=dy.getXun(),
-                liu_nian=ln_list,
                 xiao_yun=xiao_yun_objs
             ))
-            
+
         return FortuneData(
             start_solar=re.sub(r"\s(白羊|金牛|双子|巨蟹|狮子|处女|天秤|天蝎|射手|摩羯|水瓶|双鱼)座", "", yun.getStartSolar().toFullString()),
             start_age=yun.getStartYear() - ctx.solar.getYear() if yun.getStartYear() > 0 else 0,
             da_yun=da_yun_list,
             before_start_xiao_yun=before_start_xiao_yun
+        )
+
+    @staticmethod
+    def query_date(ctx: BaziContext, da_yun_list: List[DaYunData], date_str: str) -> FortuneQueryResult:
+        try:
+            y, m, d = map(int, date_str.split("-"))
+        except (ValueError, AttributeError):
+            raise ValueError("--date 格式必须为 YYYY-MM-DD")
+
+        # 找所在大运
+        matched_dy = None
+        for dy in da_yun_list:
+            if dy.start_year <= y < dy.start_year + 10:
+                matched_dy = DaYunQueryData(gan_zhi=dy.gan_zhi, start_year=dy.start_year, start_age=dy.start_age)
+                break
+
+        # 流年/流月/流日 ganzhi 直接由 Solar 取
+        solar = Solar.fromYmd(y, m, d)
+        ec = solar.getLunar().getEightChar()
+        if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
+            ec.setSect(1)
+        else:
+            ec.setSect(2)
+
+        # 流年 xun 从 yun 结构获取
+        birth_ec = ctx.solar.getLunar().getEightChar()
+        if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
+            birth_ec.setSect(1)
+        else:
+            birth_ec.setSect(2)
+        yun = birth_ec.getYun(ctx.request.gender)
+
+        liu_nian_xun = ""
+        for yun_dy in yun.getDaYun():
+            for ln in yun_dy.getLiuNian():
+                if ln.getYear() == y:
+                    liu_nian_xun = ln.getXun()
+                    break
+            if liu_nian_xun:
+                break
+
+        return FortuneQueryResult(
+            date=date_str,
+            da_yun=matched_dy,
+            liu_nian=LiuNianQueryData(year=y, gan_zhi=ec.getYear(), xun=liu_nian_xun),
+            liu_yue=LiuYueQueryData(month=m, gan_zhi=ec.getMonth()),
+            liu_ri=LiuRiQueryData(day=d, gan_zhi=ec.getDay()),
         )
 
 class AuxiliaryExtractor:
