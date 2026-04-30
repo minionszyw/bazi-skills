@@ -62,16 +62,50 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 | `month_mode` | enum | 否 | SOLAR_TERM(节气定月), LUNAR_MONTH(农历月定月) |
 | `zi_shi_mode` | enum | 否 | LATE_ZI_IN_DAY(晚子不换日), NEXT_DAY(23点换日) |
 
-### 输出模型 (`BaziResult`) - 核心字段
+### 输出模型 (`BaziResult`)
+
 ```json
 {
+  "environment": {
+    "processed_at": "2026-04-30 21:42:02",
+    "original_request": { ... }
+  },
   "request": { ... },
-  "birth_solar_datetime": "校正后的公历时刻",
-  "core": { "year": { "gan": "庚", "zhi": "午", "na_yin": "路旁土", ... }, ... },
-  "geju": { "name": "伤官佩印", "status": "成格", ... },
-  "analysis": { "strength_level": "身弱", "yong_shen": "火", ... },
-  "stars": [ { "name": "天乙贵人", "pos": "日柱" }, ... ],
-  "analysis_trace": [ "算法逻辑每一步推导的详情..." ]
+  "birth_solar_datetime": "1993-09-19 05:13:18 星期日",
+  "birth_lunar_datetime": "一九九三年八月初四 癸酉年 ...",
+  "core": {
+    "year":  { "gan": "癸", "zhi": "酉", "shi_shen_gan": "比肩", "shi_shen_zhi": ["偏印"], "hide_gan": ["辛"], "na_yin": "剑锋金", "xun_kong": ["戌","亥"] },
+    "month": { ... },
+    "day":   { ... },
+    "time":  { ... },
+    "jie_qi": { "prev_name": "白露", "prev_jie": "...", "next_name": "寒露", "next_jie": "..." }
+  },
+  "fortune": {
+    "start_solar": "1997-06-29 05:13:18 星期日",
+    "start_age": 5,
+    "da_yun": [
+      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅",
+        "liu_nian": [ { "year": 1997, "gan_zhi": "丁丑", "xun": "甲戌", "liu_yue": [ { "month": 0, "gan_zhi": "壬寅", "liu_ri": [] }, ... ] }, ... ] },
+      ...
+    ],
+    "before_start_xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ]
+  },
+  "auxiliary": {
+    "year_di_shi": "病", "month_di_shi": "病", "day_di_shi": "长生", "time_di_shi": "长生",
+    "tai_yuan": "壬子", "tai_yuan_na_yin": "桑柘木",
+    "ming_gong": "丁巳", "ming_gong_na_yin": "沙中土",
+    "shen_gong": "乙丑", "shen_gong_na_yin": "海中金"
+  },
+  "month_command": { "current": "辛", "detail": "处于辛司权第12天 (真气引出)" },
+  "five_elements": {
+    "scores": { "木": 42.5, "火": 0.0, "土": 0.0, "金": 210.6, "水": 16.5 },
+    "states": { "木": "胎", "火": "死", "土": "死", "金": "帝旺", "水": "沐浴" }
+  },
+  "interactions": [],
+  "geju":     { "name": "偏印格", "type": "INNER_EIGHT", "status": "成格", "detail": "标准正八格取法" },
+  "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
+  "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ],
+  "analysis_trace": [ { "module": "预处理", "desc": "...", "value": null }, ... ]
 }
 ```
 
