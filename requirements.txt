@@ -1,0 +1,5 @@
+lunar_python==1.4.8
+pytz
+pytest
+pydantic
+pyyaml
