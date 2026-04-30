@@ -29,11 +29,28 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
-### 运行演示
-运行自带的演示脚本，查看美化后的排盘输出及算法轨迹：
+### CLI 排盘
 ```bash
 export PYTHONPATH=$PYTHONPATH:.
-python tests/demo_full_result.py
+python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
+    --birth "1993-08-04 05:30:00" --location 深圳
+```
+
+| 参数 | 短选项 | 必填 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `--name` | `-n` | 是 | 姓名 |
+| `--gender` | `-g` | 是 | `1`:男  `0`:女 |
+| `--calendar` | `-c` | 是 | `SOLAR`:公历  `LUNAR`:农历 |
+| `--birth` | `-b` | 是 | 格式: `YYYY-MM-DD HH:MM:SS` |
+| `--location` | `-l` | 是 | 出生地，支持短名（`深圳` / `广州市` / `天河区`） |
+| `--time-mode` | | 否 | `TRUE_SOLAR`(默认) / `MEAN_SOLAR` |
+| `--month-mode` | | 否 | `SOLAR_TERM`(默认) / `LUNAR_MONTH` |
+| `--zi-shi-mode` | | 否 | `LATE_ZI_IN_DAY`(默认) / `NEXT_DAY` |
+
+### 运行演示
+```bash
+export PYTHONPATH=$PYTHONPATH:.
+python3 tests/demo_full_result.py
 ```
 
 ## 📋 API 契约
