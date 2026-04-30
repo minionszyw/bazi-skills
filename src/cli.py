@@ -8,7 +8,7 @@ from src.engine.models import BaziRequest, Gender, CalendarType, TimeMode, Month
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="python3 -m src.cli",
+        prog="python3 -m paipan",
         description="八字排盘引擎 CLI（基于《渊海子平》），输出 JSON",
         formatter_class=argparse.RawTextHelpFormatter,
     )

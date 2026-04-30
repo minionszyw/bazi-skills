@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ### CLI 排盘
 ```bash
 export PYTHONPATH=$PYTHONPATH:.
-python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
+python3 -m paipan --name 张三 --gender 1 --calendar SOLAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
