@@ -17,7 +17,6 @@
 *   **月令分司用事**：根据分钟级交节深度判定司权天干，并支持“真气引出”权重逻辑。
 *   **五行量化状态机**：结合“旺相休囚死”气数修正与地支通根系数的能量评分系统。
 *   **严苛格局审计**：支持从格、专旺格等特殊格局识别，以及格局“成败病药”质量分析。
-*   **逻辑轨迹审计**：每一项命理判定均附带 `Calculation Trace`，逻辑透明可追溯。
 *   **古籍对账神煞**：严格对齐《渊海子平》标准的玉堂天乙、天月二德、咸池、截路空亡等专业神煞。
 
 ## 🚀 快速开始
@@ -103,8 +102,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
   "interactions": [],
   "geju":     { "name": "偏印格", "type": "INNER_EIGHT", "status": "成格", "detail": "标准正八格取法" },
   "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
-  "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ],
-  "analysis_trace": [ { "module": "预处理", "desc": "...", "value": null }, ... ]
+  "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ]
 }
 ```
 

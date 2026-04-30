@@ -1,8 +1,6 @@
 from typing import List, Dict, Tuple, Optional
 from pydantic import BaseModel
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
-
 class Interaction(BaseModel):
     type: str        # 合, 冲, 刑, 害, 破, 会, 伏吟, 反吟
     source: str      # 位置 (年, 月, 日, 时, 运, 年)
@@ -38,7 +36,7 @@ class InteractionDetector:
     }
 
     @staticmethod
-    def validate_transformations(interactions: List[Interaction], ctx: BaziContext, tracer: Tracer = None):
+    def validate_transformations(interactions: List[Interaction], ctx: BaziContext):
         """
         根据《渊海子平》标准校验合化是否成功
         """
@@ -66,16 +64,11 @@ class InteractionDetector:
                 
                 if has_leader and is_supported:
                     inter.is_transformed = True
-                    if tracer:
-                        tracer.record("干支作用", f"合化成功! [{inter.desc}] 因天干引化且月令支持({state})")
                 else:
                     inter.is_transformed = False
-                    reason = "引化神未透" if not has_leader else f"月令不助({state})"
-                    if tracer:
-                        tracer.record("干支作用", f"合而不化: [{inter.desc}] 失败原因: {reason}")
 
     @staticmethod
-    def detect_all(ctx: BaziContext, tracer: Tracer = None) -> List[Interaction]:
+    def detect_all(ctx: BaziContext) -> List[Interaction]:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
         
@@ -108,8 +101,6 @@ class InteractionDetector:
                         transformed_to=target_elem,
                         desc=f"{stems[i][0]}{stems[j][0]}合化{target_elem}"
                     ))
-                    if tracer:
-                        tracer.record("干支作用", f"检测到天干合: {stems[i][1]}{stems[i][0]} + {stems[j][1]}{stems[j][0]}")
 
         # 2. 地支六冲检测
         for i in range(len(branches)):
@@ -121,8 +112,6 @@ class InteractionDetector:
                         target=branches[j][1],
                         desc=f"{branches[i][0]}{branches[j][0]}相冲"
                     ))
-                    if tracer:
-                        tracer.record("干支作用", f"检测到地支冲: {branches[i][1]}{branches[i][0]} vs {branches[j][1]}{branches[j][0]}")
 
         # 3. 伏吟/反吟检测 (原局)
         for i in range(len(branches)):

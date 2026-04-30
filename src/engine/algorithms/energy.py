@@ -1,7 +1,5 @@
 from typing import Dict, List, Tuple
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
-
 class EnergyModel:
     """
     五行能量量化与状态机模型 (基于《渊海子平》深度标准)
@@ -60,7 +58,7 @@ class EnergyModel:
         return EnergyModel.SHENG_WANG_TABLE.get(gan, {}).get(zhi, "未知")
 
     @staticmethod
-    def calculate_scores(ctx: BaziContext, tracer: Tracer = None) -> Dict[str, Dict]:
+    def calculate_scores(ctx: BaziContext) -> Dict[str, Dict]:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
         month_zhi = eight_char.getMonthZhi()
@@ -107,9 +105,6 @@ class EnergyModel:
             rep_gan = EnergyModel.ELEMENT_MAP[elem][0]
             dm_state = EnergyModel.get_state(rep_gan, month_zhi)
             
-            if tracer and elem == EnergyModel._gan_to_elem(day_gan):
-                tracer.record("五行评分", f"日主在月令[{month_zhi}]处于[{status}]位({dm_state}), 气数修正系数: {factor}")
-
             final_data[elem] = {
                 "score": round(adjusted_score, 2),
                 "state": dm_state,

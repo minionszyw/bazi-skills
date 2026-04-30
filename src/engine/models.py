@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, validator
 from datetime import datetime
 
+
 class Gender(int, Enum):
     FEMALE = 0
     MALE = 1
@@ -22,11 +23,6 @@ class MonthMode(str, Enum):
 class ZiShiMode(str, Enum):
     LATE_ZI_IN_DAY = "LATE_ZI_IN_DAY"  # 晚子时不换日 (Sect 2)
     NEXT_DAY = "NEXT_DAY"              # 23点换日 (Sect 1)
-
-class TraceStep(BaseModel):
-    module: str      # 模块名 (如: 月令分司, 五行评分)
-    desc: str        # 推导描述
-    value: Optional[float] = None # 涉及的数值变动 (可选)
 
 class BaziRequest(BaseModel):
     name: str = Field(..., min_length=1)

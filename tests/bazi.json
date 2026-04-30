@@ -1,5 +1,5 @@
 {
-  "processed_at": "2026-04-30 22:47:16",
+  "processed_at": "2026-04-30 22:57:05",
   "request": {
     "name": "张三",
     "gender": 1,
@@ -564,58 +564,6 @@
     "shen_gong": "乙丑",
     "shen_gong_na_yin": "海中金"
   },
-  "analysis_trace": [
-    {
-      "module": "预处理",
-      "desc": "开始处理 张三 的请求",
-      "value": null
-    },
-    {
-      "module": "预处理",
-      "desc": "时间校正完成: 1993-09-19 05:13:18 星期日 处女座",
-      "value": null
-    },
-    {
-      "module": "核心命盘",
-      "desc": "四柱提取完成",
-      "value": null
-    },
-    {
-      "module": "动态运程",
-      "desc": "起运时间与大运计算完成",
-      "value": null
-    },
-    {
-      "module": "辅助命盘",
-      "desc": "胎元、命宫等神煞计算完成",
-      "value": null
-    },
-    {
-      "module": "月令分司",
-      "desc": "当前月令: 酉, 距交节已过: 11.25 天",
-      "value": null
-    },
-    {
-      "module": "月令分司",
-      "desc": "检测到司令天干 [辛] 在天干透出，真气引出，权重加成",
-      "value": null
-    },
-    {
-      "module": "五行评分",
-      "desc": "日主在月令[酉]处于[相]位(沐浴), 气数修正系数: 1.1",
-      "value": null
-    },
-    {
-      "module": "强弱判定",
-      "desc": "支持率:84.2%, 状态:相, 最终判定:极强",
-      "value": null
-    },
-    {
-      "module": "神煞检测",
-      "desc": "遵循《渊海子平》标准，共检出 2 个神煞",
-      "value": null
-    }
-  ],
   "month_command": {
     "current": "辛",
     "detail": "处于辛司权第12天 (真气引出)"

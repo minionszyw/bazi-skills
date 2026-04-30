@@ -1,7 +1,6 @@
 from typing import List, Dict, Optional, Tuple
 from pydantic import BaseModel
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
 from src.engine.algorithms.interactions import Interaction
 
 class GejuResult(BaseModel):
@@ -27,7 +26,7 @@ class GejuAnalyzer:
         return mapping.get(diff, "未知")
 
     @staticmethod
-    def analyze(ctx: BaziContext, interactions: List[Interaction], scores: Dict[str, float], tracer: Tracer = None) -> GejuResult:
+    def analyze(ctx: BaziContext, interactions: List[Interaction], scores: Dict[str, float]) -> GejuResult:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
         day_gan = eight_char.getDayGan()

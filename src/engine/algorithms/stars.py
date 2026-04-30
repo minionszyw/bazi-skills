@@ -1,8 +1,6 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
-
 class Star(BaseModel):
     name: str
     pos: str  # 出现位置
@@ -67,7 +65,7 @@ class StarDetector:
     }
 
     @staticmethod
-    def detect(ctx: BaziContext, tracer: Tracer = None) -> List[Star]:
+    def detect(ctx: BaziContext) -> List[Star]:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
         
@@ -129,8 +127,5 @@ class StarDetector:
         void_times = StarDetector.JIE_LU_VOID.get(day_gan, [])
         if (time_gan + time_zhi) in void_times:
             found_stars.append(Star(name="截路空亡", pos="时柱", desc="行路受阻，晚年寥落"))
-
-        if tracer:
-            tracer.record("神煞检测", f"遵循《渊海子平》标准，共检出 {len(found_stars)} 个神煞")
 
         return found_stars

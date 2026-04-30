@@ -1,8 +1,6 @@
 from typing import Dict, Tuple
 from lunar_python import Lunar, Solar
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
-
 class MonthCommandExtractor:
     """
     《渊海子平》人元司令分野计算器
@@ -27,7 +25,7 @@ class MonthCommandExtractor:
     }
 
     @staticmethod
-    def get_command(ctx: BaziContext, tracer: Tracer = None) -> Tuple[str, str]:
+    def get_command(ctx: BaziContext) -> Tuple[str, str]:
         """
         返回: (司令天干, 详情描述)
         """
@@ -49,9 +47,6 @@ class MonthCommandExtractor:
         diff_seconds = birth_ts - jie_ts
         days_passed = diff_seconds / 86400.0 # 浮点天数
         
-        if tracer:
-            tracer.record("月令分司", f"当前月令: {month_zhi}, 距交节已过: {days_passed:.2f} 天")
-
         # 2. 检索分野
         rules = MonthCommandExtractor.COMMAND_TABLE.get(month_zhi, [])
         accumulated_days = 0
@@ -80,8 +75,6 @@ class MonthCommandExtractor:
         
         if command_gan in pillars_stems:
             is_induced = True
-            if tracer:
-                tracer.record("月令分司", f"检测到司令天干 [{command_gan}] 在天干透出，真气引出，权重加成")
 
         detail = f"处于{command_gan}司权第{int(days_passed)+1}天"
         if is_induced:

@@ -1,7 +1,6 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel
 from src.engine.preprocessor import BaziContext
-from src.engine.utils import Tracer
 from src.engine.algorithms.energy import EnergyModel
 from src.engine.algorithms.geju import GejuResult
 
@@ -20,7 +19,7 @@ class AnalysisEngine:
     """
     
     @staticmethod
-    def analyze(ctx: BaziContext, energy_data: Dict[str, Dict], geju: GejuResult, tracer: Tracer = None) -> AnalysisResult:
+    def analyze(ctx: BaziContext, energy_data: Dict[str, Dict], geju: GejuResult) -> AnalysisResult:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
         day_gan = eight_char.getDayGan()
@@ -62,11 +61,6 @@ class AnalysisEngine:
             if level in ["中和", "偏强"]:
                 old_level = level
                 level = "偏弱"
-                if tracer: tracer.record("强弱判定", f"检测到食伤[{me_sheng}]重泄，定性从[{old_level}]下调至[{level}]")
-
-        if tracer:
-            tracer.record("强弱判定", f"支持率:{support_ratio*100:.1f}%, 状态:{day_status}, 最终判定:{level}")
-
         # 5. 喜用神 (护格 > 调候 > 扶抑)
         yong, xi, ji, chou = "", "", "", ""
         logic = "扶抑平衡"
