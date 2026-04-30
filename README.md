@@ -47,11 +47,6 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 | `--month-mode` | | 否 | `SOLAR_TERM`(默认) / `LUNAR_MONTH` |
 | `--zi-shi-mode` | | 否 | `LATE_ZI_IN_DAY`(默认) / `NEXT_DAY` |
 
-### 运行演示
-```bash
-export PYTHONPATH=$PYTHONPATH:.
-python3 tests/demo_full_result.py
-```
 
 ## 📋 API 契约
 
