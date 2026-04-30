@@ -39,13 +39,13 @@ class BaziEngine:
     def __init__(self):
         self.preprocessor = Preprocessor()
 
-    def arrange(self, request: BaziRequest, query_date: Optional[str] = None) -> BaziResult:
+    def arrange(self, request: BaziRequest, query_date: Optional[str] = None, include_xiao_yun: bool = False) -> BaziResult:
         # 1. 预处理
         ctx = self.preprocessor.process(request)
 
         # 2. 提取数据
         core_chart = CoreExtractor.extract(ctx)
-        fortune_data = FortuneExtractor.extract(ctx)
+        fortune_data = FortuneExtractor.extract(ctx, include_xiao_yun=include_xiao_yun)
         if query_date:
             fortune_data.query = FortuneExtractor.query_date(ctx, fortune_data.da_yun, query_date)
         auxiliary_chart = AuxiliaryExtractor.extract(ctx)

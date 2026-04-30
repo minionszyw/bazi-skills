@@ -161,7 +161,7 @@ class CoreExtractor:
 
 class FortuneExtractor:
     @staticmethod
-    def extract(ctx: BaziContext) -> FortuneData:
+    def extract(ctx: BaziContext, include_xiao_yun: bool = False) -> FortuneData:
         lunar = ctx.solar.getLunar()
         eight_char = lunar.getEightChar()
 
@@ -188,7 +188,7 @@ class FortuneExtractor:
                 start_age=dy.getStartAge(),
                 gan_zhi=dy.getGanZhi(),
                 xun=dy.getXun(),
-                xiao_yun=xiao_yun_objs
+                xiao_yun=xiao_yun_objs if include_xiao_yun else []
             ))
 
         return FortuneData(

@@ -29,6 +29,8 @@ def build_parser() -> argparse.ArgumentParser:
                    help="子时换日规则（默认 LATE_ZI_IN_DAY 晚子时不换日）")
     p.add_argument("--date", "-d", default=None,
                    help="查询特定日期的流年/流月/流日，格式：YYYY-MM-DD")
+    p.add_argument("--xiao-yun", action="store_true", default=False,
+                   help="展开每步大运的小运列表（默认折叠）")
     return p
 
 
@@ -52,7 +54,7 @@ def main():
 
     engine = BaziEngine()
     try:
-        result = engine.arrange(req, query_date=args.date)
+        result = engine.arrange(req, query_date=args.date, include_xiao_yun=args.xiao_yun)
     except ValueError as e:
         print(json.dumps({"error": str(e)}, ensure_ascii=False), file=sys.stderr)
         sys.exit(1)
