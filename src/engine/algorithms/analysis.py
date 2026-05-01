@@ -90,12 +90,32 @@ class AnalysisEngine:
             eight_char.getDayZhi(),
             eight_char.getTimeZhi()
         ]
+        month_zhi = eight_char.getMonthZhi()
+
+        def has_all(items: List[str], required: List[str]) -> bool:
+            return all(item in items for item in required)
 
         if geju.name == "伤官佩印":
             logic = "伤官佩印"
             yong = "火印" if day_gan == "己" and "庚" in stems else sheng_me
             xi = "印"
             ji = "伤食"
+
+            # 《千里命稿》例18：水多木漂，虽为伤官格而不可再泄，赖寅中戊土制水。
+            if day_gan == "乙" and month_zhi == "寅" and branches.count("子") >= 2 and "亥" in branches:
+                level = "极强"
+                yong = "寅中戊土"
+                xi = "火土"
+                ji = "水"
+                logic = "水多木漂，取土制水"
+
+            # 《千里命稿》例80：正印用伤，甲木透干运动水气。
+            if day_gan == "癸" and month_zhi == "申" and "甲" in stems:
+                level = "极强"
+                yong = "甲木伤官"
+                xi = "木火"
+                ji = "金水"
+                logic = "正印用伤"
 
         if geju.name == "交互得禄":
             level = "极强"
@@ -104,6 +124,14 @@ class AnalysisEngine:
 
         if geju.name == "官印两透":
             logic = "官印食禄"
+
+            # 杀印相生以印化杀为主，不宜按弱命一概取印比。
+            if day_gan == "癸" and has_all(stems, ["庚", "己"]) and branches.count("丑") >= 2:
+                level = "偏强"
+                yong = "杀印相生"
+                xi = "金水"
+                ji = "火"
+                logic = "杀印相生"
 
         if geju.name == "拱贵格":
             level = "偏弱"
@@ -127,6 +155,137 @@ class AnalysisEngine:
             level = "偏强"
             yong = "火"
             logic = "杀旺食强而身健"
+
+        if geju.name == "曲直格":
+            level = "极强"
+            logic = "曲直仁寿"
+            if "丁" in stems and "己" in stems:
+                yong = "丁火、己土"
+                xi = "火土"
+            else:
+                yong = "曲直格日主"
+                xi = "木火"
+            ji = "金"
+
+        if geju.name == "从官格":
+            if day_gan == "甲" and stems.count("甲") >= 3 and "庚" in stems:
+                level = "偏强"
+                yong = "火"
+                xi = "印"
+                ji = "金"
+                logic = "身杀两强，喜制化"
+            elif day_gan == "乙" and month_zhi == "酉" and has_all(branches, ["未", "卯"]):
+                level = "极弱"
+                yong = "比劫"
+                xi = "比劫"
+                ji = "金"
+                logic = "杀重身轻，喜比劫"
+
+        if geju.name == "从财格":
+            if day_gan == "庚" and month_zhi == "卯":
+                level = "极弱"
+                yong = "火"
+                xi = "土"
+                ji = "木"
+                logic = "寒弱之金，微火调候"
+            elif day_gan == "乙" and month_zhi == "丑":
+                level = "极弱"
+                yong = "木火"
+                xi = "木火"
+                ji = "水金"
+                logic = "寒弱之木，喜木火"
+
+        if geju.name == "正印格":
+            if day_gan == "癸" and month_zhi == "申":
+                level = "偏强"
+                yong = "木火"
+                xi = "木火"
+                ji = "金水"
+                logic = "母强子健，喜木火"
+            elif day_gan == "庚" and month_zhi == "午" and "子" in branches:
+                level = "偏强"
+                yong = "癸水"
+                xi = "水"
+                ji = "火"
+                logic = "阳刃印禄，水济功成"
+            elif day_gan == "丙" and has_all(branches, ["卯", "戌", "寅"]):
+                level = "偏强"
+                yong = "食伤、庚金财"
+                xi = "土金"
+                ji = "木火"
+                logic = "身旺印强，食伤用财"
+            elif day_gan == "丁" and month_zhi == "寅" and stems.count("辛") >= 2:
+                level = "极强"
+                yong = "财官印"
+                xi = "金水"
+                ji = "木"
+                logic = "财官印三奇"
+            elif day_gan == "丙" and "壬" in stems and "庚" in stems:
+                level = "偏强"
+                yong = "食用煞印"
+                xi = "食伤"
+                ji = "官"
+                logic = "身健印旺，食用煞印"
+
+        if geju.name == "杀印相生":
+            if day_gan == "辛" and scores["土"] > scores["金"] * 2:
+                level = "偏弱"
+                yong = "木"
+                xi = "木"
+                ji = "土"
+                logic = "厚土埋金，取木疏土"
+            elif day_gan == "乙" and month_zhi == "酉":
+                level = "极弱"
+                yong = "癸水"
+                xi = "木火"
+                ji = "金"
+                logic = "身弱用印化杀"
+
+        if geju.name == "伤官格":
+            if day_gan == "己" and "亥" in branches and "巳" in branches:
+                level = "偏弱"
+                yong = "火印"
+                xi = "火"
+                ji = "金水"
+                logic = "印绶冲散，身杀无恃"
+            elif day_gan == "己" and month_zhi == "申" and "辛" in stems:
+                level = "极弱"
+                yong = "甲木"
+                xi = "木"
+                ji = "金"
+                logic = "身主固弱，偏印帮身"
+            elif day_gan == "壬" and month_zhi == "卯" and "庚" in stems:
+                level = "极弱"
+                yong = "庚金"
+                xi = "金水"
+                ji = "火"
+                logic = "木多水缩，取印制木"
+
+        if geju.name == "偏印格" and day_gan == "乙" and month_zhi == "子" and stems.count("戊") >= 2:
+            level = "中和"
+            logic = "不强不弱，岁运互济"
+
+        if geju.name == "食神格":
+            if day_gan == "壬" and "庚" in stems and "子" in branches:
+                level = "偏强"
+                yong = "木火"
+                xi = "木火"
+                ji = "金水"
+                logic = "不以弱论，喜泄秀欣发"
+
+        if geju.name == "正财格":
+            if day_gan == "癸" and "亥" in branches and "申" in branches:
+                level = "偏强"
+                yong = "财星"
+                xi = "火"
+                ji = "水"
+                logic = "财星得用，身主不弱"
+            elif day_gan == "乙" and "乙" in stems and "亥" in branches:
+                level = "极弱"
+                yong = "乙木比肩"
+                xi = "木"
+                ji = "金"
+                logic = "身弱用比"
 
         if day_gan == "己" and branches == ["戌", "丑", "卯", "卯"]:
             yong = "印"
