@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ### CLI 排盘
 ```bash
 export PYTHONPATH=$PYTHONPATH:.
-python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
+python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
@@ -65,27 +65,54 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 
 ### 输出模型 (`BaziResult`)
 
+以下为 CLI 示例的节选输出；完整样例见 `tests/bazi.json`。
+
 ```json
 {
-  "processed_at": "2026-04-30 21:42:02",
-  "request": { ... },
+  "processed_at": "2026-05-01 13:14:33",
+  "request": {
+    "name": "张三",
+    "gender": 1,
+    "calendar_type": "LUNAR",
+    "birth_datetime": "1993-08-04 05:30:00",
+    "birth_location": "深圳",
+    "longitude": null,
+    "time_mode": "TRUE_SOLAR",
+    "month_mode": "SOLAR_TERM",
+    "zi_shi_mode": "LATE_ZI_IN_DAY"
+  },
   "birth_solar_datetime": "1993-09-19 05:13:18 星期日",
-  "birth_lunar_datetime": "一九九三年八月初四 癸酉年 ...",
+  "birth_lunar_datetime": "一九九三年八月初四 癸酉(鸡)年 辛酉(鸡)月 癸卯(兔)日 卯(兔)时 ...",
   "core": {
-    "year":  { "gan": "癸", "zhi": "酉", "shi_shen_gan": "比肩", "shi_shen_zhi": ["偏印"], "hide_gan": ["辛"], "na_yin": "剑锋金", "xun_kong": ["戌","亥"] },
-    "month": { ... },
-    "day":   { ... },
-    "time":  { ... },
-    "jie_qi": { "prev_name": "白露", "prev_jie": "...", "next_name": "寒露", "next_jie": "..." }
+    "year": {
+      "gan": "癸",
+      "zhi": "酉",
+      "shi_shen_gan": "比肩",
+      "shi_shen_zhi": ["偏印"],
+      "hide_gan": ["辛"],
+      "na_yin": "剑锋金",
+      "xun_kong": ["戌", "亥"]
+    },
+    "month": { "gan": "辛", "zhi": "酉", "...": "..." },
+    "day": { "gan": "癸", "zhi": "卯", "...": "..." },
+    "time": { "gan": "乙", "zhi": "卯", "...": "..." },
+    "jie_qi": {
+      "prev_name": "白露",
+      "prev_jie": "1993-09-07 23:07:47 星期二",
+      "next_name": "寒露",
+      "next_jie": "1993-10-08 14:40:02 星期五"
+    }
   },
   "fortune": {
     "start_solar": "1997-06-29 05:13:18 星期日",
     "start_age": 5,
     "da_yun": [
-      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅", "xiao_yun": [] },
-      ...
+      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅", "xiao_yun": [] }
     ],
-    "before_start_xiao_yun": [ { "index": 0, "gan_zhi": "甲寅" }, ... ],
+    "before_start_xiao_yun": [
+      { "index": 0, "gan_zhi": "甲寅" },
+      { "...": "..." }
+    ],
     "query": null
   },
   "auxiliary": {
@@ -99,10 +126,17 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
     "scores": { "木": 42.5, "火": 0.0, "土": 0.0, "金": 210.6, "水": 16.5 },
     "states": { "木": "胎", "火": "死", "土": "死", "金": "帝旺", "水": "沐浴" }
   },
-  "interactions": [ { "type": "冲", "source": "年支", "target": "日支", "is_transformed": false, "transformed_to": null, "desc": "酉卯相冲" }, ... ],
-  "geju":     { "name": "偏印格", "type": "正八格", "status": "成格", "detail": "标准正八格取法" },
+  "interactions": [
+    { "type": "冲", "source": "月干", "target": "时干", "is_transformed": false, "transformed_to": null, "desc": "辛乙相冲" },
+    { "type": "冲", "source": "年支", "target": "日支", "is_transformed": false, "transformed_to": null, "desc": "酉卯相冲" }
+  ],
+  "geju": { "name": "偏印格", "type": "正八格", "status": "成格", "detail": "标准正八格取法" },
   "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
-  "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ]
+  "stars": [
+    { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" },
+    { "name": "文昌贵人", "pos": "日柱", "desc": "聪明好学，文艺秀发" },
+    { "name": "禄神", "pos": "年柱", "desc": "辛禄在酉" }
+  ]
 }
 ```
 

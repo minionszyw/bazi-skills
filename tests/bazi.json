@@ -1,5 +1,5 @@
 {
-  "processed_at": "2026-05-01 09:42:56",
+  "processed_at": "2026-05-01 13:14:33",
   "request": {
     "name": "张三",
     "gender": 1,
@@ -217,6 +217,22 @@
   "interactions": [
     {
       "type": "冲",
+      "source": "月干",
+      "target": "时干",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "辛乙相冲"
+    },
+    {
+      "type": "冲",
+      "source": "月干",
+      "target": "时干",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "辛乙交战"
+    },
+    {
+      "type": "冲",
       "source": "年支",
       "target": "日支",
       "is_transformed": false,
@@ -289,6 +305,36 @@
       "name": "天乙贵人",
       "pos": "时柱",
       "desc": "玉堂金马，逢凶化吉"
+    },
+    {
+      "name": "文昌贵人",
+      "pos": "日柱",
+      "desc": "聪明好学，文艺秀发"
+    },
+    {
+      "name": "文昌贵人",
+      "pos": "时柱",
+      "desc": "聪明好学，文艺秀发"
+    },
+    {
+      "name": "禄神",
+      "pos": "年柱",
+      "desc": "辛禄在酉"
+    },
+    {
+      "name": "禄神",
+      "pos": "月柱",
+      "desc": "辛禄在酉"
+    },
+    {
+      "name": "禄神",
+      "pos": "日柱",
+      "desc": "乙禄在卯"
+    },
+    {
+      "name": "禄神",
+      "pos": "时柱",
+      "desc": "乙禄在卯"
     }
   ]
 }
