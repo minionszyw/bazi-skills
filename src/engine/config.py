@@ -1,5 +1,6 @@
 import json
 import os
+from importlib import resources
 from typing import Dict, Any, Optional
 
 class BaziConfig:
@@ -10,14 +11,26 @@ class BaziConfig:
 
     def _load_config(self):
         if not os.path.exists(self.config_path):
+            self._load_packaged_config()
             return
 
         with open(self.config_path, "r", encoding="utf-8") as f:
-            try:
-                data = json.load(f)
-                self._flatten_data(data)
-            except json.JSONDecodeError as e:
-                raise RuntimeError(f"地名数据文件 {self.config_path} 解析失败: {e}") from e
+            self._load_json(f, self.config_path)
+
+    def _load_packaged_config(self):
+        try:
+            config_file = resources.files("src.engine.data").joinpath("latlng.json")
+            with config_file.open("r", encoding="utf-8") as f:
+                self._load_json(f, str(config_file))
+        except FileNotFoundError:
+            return
+
+    def _load_json(self, f, source: str):
+        try:
+            data = json.load(f)
+            self._flatten_data(data)
+        except json.JSONDecodeError as e:
+            raise RuntimeError(f"地名数据文件 {source} 解析失败: {e}") from e
 
     def _flatten_data(self, item: Any):
         """

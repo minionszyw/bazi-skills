@@ -21,17 +21,27 @@
 
 ## 🚀 快速开始
 
-### 安装依赖
+### 本地安装
+
+项目依赖统一由 `pyproject.toml` 管理。
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-pip install -r requirements.txt
+pip install -e ".[dev]"
 ```
 
 ### CLI 排盘
+
 ```bash
-export PYTHONPATH=$PYTHONPATH:.
-python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
+bazi --name 张三 --gender 1 --calendar LUNAR \
+    --birth "1993-08-04 05:30:00" --location 深圳
+```
+
+也可以不安装包，直接从源码运行：
+
+```bash
+PYTHONPATH=. python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
@@ -58,7 +68,7 @@ python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
 | `gender` | int | 是 | 1:男, 0:女 |
 | `calendar_type` | enum | 是 | SOLAR(公历), LUNAR(农历) |
 | `birth_datetime` | str | 是 | 格式: YYYY-MM-DD HH:MM:SS |
-| `birth_location` | str | 是 | 深圳/西安等 (对应 `data/latlng.json`) |
+| `birth_location` | str | 是 | 深圳/西安等（安装后使用包内地名数据，源码运行时兼容 `data/latlng.json`） |
 | `time_mode` | enum | 否 | TRUE_SOLAR(真太阳时), MEAN_SOLAR(平太阳时) |
 | `month_mode` | enum | 否 | SOLAR_TERM(节气定月), LUNAR_MONTH(农历月定月) |
 | `zi_shi_mode` | enum | 否 | LATE_ZI_IN_DAY(晚子不换日), NEXT_DAY(23点换日) |

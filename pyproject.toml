@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bazi-engine"
+version = "0.1.0"
+description = "八字排盘分析引擎"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "lunar_python==1.4.8",
+    "pydantic",
+    "pytz",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+bazi = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+"src.engine" = ["data/latlng.json"]
