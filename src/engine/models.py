@@ -30,9 +30,8 @@ class BaziRequest(BaseModel):
     calendar_type: CalendarType
     birth_datetime: str  # 格式: YYYY-MM-DD HH:mm:ss
     birth_location: str
-    longitude: Optional[float] = None # 显式经度
-    latitude: Optional[float] = None  # 显式纬度
-    
+    longitude: Optional[float] = None
+
     # 算法开关
     time_mode: TimeMode = TimeMode.TRUE_SOLAR
     month_mode: MonthMode = MonthMode.SOLAR_TERM

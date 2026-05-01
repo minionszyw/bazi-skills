@@ -193,7 +193,7 @@ class FortuneExtractor:
 
         return FortuneData(
             start_solar=re.sub(r"\s(白羊|金牛|双子|巨蟹|狮子|处女|天秤|天蝎|射手|摩羯|水瓶|双鱼)座", "", yun.getStartSolar().toFullString()),
-            start_age=yun.getStartYear() - ctx.solar.getYear() if yun.getStartYear() > 0 else 0,
+            start_age=da_yun_list[0].start_age if da_yun_list else 0,
             da_yun=da_yun_list,
             before_start_xiao_yun=before_start_xiao_yun
         )

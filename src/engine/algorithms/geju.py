@@ -41,7 +41,7 @@ class GejuAnalyzer:
         if day_ratio > 0.7:
             special_names = {"火": "炎上格", "水": "润下格", "金": "从革格", "木": "曲直格", "土": "稼格"}
             name = special_names.get(day_elem, "专旺格")
-            return GejuResult(name=name, type="SPECIAL", status="成格", detail="日主气势极盛，五行专旺")
+            return GejuResult(name=name, type="特殊格", status="成格", detail="日主气势极盛，五行专旺")
             
         # B. 从格 (弃命从财/杀)
         # 条件：支持率极低且无印星透干
@@ -57,7 +57,7 @@ class GejuAnalyzer:
                 top_ss = GejuAnalyzer._get_shishen(day_gan, EnergyModel.ELEMENT_MAP[top_elem][0])
                 if any(k in top_ss for k in ["财", "杀", "官", "食", "伤"]):
                     name = f"从{top_ss[:1]}格"
-                    return GejuResult(name=name, type="SPECIAL", status="成格", detail=f"日主无根无助，弃命从{top_ss}")
+                    return GejuResult(name=name, type="特殊格", status="成格", detail=f"日主无根无助，弃命从{top_ss}")
 
         # 2. 正八格取法 (月令透干优先)
         month_all_gans = eight_char.getMonthHideGan()
@@ -92,4 +92,4 @@ class GejuAnalyzer:
         if not geju_name.endswith("格") and "佩印" not in geju_name and "相生" not in geju_name:
             geju_name += "格"
 
-        return GejuResult(name=geju_name, type="INNER_EIGHT", status="成格", detail="标准正八格取法")
+        return GejuResult(name=geju_name, type="正八格", status="成格", detail="标准正八格取法")
