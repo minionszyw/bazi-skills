@@ -6,6 +6,7 @@ from src.engine.models import BaziRequest
 
 
 CASE_FILE = Path(__file__).with_name("supreme_audit.json")
+UNMARKED = "古籍未标注"
 
 
 def load_cases():
@@ -54,6 +55,17 @@ def strength_matches(expected, actual):
     return expected == actual
 
 
+def is_unmarked(expected):
+    return expected == UNMARKED
+
+
+def check_equal(failures, label, expected, actual):
+    if is_unmarked(expected):
+        return
+    if expected != actual:
+        failures.append(f"{label} expected={expected} actual={actual}")
+
+
 def collect_failures(case, result):
     failures = []
     expected_core = case["expected_core"]
@@ -66,41 +78,65 @@ def collect_failures(case, result):
 
     expected_geju = expected_analysis["geju"]
     actual_geju = result.geju.name
-    if not geju_matches(expected_geju, actual_geju):
+    if not is_unmarked(expected_geju) and not geju_matches(expected_geju, actual_geju):
         failures.append(f"格局 expected={expected_geju} actual={actual_geju}")
+    check_equal(failures, "格局类型", expected_analysis.get("geju_type", UNMARKED), result.geju.type)
+    check_equal(failures, "格局状态", expected_analysis.get("geju_status", UNMARKED), result.geju.status)
+    check_equal(failures, "格局细节", expected_analysis.get("geju_detail", UNMARKED), result.geju.detail)
 
     expected_strength = expected_analysis["strength"]
     actual_strength = result.analysis.strength_level
-    if not strength_matches(expected_strength, actual_strength):
+    if not is_unmarked(expected_strength) and not strength_matches(expected_strength, actual_strength):
         failures.append(f"强弱 expected={expected_strength} actual={actual_strength}")
 
     optional_checks = {
+        "strength_score": result.analysis.strength_score,
         "yong_shen": result.analysis.yong_shen,
         "xi_shen": result.analysis.xi_shen,
         "ji_shen": result.analysis.ji_shen,
         "chou_shen": result.analysis.chou_shen,
+        "logic_type": result.analysis.logic_type,
     }
     for field, actual in optional_checks.items():
-        if field in expected_analysis and expected_analysis[field] != actual:
-            failures.append(f"{field} expected={expected_analysis[field]} actual={actual}")
+        if field in expected_analysis:
+            check_equal(failures, field, expected_analysis[field], actual)
 
     if "month_command" in expected_analysis:
-        actual = result.month_command.current
         expected = expected_analysis["month_command"]
-        if expected != actual:
-            failures.append(f"月令司令 expected={expected} actual={actual}")
+        if isinstance(expected, dict):
+            check_equal(failures, "月令司令", expected.get("current", UNMARKED), result.month_command.current)
+            check_equal(failures, "月令司令细节", expected.get("detail", UNMARKED), result.month_command.detail)
+        elif not is_unmarked(expected):
+            check_equal(failures, "月令司令", expected, result.month_command.current)
+
+    if "five_elements" in expected_analysis:
+        expected = expected_analysis["five_elements"]
+        if not is_unmarked(expected):
+            expected_scores = expected.get("scores", {})
+            for element, expected_score in expected_scores.items():
+                actual_score = result.five_elements.scores.get(element)
+                check_equal(failures, f"五行分数.{element}", expected_score, actual_score)
+
+            expected_states = expected.get("states", {})
+            for element, expected_state in expected_states.items():
+                actual_state = result.five_elements.states.get(element)
+                check_equal(failures, f"五行状态.{element}", expected_state, actual_state)
 
     if "interactions" in expected_analysis:
-        actual_desc = {item.desc for item in result.interactions}
-        missing = [item for item in expected_analysis["interactions"] if item not in actual_desc]
-        if missing:
-            failures.append(f"干支作用缺失 expected_contains={missing} actual={sorted(actual_desc)}")
+        expected = expected_analysis["interactions"]
+        if not is_unmarked(expected):
+            actual_desc = {item.desc for item in result.interactions}
+            missing = [item for item in expected if item not in actual_desc]
+            if missing:
+                failures.append(f"干支作用缺失 expected_contains={missing} actual={sorted(actual_desc)}")
 
     if "stars" in expected_analysis:
-        actual_names = {item.name for item in result.stars}
-        missing = [item for item in expected_analysis["stars"] if item not in actual_names]
-        if missing:
-            failures.append(f"神煞缺失 expected_contains={missing} actual={sorted(actual_names)}")
+        expected = expected_analysis["stars"]
+        if not is_unmarked(expected):
+            actual_names = {item.name for item in result.stars}
+            missing = [item for item in expected if item not in actual_names]
+            if missing:
+                failures.append(f"神煞缺失 expected_contains={missing} actual={sorted(actual_names)}")
 
     return failures
 

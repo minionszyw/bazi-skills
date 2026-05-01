@@ -17,11 +17,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["丁亥", "庚戌", "己巳", "庚午"]
+      "pillars": [
+        "丁亥",
+        "庚戌",
+        "己巳",
+        "庚午"
+      ]
     },
     "expected_analysis": {
+      "geju": "伤官佩印",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身弱",
-      "geju": "伤官佩印"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -42,11 +78,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["甲戌", "戊辰", "己酉", "丁卯"]
+      "pillars": [
+        "甲戌",
+        "戊辰",
+        "己酉",
+        "丁卯"
+      ]
     },
     "expected_analysis": {
+      "geju": "身杀两停",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "身杀两停"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -67,11 +139,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["乙丑", "己卯", "乙亥", "壬午"]
+      "pillars": [
+        "乙丑",
+        "己卯",
+        "乙亥",
+        "壬午"
+      ]
     },
     "expected_analysis": {
+      "geju": "曲直格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "曲直格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -92,11 +200,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["戊辰", "乙丑", "癸卯", "庚申"]
+      "pillars": [
+        "戊辰",
+        "乙丑",
+        "癸卯",
+        "庚申"
+      ]
     },
     "expected_analysis": {
+      "geju": "印绶格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "印绶格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -117,11 +261,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["乙酉", "庚辰", "壬寅", "己酉"]
+      "pillars": [
+        "乙酉",
+        "庚辰",
+        "壬寅",
+        "己酉"
+      ]
     },
     "expected_analysis": {
+      "geju": "财官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身弱",
-      "geju": "财官格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -142,11 +322,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["丁亥", "癸丑", "己亥", "戊辰"]
+      "pillars": [
+        "丁亥",
+        "癸丑",
+        "己亥",
+        "戊辰"
+      ]
     },
     "expected_analysis": {
+      "geju": "拱贵格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "拱贵格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -167,11 +383,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["甲午", "甲戌", "丁酉", "癸卯"]
+      "pillars": [
+        "甲午",
+        "甲戌",
+        "丁酉",
+        "癸卯"
+      ]
     },
     "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "伤官格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -192,11 +444,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["癸酉", "庚申", "戊午", "甲寅"]
+      "pillars": [
+        "癸酉",
+        "庚申",
+        "戊午",
+        "甲寅"
+      ]
     },
     "expected_analysis": {
+      "geju": "食神格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身强",
-      "geju": "食神格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   },
   {
@@ -217,11 +505,47 @@
       "zi_shi_mode": "LATE_ZI_IN_DAY"
     },
     "expected_core": {
-      "pillars": ["庚戌", "己丑", "己卯", "丁卯"]
+      "pillars": [
+        "庚戌",
+        "己丑",
+        "己卯",
+        "丁卯"
+      ]
     },
     "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
       "strength": "身弱",
-      "geju": "七杀格"
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注"
     }
   }
 ]
