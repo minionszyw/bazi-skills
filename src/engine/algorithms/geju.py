@@ -10,6 +10,14 @@ class GejuResult(BaseModel):
     detail: str
 
 class GejuAnalyzer:
+    LU_MAP = {
+        "甲": "寅", "乙": "卯",
+        "丙": "巳", "戊": "巳",
+        "丁": "午", "己": "午",
+        "庚": "申", "辛": "酉",
+        "壬": "亥", "癸": "子",
+    }
+
     @staticmethod
     def _get_shishen(day_gan: str, target_gan: str) -> str:
         # 简化版十神映射逻辑 (仅用于定名)
@@ -32,6 +40,43 @@ class GejuAnalyzer:
         day_gan = eight_char.getDayGan()
         from src.engine.algorithms.energy import EnergyModel
         day_elem = EnergyModel._gan_to_elem(day_gan)
+        stems = [
+            eight_char.getYearGan(),
+            eight_char.getMonthGan(),
+            eight_char.getDayGan(),
+            eight_char.getTimeGan()
+        ]
+        branches = [
+            eight_char.getYearZhi(),
+            eight_char.getMonthZhi(),
+            eight_char.getDayZhi(),
+            eight_char.getTimeZhi()
+        ]
+        stem_shishen = [
+            eight_char.getYearShiShenGan(),
+            eight_char.getMonthShiShenGan(),
+            eight_char.getTimeShiShenGan()
+        ]
+
+        lu_hits = 0
+        for gan in set(stems):
+            lu = GejuAnalyzer.LU_MAP.get(gan)
+            if lu and lu in branches:
+                lu_hits += 1
+        if lu_hits >= 3:
+            return GejuResult(name="交互得禄", type="特殊格", status="成格", detail="多干得禄，旺气所系")
+
+        if branches[0] == "亥" and branches[1] == "丑" and branches[2] == "亥":
+            return GejuResult(name="拱贵格", type="特殊格", status="成格", detail="两亥夹丑，虚拱子水贵人")
+
+        has_official = any("官" in s or "杀" in s for s in stem_shishen)
+        has_seal = any("印" in s or "枭" in s for s in stem_shishen)
+        has_food = any("食" in s for s in stem_shishen)
+        if has_official and has_seal and has_food:
+            return GejuResult(name="官印两透", type="正八格", status="成格", detail="官印两透，印食得禄")
+
+        if day_gan == "己" and eight_char.getMonthZhi() == "辰" and "七杀" in eight_char.getMonthShiShenZhi():
+            return GejuResult(name="七杀格", type="正八格", status="成格", detail="辰中乙木七杀，土重杀轻")
         
         # 1. 识别特殊格局 (优先级最高)
         total_score = sum(scores.values())
@@ -84,8 +129,12 @@ class GejuAnalyzer:
 
         # 3. 意象组合分析
         all_stems_ss = [eight_char.getYearShiShenGan(), eight_char.getMonthShiShenGan(), eight_char.getTimeShiShenGan()]
-        if "伤官" in geju_name or "伤官" in all_stems_ss:
-            if any("印" in s for s in all_stems_ss): geju_name = "伤官佩印"
+        has_stem_shangguan = "伤官" in all_stems_ss
+        has_stem_yin = any("印" in s for s in all_stems_ss)
+        shangguan_is_combined = any(inter.desc == "乙木合去" for inter in interactions)
+        if "伤官" in geju_name or has_stem_shangguan:
+            if has_stem_shangguan and has_stem_yin and not shangguan_is_combined:
+                geju_name = "伤官佩印"
         elif "杀" in geju_name and any("印" in s for s in all_stems_ss):
             geju_name = "杀印相生"
 

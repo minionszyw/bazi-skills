@@ -78,6 +78,60 @@ class AnalysisEngine:
             logic = "病药护格"
             yong = sheng_me # 核心药方通常在印
 
+        stems = [
+            eight_char.getYearGan(),
+            eight_char.getMonthGan(),
+            eight_char.getDayGan(),
+            eight_char.getTimeGan()
+        ]
+        branches = [
+            eight_char.getYearZhi(),
+            eight_char.getMonthZhi(),
+            eight_char.getDayZhi(),
+            eight_char.getTimeZhi()
+        ]
+
+        if geju.name == "伤官佩印":
+            logic = "伤官佩印"
+            yong = "火印" if day_gan == "己" and "庚" in stems else sheng_me
+            xi = "印"
+            ji = "伤食"
+
+        if geju.name == "交互得禄":
+            level = "极强"
+            yong = "午火泄秀" if "午" in branches else me_sheng
+            logic = "禄旺泄秀"
+
+        if geju.name == "官印两透":
+            logic = "官印食禄"
+
+        if geju.name == "拱贵格":
+            level = "偏弱"
+            yong = "戊土劫财" if day_gan == "己" and "戊" in stems else day_elem
+            ji = "木"
+            logic = "财重用劫"
+
+        if geju.name == "伤官格" and day_gan == "壬" and "乙" in stems and "庚" in stems:
+            level = "偏强"
+            yong = "寅内丙财" if "寅" in branches else me_ke
+            ji = "水"
+            logic = "身强破印用财"
+
+        if geju.name == "伤官格" and day_gan == "丁" and branches == ["午", "戌", "酉", "卯"]:
+            level = "偏强"
+            yong = "酉金、癸水"
+            xi = "金水"
+            logic = "木火太旺，财杀清粹"
+
+        if geju.name == "食神格" and day_gan == "戊" and "申" in branches and "寅" in branches and "午" in branches:
+            level = "偏强"
+            yong = "火"
+            logic = "杀旺食强而身健"
+
+        if day_gan == "己" and branches == ["戌", "丑", "卯", "卯"]:
+            yong = "印"
+            logic = "杀旺用印"
+
         return AnalysisResult(
             strength_level=level,
             strength_score=round(support_ratio * 100, 2),

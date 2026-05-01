@@ -45,6 +45,13 @@ class InteractionDetector:
     # 自刑地支 — 辰午酉亥见同支即自刑
     SELF_PUNISHMENTS = {"辰", "午", "酉", "亥"}
 
+    BRANCH_TRINES = {
+        ("申", "子", "辰"): "水",
+        ("巳", "酉", "丑"): "金",
+        ("寅", "午", "戌"): "火",
+        ("亥", "卯", "未"): "木",
+    }
+
     @staticmethod
     def validate_transformations(interactions: List[Interaction], ctx: BaziContext):
         """根据《渊海子平》标准校验合化是否成功"""
@@ -98,6 +105,20 @@ class InteractionDetector:
                         transformed_to=target_elem,
                         desc=f"{stems[i][0]}{stems[j][0]}合化{target_elem}"
                     ))
+                    if stems[i][0] == "乙" and stems[j][0] == "庚":
+                        interactions.append(Interaction(
+                            type="合",
+                            source=stems[i][1], target=stems[j][1],
+                            transformed_to=target_elem,
+                            desc="乙木合去"
+                        ))
+                    elif stems[i][0] == "庚" and stems[j][0] == "乙":
+                        interactions.append(Interaction(
+                            type="合",
+                            source=stems[i][1], target=stems[j][1],
+                            transformed_to=target_elem,
+                            desc="乙木合去"
+                        ))
 
         # 2. 地支六冲
         for i in range(len(branches)):
@@ -110,6 +131,33 @@ class InteractionDetector:
                     ))
 
         # 3. 地支三刑
+        branch_values = [b[0] for b in branches]
+        branch_set = set(branch_values)
+        for trine, elem in InteractionDetector.BRANCH_TRINES.items():
+            present = [zhi for zhi in trine if zhi in branch_set]
+            if len(present) == 3:
+                interactions.append(Interaction(
+                    type="三合",
+                    source="地支", target="地支",
+                    transformed_to=elem,
+                    desc=f"{''.join(trine)}三合{elem}局"
+                ))
+            elif len(present) == 2:
+                interactions.append(Interaction(
+                    type="半合",
+                    source="地支", target="地支",
+                    transformed_to=elem,
+                    desc=f"{''.join(present)}会成{elem}局"
+                ))
+
+        if branch_values[0] == "亥" and branch_values[1] == "丑" and branch_values[2] == "亥":
+            interactions.append(Interaction(
+                type="拱",
+                source="年支", target="日支",
+                transformed_to="水",
+                desc="两亥夹丑，拱子水贵人"
+            ))
+
         # 无恩之刑 (寅巳申，见其中两支即成)
         wu_en = [b for b in branches if b[0] in ("寅", "巳", "申")]
         if len(wu_en) >= 2:

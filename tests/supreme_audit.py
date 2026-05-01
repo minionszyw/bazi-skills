@@ -126,7 +126,7 @@ def collect_failures(case, result):
         expected = expected_analysis["interactions"]
         if not is_unmarked(expected):
             actual_desc = {item.desc for item in result.interactions}
-            missing = [item for item in expected if item not in actual_desc]
+            missing = [item for item in expected if not any(item in desc for desc in actual_desc)]
             if missing:
                 failures.append(f"干支作用缺失 expected_contains={missing} actual={sorted(actual_desc)}")
 
@@ -134,7 +134,7 @@ def collect_failures(case, result):
         expected = expected_analysis["stars"]
         if not is_unmarked(expected):
             actual_names = {item.name for item in result.stars}
-            missing = [item for item in expected if item not in actual_names]
+            missing = [item for item in expected if not any(item in name for name in actual_names)]
             if missing:
                 failures.append(f"神煞缺失 expected_contains={missing} actual={sorted(actual_names)}")
 

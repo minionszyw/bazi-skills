@@ -64,6 +64,14 @@ class StarDetector:
         "戊": ["壬子", "癸丑"], "癸": ["壬子", "癸丑"]
     }
 
+    WEN_CHANG = {
+        "甲": "巳", "乙": "午",
+        "丙": "申", "戊": "申",
+        "丁": "酉", "己": "酉",
+        "庚": "亥", "辛": "子",
+        "壬": "寅", "癸": "卯",
+    }
+
     @staticmethod
     def detect(ctx: BaziContext) -> List[Star]:
         lunar = ctx.solar.getLunar()
@@ -127,5 +135,10 @@ class StarDetector:
         void_times = StarDetector.JIE_LU_VOID.get(day_gan, [])
         if (time_gan + time_zhi) in void_times:
             found_stars.append(Star(name="截路空亡", pos="时柱", desc="行路受阻，晚年寥落"))
+
+        target_wc = StarDetector.WEN_CHANG.get(day_gan)
+        for zhi, pos in branches:
+            if zhi == target_wc:
+                found_stars.append(Star(name="文昌贵人", pos=pos, desc="聪明好学，文艺秀发"))
 
         return found_stars
