@@ -1,5 +1,5 @@
 {
-  "processed_at": "2026-04-30 23:02:02",
+  "processed_at": "2026-05-01 09:42:56",
   "request": {
     "name": "张三",
     "gender": 1,
@@ -7,7 +7,6 @@
     "birth_datetime": "1993-08-04 05:30:00",
     "birth_location": "深圳",
     "longitude": null,
-    "latitude": null,
     "time_mode": "TRUE_SOLAR",
     "month_mode": "SOLAR_TERM",
     "zi_shi_mode": "LATE_ZI_IN_DAY"
@@ -88,7 +87,7 @@
   },
   "fortune": {
     "start_solar": "1997-06-29 05:13:18 星期日",
-    "start_age": -1990,
+    "start_age": 5,
     "da_yun": [
       {
         "index": 1,
@@ -215,10 +214,59 @@
       "水": "沐浴"
     }
   },
-  "interactions": [],
+  "interactions": [
+    {
+      "type": "冲",
+      "source": "年支",
+      "target": "日支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "酉卯相冲"
+    },
+    {
+      "type": "冲",
+      "source": "年支",
+      "target": "时支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "酉卯相冲"
+    },
+    {
+      "type": "冲",
+      "source": "月支",
+      "target": "日支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "酉卯相冲"
+    },
+    {
+      "type": "冲",
+      "source": "月支",
+      "target": "时支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "酉卯相冲"
+    },
+    {
+      "type": "刑",
+      "source": "年支",
+      "target": "月支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "自刑：酉见酉"
+    },
+    {
+      "type": "反吟",
+      "source": "月支",
+      "target": "时支",
+      "is_transformed": false,
+      "transformed_to": null,
+      "desc": "月支与时支反吟（辛酉冲乙卯）"
+    }
+  ],
   "geju": {
     "name": "偏印格",
-    "type": "INNER_EIGHT",
+    "type": "正八格",
     "status": "成格",
     "detail": "标准正八格取法"
   },

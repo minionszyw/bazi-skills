@@ -99,8 +99,8 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
     "scores": { "木": 42.5, "火": 0.0, "土": 0.0, "金": 210.6, "水": 16.5 },
     "states": { "木": "胎", "火": "死", "土": "死", "金": "帝旺", "水": "沐浴" }
   },
-  "interactions": [],
-  "geju":     { "name": "偏印格", "type": "INNER_EIGHT", "status": "成格", "detail": "标准正八格取法" },
+  "interactions": [ { "type": "冲", "source": "年支", "target": "日支", "is_transformed": false, "transformed_to": null, "desc": "酉卯相冲" }, ... ],
+  "geju":     { "name": "偏印格", "type": "正八格", "status": "成格", "detail": "标准正八格取法" },
   "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
   "stars":    [ { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" }, ... ]
 }
