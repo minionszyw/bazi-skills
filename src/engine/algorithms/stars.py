@@ -72,6 +72,22 @@ class StarDetector:
         "壬": "寅", "癸": "卯",
     }
 
+    LU_SHEN = {
+        "甲": "寅", "乙": "卯",
+        "丙": "巳", "戊": "巳",
+        "丁": "午", "己": "午",
+        "庚": "申", "辛": "酉",
+        "壬": "亥", "癸": "子",
+    }
+
+    YANG_REN = {
+        "甲": "卯", "乙": "寅",
+        "丙": "午", "丁": "巳",
+        "戊": "午", "己": "巳",
+        "庚": "酉", "辛": "申",
+        "壬": "子", "癸": "亥",
+    }
+
     @staticmethod
     def detect(ctx: BaziContext) -> List[Star]:
         lunar = ctx.solar.getLunar()
@@ -140,5 +156,24 @@ class StarDetector:
         for zhi, pos in branches:
             if zhi == target_wc:
                 found_stars.append(Star(name="文昌贵人", pos=pos, desc="聪明好学，文艺秀发"))
+
+        for gan, stem_pos in stems:
+            target_lu = StarDetector.LU_SHEN.get(gan)
+            for zhi, branch_pos in branches:
+                if zhi == target_lu:
+                    found_stars.append(Star(
+                        name="禄神",
+                        pos=branch_pos,
+                        desc=f"{gan}禄在{zhi}"
+                    ))
+
+            target_ren = StarDetector.YANG_REN.get(gan)
+            for zhi, branch_pos in branches:
+                if zhi == target_ren:
+                    found_stars.append(Star(
+                        name="羊刃",
+                        pos=branch_pos,
+                        desc=f"{gan}羊刃在{zhi}"
+                    ))
 
         return found_stars

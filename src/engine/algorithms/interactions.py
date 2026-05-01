@@ -52,6 +52,22 @@ class InteractionDetector:
         ("亥", "卯", "未"): "木",
     }
 
+    BRANCH_COMBINATIONS = {
+        frozenset(["子", "丑"]): ("子", "丑", "土"),
+        frozenset(["寅", "亥"]): ("寅", "亥", "木"),
+        frozenset(["卯", "戌"]): ("卯", "戌", "火"),
+        frozenset(["辰", "酉"]): ("辰", "酉", "金"),
+        frozenset(["巳", "申"]): ("巳", "申", "水"),
+        frozenset(["午", "未"]): ("午", "未", "火"),
+    }
+
+    BRANCH_MEETINGS = {
+        ("亥", "子", "丑"): "水",
+        ("寅", "卯", "辰"): "木",
+        ("巳", "午", "未"): "火",
+        ("申", "酉", "戌"): "金",
+    }
+
     @staticmethod
     def validate_transformations(interactions: List[Interaction], ctx: BaziContext):
         """根据《渊海子平》标准校验合化是否成功"""
@@ -119,6 +135,18 @@ class InteractionDetector:
                             transformed_to=target_elem,
                             desc="乙木合去"
                         ))
+                if InteractionDetector.STEM_CLASHES.get(stems[i][0]) == stems[j][0]:
+                    interactions.append(Interaction(
+                        type="冲",
+                        source=stems[i][1], target=stems[j][1],
+                        desc=f"{stems[i][0]}{stems[j][0]}相冲"
+                    ))
+                    if {stems[i][0], stems[j][0]} == {"乙", "辛"}:
+                        interactions.append(Interaction(
+                            type="冲",
+                            source=stems[i][1], target=stems[j][1],
+                            desc="辛乙交战"
+                        ))
 
         # 2. 地支六冲
         for i in range(len(branches)):
@@ -128,6 +156,15 @@ class InteractionDetector:
                         type="冲",
                         source=branches[i][1], target=branches[j][1],
                         desc=f"{branches[i][0]}{branches[j][0]}相冲"
+                    ))
+                pair = frozenset([branches[i][0], branches[j][0]])
+                if pair in InteractionDetector.BRANCH_COMBINATIONS:
+                    zhi_a, zhi_b, target_elem = InteractionDetector.BRANCH_COMBINATIONS[pair]
+                    interactions.append(Interaction(
+                        type="合",
+                        source=branches[i][1], target=branches[j][1],
+                        transformed_to=target_elem,
+                        desc=f"{zhi_a}{zhi_b}合化{target_elem}"
                     ))
 
         # 3. 地支三刑
@@ -149,6 +186,22 @@ class InteractionDetector:
                     transformed_to=elem,
                     desc=f"{''.join(present)}会成{elem}局"
                 ))
+
+        for meeting, elem in InteractionDetector.BRANCH_MEETINGS.items():
+            if all(zhi in branch_set for zhi in meeting):
+                interactions.append(Interaction(
+                    type="三会",
+                    source="地支", target="地支",
+                    transformed_to=elem,
+                    desc=f"{''.join(meeting)}会起{elem}局"
+                ))
+
+        if all(zhi in branch_set for zhi in ("子", "午", "卯", "酉")):
+            interactions.append(Interaction(
+                type="四正",
+                source="地支", target="地支",
+                desc="地支子午卯酉全"
+            ))
 
         if branch_values[0] == "亥" and branch_values[1] == "丑" and branch_values[2] == "亥":
             interactions.append(Interaction(
