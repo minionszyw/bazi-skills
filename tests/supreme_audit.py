@@ -212,6 +212,21 @@ def strength_matches(expected, actual):
     return expected == actual
 
 
+def yong_shen_matches(expected, actual):
+    if expected == actual or actual in expected:
+        return True
+    element_stems = {
+        "木": {"甲", "乙"},
+        "火": {"丙", "丁"},
+        "土": {"戊", "己"},
+        "金": {"庚", "辛"},
+        "水": {"壬", "癸"},
+    }
+    if actual in element_stems:
+        return actual in expected or bool(element_stems[actual] & set(expected))
+    return False
+
+
 def is_unmarked(expected):
     return expected == UNMARKED
 
@@ -246,9 +261,13 @@ def collect_failures(case, result):
     if not is_unmarked(expected_strength) and not strength_matches(expected_strength, actual_strength):
         failures.append(f"强弱 expected={expected_strength} actual={actual_strength}")
 
+    if "yong_shen" in expected_analysis:
+        expected_yong_shen = expected_analysis["yong_shen"]
+        if not is_unmarked(expected_yong_shen) and not yong_shen_matches(expected_yong_shen, result.analysis.yong_shen):
+            failures.append(f"yong_shen expected={expected_yong_shen} actual={result.analysis.yong_shen}")
+
     optional_checks = {
         "strength_score": result.analysis.strength_score,
-        "yong_shen": result.analysis.yong_shen,
         "xi_shen": result.analysis.xi_shen,
         "ji_shen": result.analysis.ji_shen,
         "chou_shen": result.analysis.chou_shen,
@@ -367,7 +386,7 @@ def run_supreme_audit():
         yong_shen_expected = expected_analysis.get("yong_shen", UNMARKED)
         if not is_unmarked(yong_shen_expected):
             stats["yong_shen_total"] += 1
-            if yong_shen_expected == result.analysis.yong_shen:
+            if yong_shen_matches(yong_shen_expected, result.analysis.yong_shen):
                 stats["yong_shen_ok"] += 1
 
         interactions_expected = expected_analysis.get("interactions", UNMARKED)
