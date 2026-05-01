@@ -34,14 +34,14 @@ pip install -e ".[dev]"
 ### CLI 排盘
 
 ```bash
-bazi --name 张三 --gender 1 --calendar LUNAR \
+paipan --name 张三 --gender 1 --calendar LUNAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
 也可以不安装包，直接从源码运行：
 
 ```bash
-PYTHONPATH=. python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
+PYTHONPATH=. python3 -m src.paipan --name 张三 --gender 1 --calendar LUNAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
@@ -70,7 +70,7 @@ search "天乙贵人" --book yuanhai --limit 3
 典型流程：
 
 ```text
-获取命主出生信息 -> bazi 排盘 -> 提取日主/月令/格局/神煞/冲合等关键词 -> search 多轮检索 -> 结合原文做中文分析
+获取命主出生信息 -> paipan 排盘 -> 提取日主/月令/格局/神煞/冲合等关键词 -> search 多轮检索 -> 结合原文做中文分析
 ```
 
 

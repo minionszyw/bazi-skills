@@ -21,7 +21,7 @@ dev = [
 ]
 
 [project.scripts]
-bazi = "src.cli:main"
+paipan = "src.paipan:main"
 search = "src.search:main"
 
 [tool.setuptools.packages.find]
