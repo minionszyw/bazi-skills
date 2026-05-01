@@ -506,5 +506,2567 @@
       "stars": "古籍未标注",
       "source_quote": "沂水易士注：食神格。戊生庚申月甲寅时，食神七杀均得禄，寅午会成火局以生身，《子平真诠》所谓“杀旺食强而身健”，为极等之贵格。秋金更旺过于火，已往行运，泰半火乡。"
     }
+  },
+  {
+    "case_name": "千里命稿例4",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例4",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸未",
+        "辛酉",
+        "乙酉",
+        "丁亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸未",
+        "辛酉",
+        "乙酉",
+        "丁亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例6",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例6",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "丁卯",
+        "丙午",
+        "庚午",
+        "己卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "丁卯",
+        "丙午",
+        "庚午",
+        "己卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例8",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例8",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "己亥",
+        "丁卯",
+        "乙未",
+        "己卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "己亥",
+        "丁卯",
+        "乙未",
+        "己卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "曲直格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：曲直格"
+    }
+  },
+  {
+    "case_name": "千里命稿例15",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例15",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙酉",
+        "庚午",
+        "庚子",
+        "丙子"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙酉",
+        "庚午",
+        "庚子",
+        "丙子"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例16",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例16",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲申",
+        "甲戌"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚申",
+        "甲申",
+        "甲申",
+        "甲戌"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例17",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例17",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "戊子",
+        "辛酉",
+        "乙未",
+        "己卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "戊子",
+        "辛酉",
+        "乙未",
+        "己卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例18",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例18",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "壬子",
+        "壬寅",
+        "乙亥",
+        "丙子"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "壬子",
+        "壬寅",
+        "乙亥",
+        "丙子"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例19",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例19",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "甲辰",
+        "丙子",
+        "壬寅",
+        "辛亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "甲辰",
+        "丙子",
+        "壬寅",
+        "辛亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "月刃格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：月刃格"
+    }
+  },
+  {
+    "case_name": "千里命稿例20",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例20",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "辛亥",
+        "辛卯",
+        "庚子",
+        "庚辰"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "辛亥",
+        "辛卯",
+        "庚子",
+        "庚辰"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正财格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正财格"
+    }
+  },
+  {
+    "case_name": "千里命稿例22",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例22",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "戊戌",
+        "戊午",
+        "癸亥",
+        "戊午"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "戊戌",
+        "戊午",
+        "癸亥",
+        "戊午"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "偏财格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：偏财格"
+    }
+  },
+  {
+    "case_name": "千里命稿例26",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例26",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "戊辰",
+        "戊午",
+        "辛丑",
+        "戊戌"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "戊辰",
+        "戊午",
+        "辛丑",
+        "戊戌"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例28",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例28",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "戊寅",
+        "甲寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "甲寅",
+        "丁卯",
+        "戊寅",
+        "甲寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例30",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例30",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸酉",
+        "庚申",
+        "壬子",
+        "辛亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸酉",
+        "庚申",
+        "壬子",
+        "辛亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "交禄格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：交禄格"
+    }
+  },
+  {
+    "case_name": "千里命稿例31",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例31",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "辛丑",
+        "乙未",
+        "己亥",
+        "壬申"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "辛丑",
+        "乙未",
+        "己亥",
+        "壬申"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例32",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例32",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙未",
+        "甲申",
+        "癸巳",
+        "丙辰"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙未",
+        "甲申",
+        "癸巳",
+        "丙辰"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例33",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例33",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "丙戌",
+        "丙申",
+        "乙巳",
+        "庚辰"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "丙戌",
+        "丙申",
+        "乙巳",
+        "庚辰"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例35",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例35",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "乙巳",
+        "戊寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "壬寅",
+        "丁未",
+        "乙巳",
+        "戊寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "食神格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：食神格"
+    }
+  },
+  {
+    "case_name": "千里命稿例36",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例36",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "乙丑",
+        "辛巳"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸酉",
+        "辛酉",
+        "乙丑",
+        "辛巳"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例38",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例38",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "壬子",
+        "壬子",
+        "庚辰",
+        "丁丑"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "壬子",
+        "壬子",
+        "庚辰",
+        "丁丑"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例43",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例43",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "乙酉",
+        "庚午",
+        "庚子",
+        "己卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙酉",
+        "庚午",
+        "庚子",
+        "己卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例44",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例44",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "庚戌",
+        "辛巳",
+        "己亥",
+        "乙亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚戌",
+        "辛巳",
+        "己亥",
+        "乙亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例46",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例46",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙巳",
+        "戊子",
+        "乙巳",
+        "戊寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙巳",
+        "戊子",
+        "乙巳",
+        "戊寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "偏印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：偏印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例51",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例51",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "己巳",
+        "丁丑",
+        "乙丑",
+        "乙酉"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "己巳",
+        "丁丑",
+        "乙丑",
+        "乙酉"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "偏财格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：偏财格"
+    }
+  },
+  {
+    "case_name": "千里命稿例52",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例52",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸未",
+        "乙卯",
+        "乙亥",
+        "戊寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸未",
+        "乙卯",
+        "乙亥",
+        "戊寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "曲直格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：曲直格"
+    }
+  },
+  {
+    "case_name": "千里命稿例54",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例54",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "戊子",
+        "丙辰",
+        "丙子",
+        "戊子"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "戊子",
+        "丙辰",
+        "丙子",
+        "戊子"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "食神格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：食神格"
+    }
+  },
+  {
+    "case_name": "千里命稿例55",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例55",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "丙戌",
+        "庚子",
+        "丁未",
+        "丙午"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "丙戌",
+        "庚子",
+        "丁未",
+        "丙午"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例56",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例56",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "甲辰",
+        "甲子"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙丑",
+        "辛巳",
+        "甲辰",
+        "甲子"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "食神格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：食神格"
+    }
+  },
+  {
+    "case_name": "千里命稿例57",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例57",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸巳",
+        "甲寅",
+        "壬辰",
+        "庚子"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸巳",
+        "甲寅",
+        "壬辰",
+        "庚子"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "食神格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：食神格，又叫壬骑龙背格"
+    }
+  },
+  {
+    "case_name": "千里命稿例58",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例58",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "甲申",
+        "庚午"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "甲戌",
+        "丁卯",
+        "甲申",
+        "庚午"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "月刃格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：月刃格"
+    }
+  },
+  {
+    "case_name": "千里命稿例59",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例59",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙卯",
+        "丙子",
+        "乙丑",
+        "丁亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙卯",
+        "丙子",
+        "乙丑",
+        "丁亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "偏印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：偏印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例60",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例60",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "癸卯",
+        "辛酉",
+        "乙卯",
+        "辛巳"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "癸卯",
+        "辛酉",
+        "乙卯",
+        "辛巳"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例63",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例63",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "丙申",
+        "癸巳",
+        "癸亥",
+        "甲寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "丙申",
+        "癸巳",
+        "癸亥",
+        "甲寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正财格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正财格"
+    }
+  },
+  {
+    "case_name": "千里命稿例66",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例66",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "壬寅",
+        "辛丑"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚辰",
+        "己卯",
+        "壬寅",
+        "辛丑"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例71",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例71",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "庚戌",
+        "甲申",
+        "己酉",
+        "辛未"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚戌",
+        "甲申",
+        "己酉",
+        "辛未"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例72",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例72",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 0,
+      "pillars": [
+        "壬寅",
+        "壬子",
+        "丁亥",
+        "癸卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "壬寅",
+        "壬子",
+        "丁亥",
+        "癸卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例74",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例74",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚辰",
+        "己丑",
+        "癸丑",
+        "乙卯"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚辰",
+        "己丑",
+        "癸丑",
+        "乙卯"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "七杀格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：七杀格"
+    }
+  },
+  {
+    "case_name": "千里命稿例75",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例75",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "乙亥",
+        "乙酉"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚子",
+        "丙戌",
+        "乙亥",
+        "乙酉"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正财格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正财格"
+    }
+  },
+  {
+    "case_name": "千里命稿例77",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例77",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "乙卯",
+        "庚辰",
+        "丙子",
+        "壬辰"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "乙卯",
+        "庚辰",
+        "丙子",
+        "壬辰"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例80",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例80",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚子",
+        "甲申",
+        "癸酉",
+        "癸丑"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚子",
+        "甲申",
+        "癸酉",
+        "癸丑"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例82",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例82",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "庚申",
+        "己卯",
+        "丙戌",
+        "庚寅"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "庚申",
+        "己卯",
+        "丙戌",
+        "庚寅"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
+  },
+  {
+    "case_name": "千里命稿例85",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例85",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "甲申",
+        "戊辰",
+        "丁未",
+        "丙午"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "甲申",
+        "戊辰",
+        "丁未",
+        "丙午"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "伤官格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格"
+    }
+  },
+  {
+    "case_name": "千里命稿例87",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例87",
+      "note": "古籍仅载四柱，未载可复现公历生日；本用例走四柱直测路径，跳过历法反推。"
+    },
+    "pillar_input": {
+      "gender": 1,
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "丁未",
+        "辛亥"
+      ]
+    },
+    "expected_core": {
+      "pillars": [
+        "辛亥",
+        "庚寅",
+        "丁未",
+        "辛亥"
+      ]
+    },
+    "expected_analysis": {
+      "geju": "正印格",
+      "geju_type": "古籍未标注",
+      "geju_status": "古籍未标注",
+      "geju_detail": "古籍未标注",
+      "strength": "古籍未标注",
+      "strength_score": "古籍未标注",
+      "yong_shen": "古籍未标注",
+      "xi_shen": "古籍未标注",
+      "ji_shen": "古籍未标注",
+      "chou_shen": "古籍未标注",
+      "logic_type": "古籍未标注",
+      "month_command": {
+        "current": "古籍未标注",
+        "detail": "古籍未标注"
+      },
+      "five_elements": {
+        "scores": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        },
+        "states": {
+          "木": "古籍未标注",
+          "火": "古籍未标注",
+          "土": "古籍未标注",
+          "金": "古籍未标注",
+          "水": "古籍未标注"
+        }
+      },
+      "interactions": "古籍未标注",
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：正印格"
+    }
   }
 ]
