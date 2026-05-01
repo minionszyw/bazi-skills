@@ -49,15 +49,15 @@ class GejuAnalyzer:
         has_seal = any("印" in s or "枭" in s for s in all_stems_ss)
         
         if day_ratio < 0.15 and not has_seal:
-            # 找到最强五行并转化为十神定名
             sorted_elems = sorted(scores.items(), key=lambda x: x[1], reverse=True)
             top_elem = sorted_elems[0][0]
-            # 获取最强五行对日主的十神名
-            top_ss = GejuAnalyzer._get_shishen(day_gan, EnergyModel.ELEMENT_MAP[top_elem][0])
-            
-            if any(k in top_ss for k in ["财", "杀", "官", "食", "伤"]):
-                name = f"从{top_ss[:1]}格" # 如 从财格, 从杀格
-                return GejuResult(name=name, type="SPECIAL", status="成格", detail=f"日主无根无助，弃命从{top_ss}")
+            top_ratio = sorted_elems[0][1] / total_score if total_score > 0 else 0
+            # 从格额外要求: 最强五行不是日主本身，且其占比>50%确保绝对强旺
+            if top_elem != day_elem and top_ratio > 0.5:
+                top_ss = GejuAnalyzer._get_shishen(day_gan, EnergyModel.ELEMENT_MAP[top_elem][0])
+                if any(k in top_ss for k in ["财", "杀", "官", "食", "伤"]):
+                    name = f"从{top_ss[:1]}格"
+                    return GejuResult(name=name, type="SPECIAL", status="成格", detail=f"日主无根无助，弃命从{top_ss}")
 
         # 2. 正八格取法 (月令透干优先)
         month_all_gans = eight_char.getMonthHideGan()

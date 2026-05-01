@@ -43,12 +43,15 @@ class AnalysisEngine:
         support_ratio = support_score / total_score if total_score > 0 else 0
         
         # 3. 动态阈值判定
-        threshold_strong = 0.50 # 略微降低强弱分界线
+        # 基准线 0.50；月令旺相时日主先天占优，门槛下调至 0.46；
+        # 月令死绝时日主先天受压，需更多外援才算强，门槛上调至 0.55。
+        # 极强/极弱边界 0.72/0.28 对应支持比例约 3:1 或 1:3 的失衡状态。
+        threshold_strong = 0.50
         if day_status in ["旺", "相"]:
             threshold_strong = 0.46
         elif day_status in ["死", "绝"]:
             threshold_strong = 0.55
-            
+
         level = "中和"
         if support_ratio > 0.72: level = "极强"
         elif support_ratio > threshold_strong: level = "偏强"

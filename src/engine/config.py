@@ -16,8 +16,8 @@ class BaziConfig:
             try:
                 data = json.load(f)
                 self._flatten_data(data)
-            except json.JSONDecodeError:
-                pass
+            except json.JSONDecodeError as e:
+                raise RuntimeError(f"地名数据文件 {self.config_path} 解析失败: {e}") from e
 
     def _flatten_data(self, item: Any):
         """
