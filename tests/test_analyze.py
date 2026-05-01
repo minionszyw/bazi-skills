@@ -17,7 +17,9 @@ def test_analyze_overall_builds_method_steps_and_queries():
     assert result["chart_summary"]["day_master"] == "癸"
     assert result["chart_summary"]["geju"]["name"] == "偏印格"
     assert len(result["steps"]) >= 5
+    assert result["search_query_layers"]["required"]
     assert "月令" in result["search_queries"]
+    assert "月令" in result["search_query_layers"]["required"]
     assert any(step["search_queries"] for step in result["steps"])
 
 
@@ -29,6 +31,7 @@ def test_analyze_career_includes_official_and_output_steps():
     assert "看食伤才华" in step_names
     assert any("正官" in query or "偏官" in query for query in result["search_queries"])
     assert any("食神" in query for query in result["search_queries"])
+    assert any("正官" in query or "偏官" in query for query in result["search_query_layers"]["topic_specific"])
 
 
 def test_all_supported_topics_build_steps_and_queries():
@@ -67,6 +70,7 @@ def test_analyze_cli_reads_chart_file(tmp_path):
             str(chart_path),
             "--topic",
             "wealth",
+            "--no-evidence",
         ],
         cwd=ROOT,
         text=True,
@@ -77,6 +81,8 @@ def test_analyze_cli_reads_chart_file(tmp_path):
     result = json.loads(completed.stdout)
     assert result["topic"] == "wealth"
     assert "search_queries" in result
+    assert "search_query_layers" in result
+    assert "evidence" not in result
 
 
 def test_analyze_cli_can_attach_evidence(tmp_path):
@@ -106,4 +112,34 @@ def test_analyze_cli_can_attach_evidence(tmp_path):
 
     result = json.loads(completed.stdout)
     assert result["evidence"]
+    assert result["evidence_meta"]["tiers"] == ["required", "topic_specific"]
     assert any(items for items in result["evidence"].values())
+
+
+def test_analyze_cli_attaches_evidence_by_default(tmp_path):
+    chart_path = tmp_path / "chart.json"
+    chart_path.write_text(json.dumps(CHART, ensure_ascii=False), encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "src.analyze",
+            "--chart",
+            str(chart_path),
+            "--topic",
+            "overall",
+            "--limit",
+            "1",
+            "--max-chars",
+            "80",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    result = json.loads(completed.stdout)
+    assert result["evidence"]
+    assert set(result["evidence"]).issubset(set(result["search_query_layers"]["required"]))

@@ -7,6 +7,8 @@ from typing import Any
 from src.analysis import SUPPORTED_TOPICS, analyze_chart
 from src.search import search
 
+EVIDENCE_TIERS = ("required", "topic_specific", "optional")
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -26,14 +28,30 @@ def build_parser() -> argparse.ArgumentParser:
         default="overall",
         help="分析主题，默认 overall",
     )
-    parser.add_argument(
+    evidence_group = parser.add_mutually_exclusive_group()
+    evidence_group.add_argument(
         "--with-evidence",
+        dest="with_evidence",
         action="store_true",
-        help="同时调用 search，把古籍检索结果嵌入输出",
+        default=True,
+        help="调用 search，把核心古籍检索结果嵌入输出（默认开启）",
+    )
+    evidence_group.add_argument(
+        "--no-evidence",
+        dest="with_evidence",
+        action="store_false",
+        help="只输出分析步骤与检索词，不嵌入古籍检索结果",
     )
     parser.add_argument("--book", default="yuanhai", help="古籍代号，默认 yuanhai")
     parser.add_argument("--limit", type=int, default=2, help="每个检索词返回条数，默认 2")
     parser.add_argument("--max-chars", type=int, default=260, help="每条原文最大字符数，默认 260")
+    parser.add_argument(
+        "--evidence-tier",
+        action="append",
+        choices=EVIDENCE_TIERS,
+        default=None,
+        help="指定 evidence 检索层级，可重复；默认检索 required 与 topic_specific",
+    )
     parser.add_argument("--format", choices=["json", "text"], default="json", help="输出格式")
     return parser
 
@@ -52,12 +70,37 @@ def load_chart(path: str) -> dict[str, Any]:
     return data
 
 
-def attach_evidence(result: dict[str, Any], *, book: str, limit: int, max_chars: int) -> dict[str, Any]:
+def attach_evidence(
+    result: dict[str, Any],
+    *,
+    book: str,
+    limit: int,
+    max_chars: int,
+    tiers: list[str] | None = None,
+) -> dict[str, Any]:
+    selected_tiers = tiers or ["required", "topic_specific"]
+    queries = _evidence_queries(result, selected_tiers)
     evidence = {}
-    for query in result["search_queries"]:
+    for query in queries:
         evidence[query] = search(query, book=book, limit=limit, max_chars=max_chars)
     result["evidence"] = evidence
+    result["evidence_meta"] = {
+        "book": book,
+        "tiers": selected_tiers,
+        "limit": limit,
+        "max_chars": max_chars,
+    }
     return result
+
+
+def _evidence_queries(result: dict[str, Any], tiers: list[str]) -> list[str]:
+    layers = result.get("search_query_layers") or {}
+    queries = []
+    for tier in tiers:
+        queries.extend(layers.get(tier, []))
+    if not queries:
+        queries = result.get("search_queries", [])
+    return list(dict.fromkeys(query for query in queries if query))
 
 
 def render_text(result: dict[str, Any]) -> str:
@@ -86,12 +129,13 @@ def render_text(result: dict[str, Any]) -> str:
         lines.append(f"   检索词：{'、'.join(step['search_queries'])}")
     if "evidence" in result:
         lines.append("")
-        lines.append("古籍检索：")
+        lines.append("古籍依据：")
         for query, items in result["evidence"].items():
             if not items:
                 continue
             first = items[0]
-            lines.append(f"- {query}：{first['source']}《{first['title']}》 {first['text']}")
+            source = str(first["source"]).strip("《》")
+            lines.append(f"- {query}：《{source}·{first['title']}》：{first['text']}")
     return "\n".join(lines)
 
 
@@ -102,7 +146,13 @@ def main():
         chart = load_chart(args.chart)
         result = analyze_chart(chart, topic=args.topic)
         if args.with_evidence:
-            result = attach_evidence(result, book=args.book, limit=args.limit, max_chars=args.max_chars)
+            result = attach_evidence(
+                result,
+                book=args.book,
+                limit=args.limit,
+                max_chars=args.max_chars,
+                tiers=args.evidence_tier,
+            )
     except ValueError as exc:
         print(json.dumps({"error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         sys.exit(1)

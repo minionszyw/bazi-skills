@@ -141,6 +141,7 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
 
     ctx = build_context(chart)
     steps = [_build_step(ctx, step) for step in TOPIC_STEPS[topic]]
+    query_layers = _query_layers(topic, steps)
     queries = _dedupe(query for step in steps for query in step["search_queries"])
 
     return {
@@ -148,6 +149,7 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
         "title": TOPIC_TITLES[topic],
         "chart_summary": _chart_summary(ctx),
         "steps": steps,
+        "search_query_layers": query_layers,
         "search_queries": queries,
         "notes": [
             "本结果是命理分析流程，不是确定性预测。",
@@ -162,9 +164,36 @@ def _build_step(ctx: dict[str, Any], template: StepTemplate) -> dict[str, Any]:
     return {
         "name": template.name,
         "method": template.method,
+        "kind": template.kind,
         "inputs": inputs,
         "conclusion": conclusion,
         "search_queries": _queries_for(ctx, template.kind),
+    }
+
+
+def _query_layers(topic: str, steps: list[dict[str, Any]]) -> dict[str, list[str]]:
+    required_kinds = {"foundation", "strength", "useful_gods", "geju"}
+    common_optional_kinds = {"interactions", "fortune"}
+    required = []
+    topic_specific = []
+    optional = []
+
+    for step in steps:
+        kind = step.get("kind")
+        queries = step.get("search_queries", [])
+        if kind in required_kinds:
+            required.extend(queries[:3])
+            optional.extend(queries[3:])
+        elif topic != "overall" and kind not in common_optional_kinds:
+            topic_specific.extend(queries[:5])
+            optional.extend(queries[5:])
+        else:
+            optional.extend(queries)
+
+    return {
+        "required": _dedupe(required),
+        "topic_specific": _dedupe(topic_specific),
+        "optional": _dedupe(optional),
     }
 
 

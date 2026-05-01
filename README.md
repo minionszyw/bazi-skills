@@ -28,22 +28,27 @@
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
+pip install -e .
+```
+
+开发或运行测试时安装开发依赖：
+
+```bash
 pip install -e ".[dev]"
 ```
 
-### CLI 排盘
+### 八字排盘
+
+用途：生成命盘 JSON。
+
+CLI 示例：
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
     --birth "1993-08-04 05:30:00" --location 深圳
 ```
 
-也可以不安装包，直接从源码运行：
-
-```bash
-PYTHONPATH=. python3 -m src.paipan --name 张三 --gender 1 --calendar LUNAR \
-    --birth "1993-08-04 05:30:00" --location 深圳
-```
+参数说明：
 
 | 参数 | 短选项 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
@@ -60,16 +65,30 @@ PYTHONPATH=. python3 -m src.paipan --name 张三 --gender 1 --calendar LUNAR \
 
 ### 古籍检索
 
-`search` 提供本地古籍全文检索，适合 Agent 在排盘后根据命盘要素主动检索原文依据。当前内置 `yuanhai`（《渊海子平》）语料。
+用途：检索本地古籍原文，适合在排盘后根据命盘要素主动查找依据。当前内置 `yuanhai`（《渊海子平》）语料。
+
+CLI 示例：
 
 ```bash
 search "月令" --book yuanhai --limit 3 --format text
 search "天乙贵人" --book yuanhai --limit 3
 ```
 
+参数说明：
+
+| 参数 | 必填 | 说明 |
+| :--- | :--- | :--- |
+| `query` | 是 | 检索词，例如 `月令`、`偏印格`、`天乙贵人` |
+| `--book` | 否 | 古籍代号，默认 `yuanhai` |
+| `--limit` | 否 | 返回条数，默认 `5` |
+| `--max-chars` | 否 | 每条正文最大字符数，默认 `500` |
+| `--format` | 否 | 输出格式：`json` / `text` |
+
 ### 命理分析
 
-`analyze` 是排盘事实与古籍检索之间的分析层。它根据排盘 JSON 和分析主题，生成古法分析步骤、阶段结论与建议检索词；Agent 可再调用 `search` 补充原文依据，并整理成中文回复。
+用途：根据排盘 JSON 生成古法分析步骤、阶段结论、分层检索词与核心古籍依据。
+
+CLI 示例：
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
@@ -77,8 +96,28 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 
 analyze --chart chart.json --topic overall
 analyze --chart chart.json --topic career --format text
-analyze --chart chart.json --topic wealth --with-evidence
+analyze --chart chart.json --topic wealth
 analyze --chart chart.json --topic health
+```
+
+参数说明：
+
+| 参数 | 必填 | 说明 |
+| :--- | :--- | :--- |
+| `--chart` | 否 | 排盘 JSON 文件路径，默认从 stdin 读取；用 `-` 表示 stdin |
+| `--topic` | 否 | 分析主题，默认 `overall` |
+| `--with-evidence` | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |
+| `--no-evidence` | 否 | 只输出分析步骤与检索词，不嵌入古籍依据 |
+| `--evidence-tier` | 否 | evidence 检索层级，可重复；可选 `required`、`topic_specific`、`optional` |
+| `--book` | 否 | 古籍代号，默认 `yuanhai` |
+| `--limit` | 否 | 每个检索词返回条数，默认 `2` |
+| `--max-chars` | 否 | 每条原文最大字符数，默认 `260` |
+| `--format` | 否 | 输出格式：`json` / `text` |
+
+`analyze` 默认会对核心分层检索词调用 `search`，并在输出中附加 `evidence`。如果只需要分析步骤和检索词，可使用：
+
+```bash
+analyze --chart chart.json --topic overall --no-evidence
 ```
 
 当前支持的主题：
@@ -100,112 +139,18 @@ analyze --chart chart.json --topic health
 典型流程：
 
 ```text
-获取命主出生信息 -> paipan 排盘 -> analyze 生成分析步骤与检索词 -> search 多轮检索古籍原文 -> 综合中文回复
+获取命主出生信息 -> paipan 排盘 -> analyze 生成分析步骤、分层检索词与核心 evidence -> search 按需补充古籍原文 -> 综合中文回复
 ```
 
+`analyze` 输出同时保留扁平 `search_queries` 和分层 `search_query_layers`：
 
-## 📋 API 契约
+| 层级 | 用途 |
+| :--- | :--- |
+| `required` | 月令、日主、旺衰、用神、格局等核心依据 |
+| `topic_specific` | 事业、财运、婚姻、健康等专题依据 |
+| `optional` | 冲合刑害、大运流年等补充依据 |
 
-### 输入模型 (`BaziRequest`)
-| 字段 | 类型 | 必填 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `name` | str | 是 | 姓名 |
-| `gender` | int | 是 | 1:男, 0:女 |
-| `calendar_type` | enum | 是 | SOLAR(公历), LUNAR(农历) |
-| `birth_datetime` | str | 是 | 格式: YYYY-MM-DD HH:MM:SS |
-| `birth_location` | str | 是 | 深圳/西安等（地名数据由包内 `src/data/latlng.json` 提供） |
-| `time_mode` | enum | 否 | TRUE_SOLAR(真太阳时), MEAN_SOLAR(平太阳时) |
-| `month_mode` | enum | 否 | SOLAR_TERM(节气定月), LUNAR_MONTH(农历月定月) |
-| `zi_shi_mode` | enum | 否 | LATE_ZI_IN_DAY(晚子不换日), NEXT_DAY(23点换日) |
-
-### 输出模型 (`BaziResult`)
-
-以下为 CLI 示例的节选输出；完整样例见 `tests/bazi.json`。
-
-```json
-{
-  "processed_at": "2026-05-01 13:14:33",
-  "request": {
-    "name": "张三",
-    "gender": 1,
-    "calendar_type": "LUNAR",
-    "birth_datetime": "1993-08-04 05:30:00",
-    "birth_location": "深圳",
-    "longitude": null,
-    "time_mode": "TRUE_SOLAR",
-    "month_mode": "SOLAR_TERM",
-    "zi_shi_mode": "LATE_ZI_IN_DAY"
-  },
-  "birth_solar_datetime": "1993-09-19 05:13:18 星期日",
-  "birth_lunar_datetime": "一九九三年八月初四 癸酉(鸡)年 辛酉(鸡)月 癸卯(兔)日 卯(兔)时 ...",
-  "core": {
-    "year": {
-      "gan": "癸",
-      "zhi": "酉",
-      "shi_shen_gan": "比肩",
-      "shi_shen_zhi": ["偏印"],
-      "hide_gan": ["辛"],
-      "na_yin": "剑锋金",
-      "xun_kong": ["戌", "亥"]
-    },
-    "month": { "gan": "辛", "zhi": "酉", "...": "..." },
-    "day": { "gan": "癸", "zhi": "卯", "...": "..." },
-    "time": { "gan": "乙", "zhi": "卯", "...": "..." },
-    "jie_qi": {
-      "prev_name": "白露",
-      "prev_jie": "1993-09-07 23:07:47 星期二",
-      "next_name": "寒露",
-      "next_jie": "1993-10-08 14:40:02 星期五"
-    }
-  },
-  "fortune": {
-    "start_solar": "1997-06-29 05:13:18 星期日",
-    "start_age": 5,
-    "da_yun": [
-      { "index": 1, "start_year": 1997, "start_age": 5, "gan_zhi": "庚申", "xun": "甲寅", "xiao_yun": [] }
-    ],
-    "before_start_xiao_yun": [
-      { "index": 0, "gan_zhi": "甲寅" },
-      { "...": "..." }
-    ],
-    "query": null
-  },
-  "auxiliary": {
-    "year_di_shi": "病", "month_di_shi": "病", "day_di_shi": "长生", "time_di_shi": "长生",
-    "tai_yuan": "壬子", "tai_yuan_na_yin": "桑柘木",
-    "ming_gong": "丁巳", "ming_gong_na_yin": "沙中土",
-    "shen_gong": "乙丑", "shen_gong_na_yin": "海中金"
-  },
-  "month_command": { "current": "辛", "detail": "处于辛司权第12天 (真气引出)" },
-  "five_elements": {
-    "scores": { "木": 42.5, "火": 0.0, "土": 0.0, "金": 210.6, "水": 16.5 },
-    "states": { "木": "胎", "火": "死", "土": "死", "金": "帝旺", "水": "沐浴" }
-  },
-  "interactions": [
-    { "type": "冲", "source": "月干", "target": "时干", "is_transformed": false, "transformed_to": null, "desc": "辛乙相冲" },
-    { "type": "冲", "source": "年支", "target": "日支", "is_transformed": false, "transformed_to": null, "desc": "酉卯相冲" }
-  ],
-  "geju": { "name": "偏印格", "type": "正八格", "status": "成格", "detail": "标准正八格取法" },
-  "analysis": { "strength_level": "极强", "strength_score": 84.24, "yong_shen": "土", "xi_shen": "火", "ji_shen": "金", "chou_shen": "水", "logic_type": "扶抑平衡" },
-  "stars": [
-    { "name": "天乙贵人", "pos": "日柱", "desc": "玉堂金马，逢凶化吉" },
-    { "name": "文昌贵人", "pos": "日柱", "desc": "聪明好学，文艺秀发" },
-    { "name": "禄神", "pos": "年柱", "desc": "辛禄在酉" }
-  ]
-}
-```
-
-传入 `--date` 时，`fortune.query` 返回该日期的完整运程上下文：
-
-```json
-"query": {
-  "date": "2030-03-15",
-  "da_yun":   { "gan_zhi": "丁巳", "start_year": 2027, "start_age": 35 },
-  "liu_nian": { "year": 2030, "gan_zhi": "庚戌", "xun": "甲辰" },
-  "liu_yue":  { "month": 3, "gan_zhi": "己卯" },
-  "liu_ri":   { "day": 15, "gan_zhi": "己酉" }
-}
-```
+综合回复引用古籍时，建议固定为 `《书名·篇名》：原文短句`，再接白话解释。
 
 ## 🧪 质量保证
 项目包含 50 例基于《千里命稿》的黄金审计测试集：8 例端到端排盘命例，42 例古籍四柱直测命例。`expected` 字段以古籍原文为准；古籍没有明确标注的字段保留为 `古籍未标注`，不计入对应字段覆盖率。
