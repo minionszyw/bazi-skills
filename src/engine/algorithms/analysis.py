@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from src.engine.models import BaziContext
 from src.engine.algorithms.energy import EnergyModel
 from src.engine.algorithms.geju import GejuResult
+from src.engine.chart import get_effective_eight_char
 
 class AnalysisResult(BaseModel):
     strength_level: str
@@ -20,8 +21,7 @@ class AnalysisEngine:
     
     @staticmethod
     def analyze(ctx: BaziContext, energy_data: Dict[str, Dict], geju: GejuResult) -> AnalysisResult:
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         day_gan = eight_char.getDayGan()
         day_elem = EnergyModel._gan_to_elem(day_gan)
         

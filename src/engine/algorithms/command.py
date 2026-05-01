@@ -1,6 +1,7 @@
 from typing import Dict, Tuple
 from lunar_python import Lunar, Solar
-from src.engine.models import BaziContext
+from src.engine.models import BaziContext, MonthMode
+from src.engine.chart import get_effective_eight_char
 class MonthCommandExtractor:
     """
     《渊海子平》人元司令分野计算器
@@ -31,21 +32,25 @@ class MonthCommandExtractor:
         """
         from datetime import datetime
         lunar = ctx.solar.getLunar()
-        month_zhi = lunar.getEightChar().getMonthZhi()
+        eight_char = get_effective_eight_char(ctx)
+        month_zhi = eight_char.getMonthZhi()
         
-        # 1. 计算距离上一个节气（交节）的时间深度
-        prev_jie = lunar.getPrevJie()
-        
-        # 辅助函数：将 Solar 转换为 datetime 时间戳
-        def solar_to_ts(s: Solar):
-            dt = datetime(s.getYear(), s.getMonth(), s.getDay(), s.getHour(), s.getMinute(), s.getSecond())
-            return dt.timestamp()
+        # 1. 计算出生时刻在所选月制中的时间深度。
+        if ctx.request.month_mode == MonthMode.LUNAR_MONTH:
+            days_passed = lunar.getDay() - 1
+        else:
+            prev_jie = lunar.getPrevJie()
 
-        birth_ts = solar_to_ts(ctx.solar)
-        jie_ts = solar_to_ts(prev_jie.getSolar())
-        
-        diff_seconds = birth_ts - jie_ts
-        days_passed = diff_seconds / 86400.0 # 浮点天数
+            # 辅助函数：将 Solar 转换为 datetime 时间戳
+            def solar_to_ts(s: Solar):
+                dt = datetime(s.getYear(), s.getMonth(), s.getDay(), s.getHour(), s.getMinute(), s.getSecond())
+                return dt.timestamp()
+
+            birth_ts = solar_to_ts(ctx.solar)
+            jie_ts = solar_to_ts(prev_jie.getSolar())
+
+            diff_seconds = birth_ts - jie_ts
+            days_passed = diff_seconds / 86400.0 # 浮点天数
         
         # 2. 检索分野
         rules = MonthCommandExtractor.COMMAND_TABLE.get(month_zhi, [])
@@ -65,7 +70,6 @@ class MonthCommandExtractor:
         # 3. 引出逻辑 (DESIGN 4.5)
         # 检查分野天干是否在原局天干中透出
         is_induced = False
-        eight_char = lunar.getEightChar()
         pillars_stems = [
             eight_char.getYearGan(),
             eight_char.getMonthGan(),

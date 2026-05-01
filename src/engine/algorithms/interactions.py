@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple, Optional
 from pydantic import BaseModel
 from src.engine.models import BaziContext
+from src.engine.chart import get_effective_eight_char
 
 class Interaction(BaseModel):
     type: str        # 合, 冲, 刑, 伏吟, 反吟
@@ -71,8 +72,7 @@ class InteractionDetector:
     @staticmethod
     def validate_transformations(interactions: List[Interaction], ctx: BaziContext):
         """根据《渊海子平》标准校验合化是否成功"""
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         month_zhi = eight_char.getMonthZhi()
         all_stems = [eight_char.getYearGan(), eight_char.getMonthGan(),
                      eight_char.getDayGan(), eight_char.getTimeGan()]
@@ -90,8 +90,7 @@ class InteractionDetector:
 
     @staticmethod
     def detect_all(ctx: BaziContext) -> List[Interaction]:
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
 
         interactions = []
 

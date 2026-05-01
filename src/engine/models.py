@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from datetime import datetime
 from lunar_python import Solar
 
@@ -38,7 +38,8 @@ class BaziRequest(BaseModel):
     month_mode: MonthMode = MonthMode.SOLAR_TERM
     zi_shi_mode: ZiShiMode = ZiShiMode.LATE_ZI_IN_DAY
 
-    @validator("birth_datetime")
+    @field_validator("birth_datetime")
+    @classmethod
     def validate_datetime(cls, v):
         try:
             datetime.strptime(v, "%Y-%m-%d %H:%M:%S")
@@ -49,9 +50,8 @@ class BaziRequest(BaseModel):
 
 class BaziContext(BaseModel):
     """预处理后的排盘上下文，贯穿所有提取与算法模块"""
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     solar: Solar
     longitude: float
     request: BaziRequest
-
-    class Config:
-        arbitrary_types_allowed = True

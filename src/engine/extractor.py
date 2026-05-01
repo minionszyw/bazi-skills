@@ -1,7 +1,8 @@
 import re
 from typing import List
 from lunar_python import Solar
-from src.engine.models import ZiShiMode, MonthMode, BaziContext
+from src.engine.models import ZiShiMode, BaziContext
+from src.engine.chart import get_effective_eight_char
 from src.engine.schemas import (
     Column, JieQiContext, CoreChart,
     XiaoYunData, DaYunData, FortuneData,
@@ -16,23 +17,9 @@ class CoreExtractor:
     @staticmethod
     def extract(ctx: BaziContext) -> CoreChart:
         lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
-
-        if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
-            eight_char.setSect(1)
-        else:
-            eight_char.setSect(2)
+        eight_char = get_effective_eight_char(ctx)
 
         y, m, d, t = eight_char.getYear(), eight_char.getMonth(), eight_char.getDay(), eight_char.getTime()
-
-        if ctx.request.month_mode == MonthMode.LUNAR_MONTH:
-            from lunar_python import LunarYear
-            ly = LunarYear.fromYear(lunar.getYear())
-            for month_obj in ly.getMonths():
-                if abs(month_obj.getMonth()) == abs(lunar.getMonth()):
-                    if (lunar.getMonth() < 0) == (month_obj.getMonth() < 0):
-                        m = month_obj.getGanZhi()
-                        break
 
         def _strip(s): return _ZODIAC_RE.sub("", s)
 
@@ -82,12 +69,7 @@ class FortuneExtractor:
     @staticmethod
     def extract(ctx: BaziContext, include_xiao_yun: bool = False) -> FortuneData:
         lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
-
-        if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
-            eight_char.setSect(1)
-        else:
-            eight_char.setSect(2)
+        eight_char = get_effective_eight_char(ctx)
 
         yun = eight_char.getYun(ctx.request.gender)
 
@@ -117,10 +99,12 @@ class FortuneExtractor:
 
     @staticmethod
     def query_date(ctx: BaziContext, da_yun_list: List[DaYunData], date_str: str) -> FortuneQueryResult:
+        from datetime import datetime
         try:
             y, m, d = map(int, date_str.split("-"))
-        except (ValueError, AttributeError):
-            raise ValueError("--date 格式必须为 YYYY-MM-DD")
+            datetime.strptime(date_str, "%Y-%m-%d")
+        except (ValueError, AttributeError) as e:
+            raise ValueError("--date 必须是真实日期，格式为 YYYY-MM-DD") from e
 
         matched_dy = None
         for dy in da_yun_list:
@@ -135,11 +119,7 @@ class FortuneExtractor:
         else:
             ec.setSect(2)
 
-        birth_ec = ctx.solar.getLunar().getEightChar()
-        if ctx.request.zi_shi_mode == ZiShiMode.NEXT_DAY:
-            birth_ec.setSect(1)
-        else:
-            birth_ec.setSect(2)
+        birth_ec = get_effective_eight_char(ctx)
         yun = birth_ec.getYun(ctx.request.gender)
 
         liu_nian_xun = ""
@@ -163,7 +143,7 @@ class FortuneExtractor:
 class AuxiliaryExtractor:
     @staticmethod
     def extract(ctx: BaziContext) -> AuxiliaryChart:
-        eight_char = ctx.solar.getLunar().getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         return AuxiliaryChart(
             year_di_shi=eight_char.getYearDiShi(),
             month_di_shi=eight_char.getMonthDiShi(),

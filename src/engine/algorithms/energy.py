@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 from src.engine.models import BaziContext
+from src.engine.chart import get_effective_eight_char
 class EnergyModel:
     """
     五行能量量化与状态机模型 (基于《渊海子平》深度标准)
@@ -59,8 +60,7 @@ class EnergyModel:
 
     @staticmethod
     def calculate_scores(ctx: BaziContext) -> Dict[str, Dict]:
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         month_zhi = eight_char.getMonthZhi()
         day_gan = eight_char.getDayGan()
         

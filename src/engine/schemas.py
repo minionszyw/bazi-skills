@@ -42,7 +42,7 @@ class DaYunData(BaseModel):
     start_age: int
     gan_zhi: str
     xun: str
-    xiao_yun: List[XiaoYunData] = []
+    xiao_yun: List[XiaoYunData] = Field(default_factory=list)
 
 # --- 日期查询结果 ---
 class DaYunQueryData(BaseModel):
@@ -74,7 +74,7 @@ class FortuneData(BaseModel):
     start_solar: str
     start_age: int
     da_yun: List[DaYunData]
-    before_start_xiao_yun: List[XiaoYunData] = []
+    before_start_xiao_yun: List[XiaoYunData] = Field(default_factory=list)
     query: Optional[FortuneQueryResult] = None
 
 # --- 辅助命盘 ---
@@ -110,7 +110,7 @@ class BaziResult(BaseModel):
     auxiliary: AuxiliaryChart
     month_command: Optional[MonthCommandResult] = None
     five_elements: Optional[FiveElementsResult] = None
-    interactions: List[Interaction] = []
+    interactions: List[Interaction] = Field(default_factory=list)
     geju: Optional[GejuResult] = None
     analysis: Optional[AnalysisResult] = None
-    stars: List[Star] = []
+    stars: List[Star] = Field(default_factory=list)

@@ -1,6 +1,7 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel
 from src.engine.models import BaziContext
+from src.engine.chart import get_effective_eight_char
 class Star(BaseModel):
     name: str
     pos: str  # 出现位置
@@ -90,8 +91,7 @@ class StarDetector:
 
     @staticmethod
     def detect(ctx: BaziContext) -> List[Star]:
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         
         day_gan = eight_char.getDayGan()
         day_zhi = eight_char.getDayZhi()

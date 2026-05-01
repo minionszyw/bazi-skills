@@ -2,6 +2,7 @@ from typing import List, Dict, Optional, Tuple
 from pydantic import BaseModel
 from src.engine.models import BaziContext
 from src.engine.algorithms.interactions import Interaction
+from src.engine.chart import get_effective_eight_char
 
 class GejuResult(BaseModel):
     name: str
@@ -35,8 +36,7 @@ class GejuAnalyzer:
 
     @staticmethod
     def analyze(ctx: BaziContext, interactions: List[Interaction], scores: Dict[str, float]) -> GejuResult:
-        lunar = ctx.solar.getLunar()
-        eight_char = lunar.getEightChar()
+        eight_char = get_effective_eight_char(ctx)
         day_gan = eight_char.getDayGan()
         from src.engine.algorithms.energy import EnergyModel
         day_elem = EnergyModel._gan_to_elem(day_gan)
