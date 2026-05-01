@@ -4,6 +4,8 @@ import sys
 from pathlib import Path
 
 from src.analysis import SUPPORTED_TOPICS, analyze_chart
+from src.analysis.methods import all_methods, methods_for_kind
+from src.search import search
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +23,8 @@ def test_analyze_overall_builds_method_steps_and_queries():
     assert "月令" in result["search_queries"]
     assert "月令" in result["search_query_layers"]["required"]
     assert any(step["search_queries"] for step in result["steps"])
+    assert all(step["method_refs"] for step in result["steps"])
+    assert any(ref["id"] == "yuanhai.kanming.foundation" for ref in result["steps"][0]["method_refs"])
 
 
 def test_analyze_career_includes_official_and_output_steps():
@@ -42,6 +46,28 @@ def test_all_supported_topics_build_steps_and_queries():
         assert result["title"]
         assert result["steps"]
         assert result["search_queries"]
+        assert all(step["method_refs"] for step in result["steps"])
+
+
+def test_topic_step_kinds_are_backed_by_yuanhai_methods():
+    for topic in SUPPORTED_TOPICS:
+        result = analyze_chart(CHART, topic=topic)
+        for step in result["steps"]:
+            assert methods_for_kind(step["kind"]), step["kind"]
+
+
+def test_yuanhai_method_sources_are_searchable():
+    for method in all_methods():
+        results = search(method.audit_query, book=method.book, limit=3, max_chars=240)
+
+        assert results, method.id
+        matched = [
+            item
+            for item in results
+            if item["title"] == method.expected_title
+            and all(term in item["text"] or term in item["title"] for term in method.expected_terms)
+        ]
+        assert matched, method.id
 
 
 def test_analyze_family_and_health_topics_include_expected_methods():

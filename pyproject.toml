@@ -31,3 +31,4 @@ include = ["src*"]
 
 [tool.setuptools.package-data]
 "src" = ["data/latlng.json", "data/yuanhaiziping.docx"]
+"src.analysis" = ["methods/*.json"]

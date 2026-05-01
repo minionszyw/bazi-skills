@@ -26,6 +26,8 @@
 项目依赖统一由 `pyproject.toml` 管理。
 
 ```bash
+git clone <repo-url>
+cd bazi
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 pip install -e .
@@ -36,6 +38,16 @@ pip install -e .
 ```bash
 pip install -e ".[dev]"
 ```
+
+### AGENT Skill 安装
+
+项目内置 `skills/bazi`，可复制到本地 AGENT skills 目录使用：
+
+```bash
+cp -R skills/bazi <AGENT_SKILLS_DIR>/bazi
+```
+
+使用 skill 前，AGENT 的运行环境需要能找到本项目安装后的 CLI：`paipan`、`analyze`、`search`。如果使用虚拟环境安装，请在启动 AGENT 前激活同一个 venv，或把 `venv/bin` 加入 `PATH`。
 
 ### 八字排盘
 
@@ -142,7 +154,7 @@ analyze --chart chart.json --topic overall --no-evidence
 获取命主出生信息 -> paipan 排盘 -> analyze 生成分析步骤、分层检索词与核心 evidence -> search 按需补充古籍原文 -> 综合中文回复
 ```
 
-`analyze` 输出同时保留扁平 `search_queries` 和分层 `search_query_layers`：
+`analyze` 输出会为每个步骤附加 `steps[].method_refs`，用于查看该步骤绑定的古籍方法来源、方法原则和对账检索词；同时保留扁平 `search_queries` 和分层 `search_query_layers`：
 
 | 层级 | 用途 |
 | :--- | :--- |

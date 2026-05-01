@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from src.analysis.context import build_context
+from src.analysis.methods import method_queries_for_kind, methods_for_kind
 
 
 SUPPORTED_TOPICS = (
@@ -161,10 +162,12 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
 def _build_step(ctx: dict[str, Any], template: StepTemplate) -> dict[str, Any]:
     inputs = _inputs_for(ctx, template.kind)
     conclusion = _conclusion_for(ctx, template.kind)
+    methods = methods_for_kind(template.kind)
     return {
         "name": template.name,
         "method": template.method,
         "kind": template.kind,
+        "method_refs": [method.as_ref() for method in methods],
         "inputs": inputs,
         "conclusion": conclusion,
         "search_queries": _queries_for(ctx, template.kind),
@@ -382,7 +385,7 @@ def _queries_for(ctx: dict[str, Any], kind: str) -> list[str]:
         "remedy_scene": ["用神", "喜神", str(useful.get("yong_shen") or "")],
         "remedy_avoid": ["忌神", "病药", str(useful.get("ji_shen") or "")],
     }
-    queries = base.get(kind, [])
+    queries = method_queries_for_kind(kind) + base.get(kind, [])
     for ten_god in ctx["ten_gods"]:
         if ten_god in TEN_GOD_QUERIES and kind in {
             "official",
