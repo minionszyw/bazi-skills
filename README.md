@@ -121,7 +121,13 @@ python3 -m src.cli --name 张三 --gender 1 --calendar SOLAR \
 ## 🧪 质量保证
 项目包含 50 例基于《千里命稿》和《渊海子平》的黄金回归测试集，确保核心逻辑永不退化。
 ```bash
-pytest tests/supreme_audit.py
+PYTHONPATH=. python3 -m pytest -q
+```
+
+如需查看审计报告而不是执行断言测试：
+
+```bash
+PYTHONPATH=. python3 tests/supreme_audit.py
 ```
 
 ## ⚖️ 命理标准

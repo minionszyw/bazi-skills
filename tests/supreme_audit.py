@@ -1,102 +1,184 @@
 import json
+from pathlib import Path
+
 from src.engine.core import BaziEngine
-from src.engine.models import BaziRequest, CalendarType, TimeMode, MonthMode, ZiShiMode
+from src.engine.models import BaziRequest
+
+
+CASE_FILE = Path(__file__).with_name("supreme_audit.json")
+
+
+def load_cases():
+    with CASE_FILE.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def build_request(case):
+    data = case["input"]
+    return BaziRequest(
+        name=data["name"],
+        gender=data["gender"],
+        calendar_type=data["calendar_type"],
+        birth_datetime=data["birth_datetime"],
+        birth_location=data["birth_location"],
+        longitude=data.get("longitude"),
+        time_mode=data["time_mode"],
+        month_mode=data["month_mode"],
+        zi_shi_mode=data["zi_shi_mode"],
+    )
+
+
+def get_pillars(result):
+    return [
+        f"{result.core.year.gan}{result.core.year.zhi}",
+        f"{result.core.month.gan}{result.core.month.zhi}",
+        f"{result.core.day.gan}{result.core.day.zhi}",
+        f"{result.core.time.gan}{result.core.time.zhi}",
+    ]
+
+
+def geju_matches(expected, actual):
+    expected_key = expected.replace("格", "")
+    actual_key = actual.replace("格", "")
+    return expected_key in actual or actual_key in expected
+
+
+def strength_matches(expected, actual):
+    expected_map = {
+        "身强": {"偏强", "极强"},
+        "身弱": {"偏弱", "极弱"},
+        "中和": {"中和"},
+    }
+    if expected in expected_map:
+        return actual in expected_map[expected]
+    return expected == actual
+
+
+def collect_failures(case, result):
+    failures = []
+    expected_core = case["expected_core"]
+    expected_analysis = case["expected_analysis"]
+
+    actual_pillars = get_pillars(result)
+    expected_pillars = expected_core["pillars"]
+    if actual_pillars != expected_pillars:
+        failures.append(f"四柱 expected={expected_pillars} actual={actual_pillars}")
+
+    expected_geju = expected_analysis["geju"]
+    actual_geju = result.geju.name
+    if not geju_matches(expected_geju, actual_geju):
+        failures.append(f"格局 expected={expected_geju} actual={actual_geju}")
+
+    expected_strength = expected_analysis["strength"]
+    actual_strength = result.analysis.strength_level
+    if not strength_matches(expected_strength, actual_strength):
+        failures.append(f"强弱 expected={expected_strength} actual={actual_strength}")
+
+    optional_checks = {
+        "yong_shen": result.analysis.yong_shen,
+        "xi_shen": result.analysis.xi_shen,
+        "ji_shen": result.analysis.ji_shen,
+        "chou_shen": result.analysis.chou_shen,
+    }
+    for field, actual in optional_checks.items():
+        if field in expected_analysis and expected_analysis[field] != actual:
+            failures.append(f"{field} expected={expected_analysis[field]} actual={actual}")
+
+    if "month_command" in expected_analysis:
+        actual = result.month_command.current
+        expected = expected_analysis["month_command"]
+        if expected != actual:
+            failures.append(f"月令司令 expected={expected} actual={actual}")
+
+    if "interactions" in expected_analysis:
+        actual_desc = {item.desc for item in result.interactions}
+        missing = [item for item in expected_analysis["interactions"] if item not in actual_desc]
+        if missing:
+            failures.append(f"干支作用缺失 expected_contains={missing} actual={sorted(actual_desc)}")
+
+    if "stars" in expected_analysis:
+        actual_names = {item.name for item in result.stars}
+        missing = [item for item in expected_analysis["stars"] if item not in actual_names]
+        if missing:
+            failures.append(f"神煞缺失 expected_contains={missing} actual={sorted(actual_names)}")
+
+    return failures
+
+
+def evaluate_cases():
+    engine = BaziEngine()
+    rows = []
+    for case in load_cases():
+        result = engine.arrange(build_request(case))
+        rows.append((case, result, collect_failures(case, result)))
+    return rows
+
 
 def run_supreme_audit():
-    engine = BaziEngine()
-    with open("tests/regression_test_full.json", "r", encoding="utf-8") as f:
-        cases = json.load(f)
+    rows = evaluate_cases()
+    stats = {
+        "total": len(rows),
+        "pillars_ok": 0,
+        "geju_ok": 0,
+        "strength_ok": 0,
+        "perfect": 0,
+    }
 
-    print("\n" + "═"*120)
-    print(f"  八字排盘引擎：终极全流程审计报告 (Supreme Audit)")
-    print("─"*120)
-    header = f"{ '命例名称':<10} {'[1] 基础干支对账':<25} | {'[2] 格局定性':<15} | {'[3] 强弱判定':<15} | 状态"
+    print("\n" + "=" * 120)
+    print("  八字排盘引擎：终极全流程审计报告 (Supreme Audit)")
+    print("-" * 120)
+    header = f"{'命例名称':<10} {'[1] 基础干支对账':<25} | {'[2] 格局定性':<15} | {'[3] 强弱判定':<15} | 状态"
     print(header)
-    print("─"*120)
+    print("-" * 120)
 
-    stats = {"total": 0, "pillars_ok": 0, "geju_ok": 0, "strength_ok": 0}
-
-    for case in cases:
-        stats["total"] += 1
+    for case, result, failures in rows:
         name = case["case_name"]
-        
-        # 尝试所有模式组合以实现全自动对账 (2x2x2 = 8种组合)
-        best_res = None
-        matched_flags = []
-        
-        # 定义尝试顺序：优先尝试标准模式
-        found_match = False
-        for t_mode in [TimeMode.MEAN_SOLAR, TimeMode.TRUE_SOLAR]:
-            for m_mode in [MonthMode.SOLAR_TERM, MonthMode.LUNAR_MONTH]:
-                for z_mode in [ZiShiMode.LATE_ZI_IN_DAY, ZiShiMode.NEXT_DAY]:
-                    req = BaziRequest(
-                        name=name,
-                        gender=case["gender"],
-                        calendar_type=CalendarType(case.get("calendar_type", "SOLAR")),
-                        birth_datetime=case["birth_datetime"],
-                        birth_location=case.get("birth_location", "北京"),
-                        time_mode=t_mode,
-                        month_mode=m_mode,
-                        zi_shi_mode=z_mode
-                    )
-                    res = engine.arrange(req)
-                    actual_p = [f"{res.core.year.gan}{res.core.year.zhi}", f"{res.core.month.gan}{res.core.month.zhi}",
-                                f"{res.core.day.gan}{res.core.day.zhi}", f"{res.core.time.gan}{res.core.time.zhi}"]
-                    
-                    if actual_p == case["pillars"]:
-                        best_res = res
-                        if t_mode == TimeMode.TRUE_SOLAR: matched_flags.append("T")
-                        if m_mode == MonthMode.LUNAR_MONTH: matched_flags.append("M")
-                        if z_mode == ZiShiMode.NEXT_DAY: matched_flags.append("N")
-                        found_match = True
-                        break
-                    
-                    if best_res is None:
-                        best_res = res
-                if found_match: break
-            if found_match: break
-        
-        res = best_res
-        actual_p = [f"{res.core.year.gan}{res.core.year.zhi}", f"{res.core.month.gan}{res.core.month.zhi}",
-                    f"{res.core.day.gan}{res.core.day.zhi}", f"{res.core.time.gan}{res.core.time.zhi}"]
-        
-        # --- [1] 基础干支审计 ---
-        p_match = actual_p == case["pillars"]
-        if p_match: stats["pillars_ok"] += 1
-        p_status = "✅" if p_match else "❌"
-        # 标注使用了哪些非默认模式 (T:真太阳时, M:农历月, N:23点换日)
-        mode_suffix = f" ({''.join(matched_flags)})" if matched_flags else ""
-        p_display = f"{p_status} {' '.join(actual_p)}{mode_suffix}"
+        expected_core = case["expected_core"]
+        expected_analysis = case["expected_analysis"]
 
-        # --- [2] 格局定性审计 ---
-        actual_geju = res.geju.name
-        expected_geju = case["expected_geju"]
-        # 模糊匹配关键字
-        g_match = expected_geju.replace("格","") in actual_geju or actual_geju.replace("格","") in expected_geju
-        if g_match: stats["geju_ok"] += 1
-        g_status = "✅" if g_match else "⚠️"
-        g_display = f"{g_status} {actual_geju}"
+        actual_pillars = get_pillars(result)
+        pillars_ok = actual_pillars == expected_core["pillars"]
+        if pillars_ok:
+            stats["pillars_ok"] += 1
 
-        # --- [3] 强弱判定审计 ---
-        actual_strength = res.analysis.strength_level
-        expected_strength = case["expected_strength"]
-        s_match = expected_strength in actual_strength or actual_strength in expected_strength
-        if s_match: stats["strength_ok"] += 1
-        s_status = "✅" if s_match else "⚠️"
-        s_display = f"{s_status} {actual_strength}"
+        actual_geju = result.geju.name
+        geju_ok = geju_matches(expected_analysis["geju"], actual_geju)
+        if geju_ok:
+            stats["geju_ok"] += 1
 
-        # 整体状态
-        overall = "🌟 PERFECT" if (p_match and g_match and s_match) else "🚧 PARTIAL"
-        
+        actual_strength = result.analysis.strength_level
+        strength_ok = strength_matches(expected_analysis["strength"], actual_strength)
+        if strength_ok:
+            stats["strength_ok"] += 1
+
+        if not failures:
+            stats["perfect"] += 1
+
+        p_display = f"{'OK' if pillars_ok else 'FAIL'} {' '.join(actual_pillars)}"
+        g_display = f"{'OK' if geju_ok else 'WARN'} {actual_geju}"
+        s_display = f"{'OK' if strength_ok else 'WARN'} {actual_strength}"
+        overall = "PASS" if not failures else "FAIL"
         line = f"{name[:10]:<10} {p_display:<25} | {g_display:<15} | {s_display:<15} | {overall}"
         print(line)
 
-    print("─"*120)
-    print(f"  [审计统计结果]")
-    print(f"  > 1. 基础干支准确率: {stats['pillars_ok']/stats['total']*100:.1f}% ({stats['pillars_ok']}/{stats['total']})")
-    print(f"  > 2. 格局判定准确率: {stats['geju_ok']/stats['total']*100:.1f}% ({stats['geju_ok']}/{stats['total']})")
-    print(f"  > 3. 强弱判定准确率: {stats['strength_ok']/stats['total']*100:.1f}% ({stats['strength_ok']}/{stats['total']})")
-    print("═"*120 + "\n")
+    total = stats["total"] or 1
+    print("-" * 120)
+    print("  [审计统计结果]")
+    print(f"  > 1. 基础干支准确率: {stats['pillars_ok'] / total * 100:.1f}% ({stats['pillars_ok']}/{stats['total']})")
+    print(f"  > 2. 格局判定准确率: {stats['geju_ok'] / total * 100:.1f}% ({stats['geju_ok']}/{stats['total']})")
+    print(f"  > 3. 强弱判定准确率: {stats['strength_ok'] / total * 100:.1f}% ({stats['strength_ok']}/{stats['total']})")
+    print(f"  > 4. 全字段通过率: {stats['perfect'] / total * 100:.1f}% ({stats['perfect']}/{stats['total']})")
+    print("=" * 120 + "\n")
+
+    return stats
+
+
+def test_supreme_audit_cases():
+    failures = []
+    for case, _result, case_failures in evaluate_cases():
+        failures.extend(f"{case['case_name']}: {item}" for item in case_failures)
+    assert not failures, "\n".join(failures)
+
 
 if __name__ == "__main__":
     run_supreme_audit()

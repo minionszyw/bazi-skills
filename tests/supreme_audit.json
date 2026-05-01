@@ -1,0 +1,227 @@
+[
+  {
+    "case_name": "蒋介石",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例1"
+    },
+    "input": {
+      "name": "蒋介石",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1887-10-31 12:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["丁亥", "庚戌", "己巳", "庚午"]
+    },
+    "expected_analysis": {
+      "strength": "身弱",
+      "geju": "伤官佩印"
+    }
+  },
+  {
+    "case_name": "吴佩孚",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例3"
+    },
+    "input": {
+      "name": "吴佩孚",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1874-04-22 06:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["甲戌", "戊辰", "己酉", "丁卯"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "身杀两停"
+    }
+  },
+  {
+    "case_name": "段祺瑞",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例37"
+    },
+    "input": {
+      "name": "段祺瑞",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1865-03-06 12:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["乙丑", "己卯", "乙亥", "壬午"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "曲直格"
+    }
+  },
+  {
+    "case_name": "章太炎",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例10"
+    },
+    "input": {
+      "name": "章太炎",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1869-01-12 16:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["戊辰", "乙丑", "癸卯", "庚申"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "印绶格"
+    }
+  },
+  {
+    "case_name": "孙传芳",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例101"
+    },
+    "input": {
+      "name": "孙传芳",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1885-04-17 18:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["乙酉", "庚辰", "壬寅", "己酉"]
+    },
+    "expected_analysis": {
+      "strength": "身弱",
+      "geju": "财官格"
+    }
+  },
+  {
+    "case_name": "顾维钧",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例40"
+    },
+    "input": {
+      "name": "顾维钧",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1888-01-29 08:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["丁亥", "癸丑", "己亥", "戊辰"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "拱贵格"
+    }
+  },
+  {
+    "case_name": "梅兰芳",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例14"
+    },
+    "input": {
+      "name": "梅兰芳",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1894-10-22 06:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["甲午", "甲戌", "丁酉", "癸卯"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "伤官格"
+    }
+  },
+  {
+    "case_name": "荣宗敬",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例9"
+    },
+    "input": {
+      "name": "荣宗敬",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1873-09-03 04:00:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["癸酉", "庚申", "戊午", "甲寅"]
+    },
+    "expected_analysis": {
+      "strength": "身强",
+      "geju": "食神格"
+    }
+  },
+  {
+    "case_name": "哈同",
+    "source": {
+      "title": "千里命稿",
+      "ref": "例15"
+    },
+    "input": {
+      "name": "哈同",
+      "gender": 1,
+      "calendar_type": "SOLAR",
+      "birth_datetime": "1851-01-23 06:30:00",
+      "birth_location": "古籍未标注",
+      "longitude": 120.0,
+      "time_mode": "MEAN_SOLAR",
+      "month_mode": "SOLAR_TERM",
+      "zi_shi_mode": "LATE_ZI_IN_DAY"
+    },
+    "expected_core": {
+      "pillars": ["庚戌", "己丑", "己卯", "丁卯"]
+    },
+    "expected_analysis": {
+      "strength": "身弱",
+      "geju": "七杀格"
+    }
+  }
+]
