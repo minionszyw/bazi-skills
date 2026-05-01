@@ -22,10 +22,11 @@ dev = [
 
 [project.scripts]
 bazi = "src.cli:main"
+search = "src.search:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["src*"]
 
 [tool.setuptools.package-data]
-"src.engine" = ["data/latlng.json"]
+"src.engine" = ["data/latlng.json", "data/yuanhaiziping.docx"]

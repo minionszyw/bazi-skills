@@ -58,6 +58,21 @@ PYTHONPATH=. python3 -m src.cli --name 张三 --gender 1 --calendar LUNAR \
 | `--date` | `-d` | 否 | 查询指定日期的流年/流月/流日，格式：`YYYY-MM-DD` |
 | `--xiao-yun` | | 否 | 展开每步大运的小运列表（默认折叠） |
 
+### 古籍检索
+
+`search` 提供本地古籍全文检索，适合 Agent 在排盘后根据命盘要素主动检索原文依据。当前内置 `yuanhai`（《渊海子平》）语料。
+
+```bash
+search "月令" --book yuanhai --limit 3 --format text
+search "天乙贵人" --book yuanhai --limit 3
+```
+
+典型流程：
+
+```text
+获取命主出生信息 -> bazi 排盘 -> 提取日主/月令/格局/神煞/冲合等关键词 -> search 多轮检索 -> 结合原文做中文分析
+```
+
 
 ## 📋 API 契约
 
