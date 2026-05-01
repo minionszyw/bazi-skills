@@ -1,6 +1,6 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 class Star(BaseModel):
     name: str
     pos: str  # 出现位置

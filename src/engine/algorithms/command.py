@@ -1,6 +1,6 @@
 from typing import Dict, Tuple
 from lunar_python import Lunar, Solar
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 class MonthCommandExtractor:
     """
     《渊海子平》人元司令分野计算器

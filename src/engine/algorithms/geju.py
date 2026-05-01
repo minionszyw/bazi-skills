@@ -1,6 +1,6 @@
 from typing import List, Dict, Optional, Tuple
 from pydantic import BaseModel
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 from src.engine.algorithms.interactions import Interaction
 
 class GejuResult(BaseModel):

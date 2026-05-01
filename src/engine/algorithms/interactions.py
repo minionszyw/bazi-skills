@@ -1,6 +1,6 @@
 from typing import List, Dict, Tuple, Optional
 from pydantic import BaseModel
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 
 class Interaction(BaseModel):
     type: str        # 合, 冲, 刑, 伏吟, 反吟

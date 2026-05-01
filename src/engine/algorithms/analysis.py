@@ -1,6 +1,6 @@
 from typing import List, Dict, Optional
 from pydantic import BaseModel
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 from src.engine.algorithms.energy import EnergyModel
 from src.engine.algorithms.geju import GejuResult
 

@@ -1,5 +1,5 @@
 from typing import Dict, List, Tuple
-from src.engine.preprocessor import BaziContext
+from src.engine.models import BaziContext
 class EnergyModel:
     """
     五行能量量化与状态机模型 (基于《渊海子平》深度标准)
