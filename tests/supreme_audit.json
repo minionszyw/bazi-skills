@@ -29,13 +29,13 @@
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
-      "strength": "身弱",
+      "strength": "身强",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
-      "xi_shen": "古籍未标注",
-      "ji_shen": "古籍未标注",
+      "yong_shen": "火印",
+      "xi_shen": "印",
+      "ji_shen": "伤食",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "伤官佩印",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -57,14 +57,16 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": "古籍未标注",
+      "source_quote": "庚金伤官，既得九秋余气，矧复双透干头，妙有火印制伤，天生康壮之体。夫以伤官佩印为用，运喜逢印，不必再见伤食。"
     }
   },
   {
     "case_name": "吴佩孚",
     "source": {
       "title": "千里命稿",
-      "ref": "例3"
+      "ref": "例3",
+      "note": "例3中同时列出“或曰吴佩孚命造”为甲戌、戊辰、己酉、丁卯，并另称甲戌、戊辰、戊申、壬子为子玉上将军真命；当前测试沿用“或曰”四柱。"
     },
     "input": {
       "name": "吴佩孚",
@@ -86,7 +88,7 @@
       ]
     },
     "expected_analysis": {
-      "geju": "身杀两停",
+      "geju": "七杀格",
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
@@ -118,7 +120,8 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": "古籍未标注",
+      "source_quote": "或曰吴佩孚命造为甲戍、戊辰、己酉、丁卯。沂水易士注：七杀格。夫土重远过于金水木，身太强财官太弱。"
     }
   },
   {
@@ -147,17 +150,17 @@
       ]
     },
     "expected_analysis": {
-      "geju": "曲直格",
+      "geju": "交互得禄",
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
       "strength": "身强",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
+      "yong_shen": "午火泄秀",
       "xi_shen": "古籍未标注",
       "ji_shen": "古籍未标注",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "禄旺泄秀",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -179,7 +182,8 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": "古籍未标注",
+      "source_quote": "按段祺瑞命为乾造：乙丑、己卯、乙亥、壬午。其乙禄在卯，己禄在午，壬禄在亥，交互得禄，旺气所系，且木旺水健，午火泄秀，格局清奇。"
     }
   },
   {
@@ -208,17 +212,17 @@
       ]
     },
     "expected_analysis": {
-      "geju": "印绶格",
+      "geju": "官印两透",
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
-      "strength": "身强",
+      "strength": "古籍未标注",
       "strength_score": "古籍未标注",
       "yong_shen": "古籍未标注",
       "xi_shen": "古籍未标注",
       "ji_shen": "古籍未标注",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "官印食禄",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -240,7 +244,10 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": [
+        "文昌贵人"
+      ],
+      "source_quote": "盖官印两透，印食又皆得禄，日坐文昌贵人，宜其博通今古，又为国学之师。惟财星绝迹，所以贵而不富。"
     }
   },
   {
@@ -269,17 +276,17 @@
       ]
     },
     "expected_analysis": {
-      "geju": "财官格",
+      "geju": "伤官格",
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
-      "strength": "身弱",
+      "strength": "身强",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
+      "yong_shen": "寅内丙财",
       "xi_shen": "古籍未标注",
-      "ji_shen": "古籍未标注",
+      "ji_shen": "水",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "身强破印用财",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -300,8 +307,11 @@
           "水": "古籍未标注"
         }
       },
-      "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "interactions": [
+        "乙木合去"
+      ],
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：伤官格。夫壬水归库於辰，金凡三见，乙木合去，金水占优，以身强论。己土之官，助印有馀，拘身不足，应弃而用寅内丙财，赖其破印。盛於丙运，用神得助也。败於子运之末，用火忌见水也。"
     }
   },
   {
@@ -334,13 +344,13 @@
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
-      "strength": "身强",
+      "strength": "身弱",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
+      "yong_shen": "戊土劫财",
       "xi_shen": "古籍未标注",
-      "ji_shen": "古籍未标注",
+      "ji_shen": "木",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "财重用劫",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -361,8 +371,11 @@
           "水": "古籍未标注"
         }
       },
-      "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "interactions": [
+        "两亥夹丑，拱子水贵人"
+      ],
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：拱贵格。盖己生丑月，干透癸水，支见两亥，辰又为蓄水之库，财旺极矣。全得力于时上戊土之镇水帮身，用神应即归诸戊土劫财。或取丑中辛金食神为用，恐身主更弱矣。两亥夹丑，拱子水贵人。财重用劫。惟憎木之损伤用神。"
     }
   },
   {
@@ -397,11 +410,11 @@
       "geju_detail": "古籍未标注",
       "strength": "身强",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
-      "xi_shen": "古籍未标注",
+      "yong_shen": "酉金、癸水",
+      "xi_shen": "金水",
       "ji_shen": "古籍未标注",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "木火太旺，财杀清粹",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -423,7 +436,11 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": [
+        "贵人",
+        "文昌"
+      ],
+      "source_quote": "沂水易士注：伤官格。此梅兰芳先生命也。全局木火太旺，喜日坐酉金，时得癸水，财杀清粹，兼带贵人文昌。"
     }
   },
   {
@@ -458,11 +475,11 @@
       "geju_detail": "古籍未标注",
       "strength": "身强",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
+      "yong_shen": "火",
       "xi_shen": "古籍未标注",
       "ji_shen": "古籍未标注",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "杀旺食强而身健",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -483,15 +500,19 @@
           "水": "古籍未标注"
         }
       },
-      "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "interactions": [
+        "寅午会成火局"
+      ],
+      "stars": "古籍未标注",
+      "source_quote": "沂水易士注：食神格。戊生庚申月甲寅时，食神七杀均得禄，寅午会成火局以生身，《子平真诠》所谓“杀旺食强而身健”，为极等之贵格。秋金更旺过于火，已往行运，泰半火乡。"
     }
   },
   {
     "case_name": "哈同",
     "source": {
       "title": "千里命稿",
-      "ref": "例15"
+      "ref": "例15",
+      "note": "当前测试四柱为庚戌、己丑、己卯、丁卯；未能在已抽取的《千里命稿》文本中定位同一四柱。例15哈同段原文列为乙酉、庚午、庚子、丙子，且原文自注“这一例可能有误”。"
     },
     "input": {
       "name": "哈同",
@@ -513,17 +534,17 @@
       ]
     },
     "expected_analysis": {
-      "geju": "七杀格",
+      "geju": "正官格",
       "geju_type": "古籍未标注",
       "geju_status": "古籍未标注",
       "geju_detail": "古籍未标注",
-      "strength": "身弱",
+      "strength": "古籍未标注",
       "strength_score": "古籍未标注",
-      "yong_shen": "古籍未标注",
+      "yong_shen": "印",
       "xi_shen": "古籍未标注",
       "ji_shen": "古籍未标注",
       "chou_shen": "古籍未标注",
-      "logic_type": "古籍未标注",
+      "logic_type": "杀旺用印",
       "month_command": {
         "current": "古籍未标注",
         "detail": "古籍未标注"
@@ -545,7 +566,8 @@
         }
       },
       "interactions": "古籍未标注",
-      "stars": "古籍未标注"
+      "stars": "古籍未标注",
+      "source_quote": "或有以犹太富商哈同生庚，译为阴历，演成命局，浼余推测。虽未秘可恃，然察其八字，杀旺用印，固非凡庸之辈。至于七杀少制，伤官无力，是以伯道无儿、子夏丧明。沂水易士注：这一例可能有误，考乙年不可能有庚午月。"
     }
   }
 ]
