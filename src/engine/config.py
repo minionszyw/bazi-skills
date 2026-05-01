@@ -19,7 +19,7 @@ class BaziConfig:
 
     def _load_packaged_config(self):
         try:
-            config_file = resources.files("src.engine.data").joinpath("latlng.json")
+            config_file = resources.files("src").joinpath("data/latlng.json")
             with config_file.open("r", encoding="utf-8") as f:
                 self._load_json(f, str(config_file))
         except FileNotFoundError:

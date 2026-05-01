@@ -12,7 +12,7 @@ from zipfile import ZipFile
 BOOKS = {
     "yuanhai": {
         "title": "《渊海子平》",
-        "package": "src.engine.data",
+        "package": "src",
         "filename": "yuanhaiziping.docx",
     },
 }
@@ -36,7 +36,7 @@ class Entry:
 
 def _docx_path(book: str):
     config = BOOKS[book]
-    return resources.files(config["package"]).joinpath(config["filename"])
+    return resources.files(config["package"]).joinpath(f"data/{config['filename']}")
 
 
 def extract_paragraphs(book: str = "yuanhai", docx_path=None) -> list[str]:

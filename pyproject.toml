@@ -29,4 +29,4 @@ where = ["."]
 include = ["src*"]
 
 [tool.setuptools.package-data]
-"src.engine" = ["data/latlng.json", "data/yuanhaiziping.docx"]
+"src" = ["data/latlng.json", "data/yuanhaiziping.docx"]

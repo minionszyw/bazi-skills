@@ -83,7 +83,7 @@ search "天乙贵人" --book yuanhai --limit 3
 | `gender` | int | 是 | 1:男, 0:女 |
 | `calendar_type` | enum | 是 | SOLAR(公历), LUNAR(农历) |
 | `birth_datetime` | str | 是 | 格式: YYYY-MM-DD HH:MM:SS |
-| `birth_location` | str | 是 | 深圳/西安等（安装后使用包内地名数据，源码运行时兼容 `data/latlng.json`） |
+| `birth_location` | str | 是 | 深圳/西安等（地名数据由包内 `src/data/latlng.json` 提供） |
 | `time_mode` | enum | 否 | TRUE_SOLAR(真太阳时), MEAN_SOLAR(平太阳时) |
 | `month_mode` | enum | 否 | SOLAR_TERM(节气定月), LUNAR_MONTH(农历月定月) |
 | `zi_shi_mode` | enum | 否 | LATE_ZI_IN_DAY(晚子不换日), NEXT_DAY(23点换日) |
