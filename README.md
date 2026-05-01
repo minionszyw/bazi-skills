@@ -67,10 +67,40 @@ search "月令" --book yuanhai --limit 3 --format text
 search "天乙贵人" --book yuanhai --limit 3
 ```
 
+### 命理分析
+
+`analyze` 是排盘事实与古籍检索之间的分析层。它根据排盘 JSON 和分析主题，生成古法分析步骤、阶段结论与建议检索词；Agent 可再调用 `search` 补充原文依据，并整理成中文回复。
+
+```bash
+paipan --name 张三 --gender 1 --calendar LUNAR \
+    --birth "1993-08-04 05:30:00" --location 深圳 > chart.json
+
+analyze --chart chart.json --topic overall
+analyze --chart chart.json --topic career --format text
+analyze --chart chart.json --topic wealth --with-evidence
+analyze --chart chart.json --topic health
+```
+
+当前支持的主题：
+
+| 主题 | 说明 |
+| :--- | :--- |
+| `overall` | 原命局总论 |
+| `career` | 事业分析 |
+| `wealth` | 财运分析 |
+| `marriage` | 婚姻分析 |
+| `health` | 健康分析 |
+| `study` | 学业分析 |
+| `parents` | 父母缘分析 |
+| `children` | 子女缘分析 |
+| `siblings` | 兄弟朋友分析 |
+| `social` | 人际合作分析 |
+| `remedy` | 趋避建议 |
+
 典型流程：
 
 ```text
-获取命主出生信息 -> paipan 排盘 -> 提取日主/月令/格局/神煞/冲合等关键词 -> search 多轮检索 -> 结合原文做中文分析
+获取命主出生信息 -> paipan 排盘 -> analyze 生成分析步骤与检索词 -> search 多轮检索古籍原文 -> 综合中文回复
 ```
 
 

@@ -22,6 +22,7 @@ dev = [
 
 [project.scripts]
 paipan = "src.paipan:main"
+analyze = "src.analyze:main"
 search = "src.search:main"
 
 [tool.setuptools.packages.find]
