@@ -75,27 +75,6 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 | `--date` | `-d` | 否 | 查询指定日期的流年/流月/流日，格式：`YYYY-MM-DD` |
 | `--xiao-yun` | | 否 | 展开每步大运的小运列表（默认折叠） |
 
-### 古籍检索
-
-用途：检索本地古籍原文，适合在排盘后根据命盘要素主动查找依据。当前内置 `yuanhai`（《渊海子平》）语料。
-
-CLI 示例：
-
-```bash
-search "月令" --book yuanhai --limit 3 --format text
-search "天乙贵人" --book yuanhai --limit 3
-```
-
-参数说明：
-
-| 参数 | 必填 | 说明 |
-| :--- | :--- | :--- |
-| `query` | 是 | 检索词，例如 `月令`、`偏印格`、`天乙贵人` |
-| `--book` | 否 | 古籍代号，默认 `yuanhai` |
-| `--limit` | 否 | 返回条数，默认 `5` |
-| `--max-chars` | 否 | 每条正文最大字符数，默认 `500` |
-| `--format` | 否 | 输出格式：`json` / `text` |
-
 ### 命理分析
 
 用途：根据排盘 JSON 生成古法分析步骤、阶段结论、分层检索词与核心古籍依据。
@@ -147,6 +126,27 @@ analyze --chart chart.json --topic overall --no-evidence
 | `siblings` | 兄弟朋友分析 |
 | `social` | 人际合作分析 |
 | `remedy` | 趋避建议 |
+
+### 古籍检索
+
+用途：检索本地古籍原文，适合在排盘后根据命盘要素主动查找依据。当前内置 `yuanhai`（《渊海子平》）语料。
+
+CLI 示例：
+
+```bash
+search "月令" --book yuanhai --limit 3 --format text
+search "天乙贵人" --book yuanhai --limit 3
+```
+
+参数说明：
+
+| 参数 | 必填 | 说明 |
+| :--- | :--- | :--- |
+| `query` | 是 | 检索词，例如 `月令`、`偏印格`、`天乙贵人` |
+| `--book` | 否 | 古籍代号，默认 `yuanhai` |
+| `--limit` | 否 | 返回条数，默认 `5` |
+| `--max-chars` | 否 | 每条正文最大字符数，默认 `500` |
+| `--format` | 否 | 输出格式：`json` / `text` |
 
 典型流程：
 
