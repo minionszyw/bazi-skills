@@ -78,29 +78,35 @@ paipan --name "<姓名>" --gender <1|0> --calendar <SOLAR|LUNAR> \
 CLI 示例：
 
 ```bash
-paipan --name "<姓名>" --gender <1|0> --calendar <SOLAR|LUNAR> \
-  --birth "YYYY-MM-DD HH:MM:SS" --location "<出生地>" > chart.json
+# 管道直接串联（推荐）
+paipan --name “<姓名>” --gender <1|0> --calendar <SOLAR|LUNAR> \
+  --birth “YYYY-MM-DD HH:MM:SS” --location “<出生地>” \
+  | analyze --chart - --topic overall
 
-analyze --chart chart.json --topic overall
-analyze --chart chart.json --topic career --format text
-analyze --chart chart.json --topic wealth
-analyze --chart chart.json --topic health
+# 需要多次分析同一命盘时，先落文件
+paipan ... > chart.json
+analyze --chart chart.json --topic career
 analyze --chart chart.json --topic overall --no-evidence
 ```
 
-参数说明：
+`--topic` 可选值：
 
-- `overall`：原命局总论。用户只说“分析八字”时默认使用。
-- `career`：事业分析。
-- `wealth`：财运分析。
-- `marriage`：婚姻分析。
-- `health`：健康分析。
-- `study`：学业分析。
-- `parents`：父母缘分析。
-- `children`：子女缘分析。
-- `siblings`：兄弟朋友分析。
-- `social`：人际合作分析。
-- `remedy`：趋避建议。
+| 值 | 说明 |
+| :--- | :--- |
+| `overall` | 原命局总论（默认；用户只说”分析八字”时使用） |
+| `career` | 事业分析 |
+| `wealth` | 财运分析 |
+| `marriage` | 婚姻分析 |
+| `health` | 健康分析 |
+| `study` | 学业分析 |
+| `parents` | 父母缘分析 |
+| `children` | 子女缘分析 |
+| `siblings` | 兄弟朋友分析 |
+| `social` | 人际合作分析 |
+| `remedy` | 趋避建议 |
+
+CLI 参数：
+
 - `--chart`：排盘 JSON 文件路径；用 `-` 表示从 stdin 读取。
 - `--topic`：分析主题，默认 `overall`。
 - `--with-evidence`：调用 `search` 并把古籍检索结果嵌入输出，默认开启。
