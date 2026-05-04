@@ -1,57 +1,81 @@
 {
-  "processed_at": "2026-05-01 13:14:33",
+  "processed_at": "2026-05-04 10:14:46",
   "request": {
     "name": "张三",
     "gender": 1,
     "calendar_type": "LUNAR",
-    "birth_datetime": "1993-08-04 05:30:00",
+    "birth_datetime": "1999-9-9 05:30:00",
     "birth_location": "深圳",
     "longitude": null,
     "time_mode": "TRUE_SOLAR",
     "month_mode": "SOLAR_TERM",
     "zi_shi_mode": "LATE_ZI_IN_DAY"
   },
-  "birth_solar_datetime": "1993-09-19 05:13:18 星期日",
-  "birth_lunar_datetime": "一九九三年八月初四 癸酉(鸡)年 辛酉(鸡)月 癸卯(兔)日 卯(兔)时 纳音[剑锋金 石榴木 金箔金 大溪水] 星期日 西方白虎 星宿[昴日鸡](凶) 彭祖百忌[癸不词讼理弱敌强 卯不穿井水泉不香] 喜神方位[巽](东南) 阳贵神方位[巽](东南) 阴贵神方位[震](正东) 福神方位[艮](东北) 财神方位[离](正南) 冲[(丁酉)鸡] 煞[西]",
+  "birth_solar_datetime": "1999-10-17 05:21:33 星期日 (全国扶贫日)",
+  "birth_lunar_datetime": "一九九九年九月初九 己卯(兔)年 甲戌(狗)月 壬寅(虎)日 卯(兔)时 纳音[城头土 山头火 金箔金 金箔金] 星期日 (重阳节) 南方朱雀 星宿[星日马](凶) 彭祖百忌[壬不泱水更难提防 寅不祭祀神鬼不尝] 喜神方位[离](正南) 阳贵神方位[震](正东) 阴贵神方位[巽](东南) 福神方位[巽](东南) 财神方位[离](正南) 冲[(丙申)猴] 煞[北]",
   "core": {
     "year": {
-      "gan": "癸",
-      "zhi": "酉",
-      "shi_shen_gan": "比肩",
+      "gan": "己",
+      "zhi": "卯",
+      "shi_shen_gan": "正官",
       "shi_shen_zhi": [
-        "偏印"
+        "伤官"
       ],
       "hide_gan": [
-        "辛"
+        "乙"
       ],
-      "na_yin": "剑锋金",
+      "na_yin": "城头土",
       "xun_kong": [
-        "戌",
-        "亥"
+        "申",
+        "酉"
       ]
     },
     "month": {
-      "gan": "辛",
-      "zhi": "酉",
-      "shi_shen_gan": "偏印",
+      "gan": "甲",
+      "zhi": "戌",
+      "shi_shen_gan": "食神",
       "shi_shen_zhi": [
-        "偏印"
+        "七杀",
+        "正印",
+        "正财"
       ],
       "hide_gan": [
-        "辛"
+        "戊",
+        "辛",
+        "丁"
       ],
-      "na_yin": "石榴木",
+      "na_yin": "山头火",
       "xun_kong": [
-        "子",
-        "丑"
+        "申",
+        "酉"
       ]
     },
     "day": {
-      "gan": "癸",
-      "zhi": "卯",
+      "gan": "壬",
+      "zhi": "寅",
       "shi_shen_gan": "日主",
       "shi_shen_zhi": [
-        "食神"
+        "食神",
+        "偏财",
+        "七杀"
+      ],
+      "hide_gan": [
+        "甲",
+        "丙",
+        "戊"
+      ],
+      "na_yin": "金箔金",
+      "xun_kong": [
+        "辰",
+        "巳"
+      ]
+    },
+    "time": {
+      "gan": "癸",
+      "zhi": "卯",
+      "shi_shen_gan": "劫财",
+      "shi_shen_zhi": [
+        "伤官"
       ],
       "hide_gan": [
         "乙"
@@ -62,243 +86,191 @@
         "巳"
       ]
     },
-    "time": {
-      "gan": "乙",
-      "zhi": "卯",
-      "shi_shen_gan": "食神",
-      "shi_shen_zhi": [
-        "食神"
-      ],
-      "hide_gan": [
-        "乙"
-      ],
-      "na_yin": "大溪水",
-      "xun_kong": [
-        "子",
-        "丑"
-      ]
-    },
     "jie_qi": {
-      "prev_name": "白露",
-      "prev_jie": "1993-09-07 23:07:47 星期二",
-      "next_name": "寒露",
-      "next_jie": "1993-10-08 14:40:02 星期五"
+      "prev_name": "寒露",
+      "prev_jie": "1999-10-09 01:48:21 星期六",
+      "next_name": "立冬",
+      "next_jie": "1999-11-08 04:57:51 星期一 (记者节)"
     }
   },
   "fortune": {
-    "start_solar": "1997-06-29 05:13:18 星期日",
-    "start_age": 5,
+    "start_solar": "2002-07-07 05:21:33 星期日 (七七事变纪念日)",
+    "start_age": 4,
     "da_yun": [
       {
         "index": 1,
-        "start_year": 1997,
-        "start_age": 5,
-        "gan_zhi": "庚申",
-        "xun": "甲寅",
+        "start_year": 2002,
+        "start_age": 4,
+        "gan_zhi": "癸酉",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 2,
-        "start_year": 2007,
-        "start_age": 15,
-        "gan_zhi": "己未",
-        "xun": "甲寅",
+        "start_year": 2012,
+        "start_age": 14,
+        "gan_zhi": "壬申",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 3,
-        "start_year": 2017,
-        "start_age": 25,
-        "gan_zhi": "戊午",
-        "xun": "甲寅",
+        "start_year": 2022,
+        "start_age": 24,
+        "gan_zhi": "辛未",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 4,
-        "start_year": 2027,
-        "start_age": 35,
-        "gan_zhi": "丁巳",
-        "xun": "甲寅",
+        "start_year": 2032,
+        "start_age": 34,
+        "gan_zhi": "庚午",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 5,
-        "start_year": 2037,
-        "start_age": 45,
-        "gan_zhi": "丙辰",
-        "xun": "甲寅",
+        "start_year": 2042,
+        "start_age": 44,
+        "gan_zhi": "己巳",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 6,
-        "start_year": 2047,
-        "start_age": 55,
-        "gan_zhi": "乙卯",
-        "xun": "甲寅",
+        "start_year": 2052,
+        "start_age": 54,
+        "gan_zhi": "戊辰",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 7,
-        "start_year": 2057,
-        "start_age": 65,
-        "gan_zhi": "甲寅",
-        "xun": "甲寅",
+        "start_year": 2062,
+        "start_age": 64,
+        "gan_zhi": "丁卯",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 8,
-        "start_year": 2067,
-        "start_age": 75,
-        "gan_zhi": "癸丑",
-        "xun": "甲辰",
+        "start_year": 2072,
+        "start_age": 74,
+        "gan_zhi": "丙寅",
+        "xun": "甲子",
         "xiao_yun": []
       },
       {
         "index": 9,
-        "start_year": 2077,
-        "start_age": 85,
-        "gan_zhi": "壬子",
-        "xun": "甲辰",
+        "start_year": 2082,
+        "start_age": 84,
+        "gan_zhi": "乙丑",
+        "xun": "甲子",
         "xiao_yun": []
       }
     ],
     "before_start_xiao_yun": [
       {
         "index": 0,
-        "gan_zhi": "甲寅"
+        "gan_zhi": "壬寅"
       },
       {
         "index": 1,
-        "gan_zhi": "癸丑"
+        "gan_zhi": "辛丑"
       },
       {
         "index": 2,
-        "gan_zhi": "壬子"
-      },
-      {
-        "index": 3,
-        "gan_zhi": "辛亥"
+        "gan_zhi": "庚子"
       }
     ],
     "query": null
   },
   "auxiliary": {
-    "year_di_shi": "病",
-    "month_di_shi": "病",
-    "day_di_shi": "长生",
-    "time_di_shi": "长生",
-    "tai_yuan": "壬子",
-    "tai_yuan_na_yin": "桑柘木",
-    "ming_gong": "丁巳",
-    "ming_gong_na_yin": "沙中土",
-    "shen_gong": "乙丑",
-    "shen_gong_na_yin": "海中金"
+    "year_di_shi": "死",
+    "month_di_shi": "冠带",
+    "day_di_shi": "病",
+    "time_di_shi": "死",
+    "tai_yuan": "乙丑",
+    "tai_yuan_na_yin": "海中金",
+    "ming_gong": "戊辰",
+    "ming_gong_na_yin": "大林木",
+    "shen_gong": "丙寅",
+    "shen_gong_na_yin": "炉中火"
   },
   "month_command": {
     "current": "辛",
-    "detail": "处于辛司权第12天 (真气引出)"
+    "detail": "处于辛司权第9天"
   },
   "five_elements": {
     "scores": {
-      "木": 42.5,
-      "火": 0.0,
-      "土": 0.0,
-      "金": 210.6,
-      "水": 16.5
+      "木": 81.9,
+      "火": 56.25,
+      "土": 188.5,
+      "金": 66.0,
+      "水": 7.5
     },
     "states": {
-      "木": "胎",
-      "火": "死",
-      "土": "死",
-      "金": "帝旺",
-      "水": "沐浴"
+      "木": "养",
+      "火": "墓",
+      "土": "墓",
+      "金": "衰",
+      "水": "冠带"
     }
   },
   "interactions": [
     {
-      "type": "冲",
-      "source": "月干",
-      "target": "时干",
+      "type": "合",
+      "source": "年干",
+      "target": "月干",
       "is_transformed": false,
-      "transformed_to": null,
-      "desc": "辛乙相冲"
+      "transformed_to": "土",
+      "desc": "己甲合化土"
     },
     {
-      "type": "冲",
-      "source": "月干",
-      "target": "时干",
-      "is_transformed": false,
-      "transformed_to": null,
-      "desc": "辛乙交战"
-    },
-    {
-      "type": "冲",
-      "source": "年支",
-      "target": "日支",
-      "is_transformed": false,
-      "transformed_to": null,
-      "desc": "酉卯相冲"
-    },
-    {
-      "type": "冲",
-      "source": "年支",
-      "target": "时支",
-      "is_transformed": false,
-      "transformed_to": null,
-      "desc": "酉卯相冲"
-    },
-    {
-      "type": "冲",
-      "source": "月支",
-      "target": "日支",
-      "is_transformed": false,
-      "transformed_to": null,
-      "desc": "酉卯相冲"
-    },
-    {
-      "type": "冲",
-      "source": "月支",
-      "target": "时支",
-      "is_transformed": false,
-      "transformed_to": null,
-      "desc": "酉卯相冲"
-    },
-    {
-      "type": "刑",
+      "type": "合",
       "source": "年支",
       "target": "月支",
       "is_transformed": false,
-      "transformed_to": null,
-      "desc": "自刑：酉见酉"
+      "transformed_to": "火",
+      "desc": "卯戌合化火"
     },
     {
-      "type": "反吟",
+      "type": "合",
       "source": "月支",
       "target": "时支",
       "is_transformed": false,
-      "transformed_to": null,
-      "desc": "月支与时支反吟（辛酉冲乙卯）"
+      "transformed_to": "火",
+      "desc": "卯戌合化火"
+    },
+    {
+      "type": "半合",
+      "source": "地支",
+      "target": "地支",
+      "is_transformed": false,
+      "transformed_to": "火",
+      "desc": "寅戌会成火局"
     }
   ],
   "geju": {
-    "name": "偏印格",
+    "name": "七杀格",
     "type": "正八格",
     "status": "成格",
     "detail": "标准正八格取法"
   },
   "analysis": {
-    "strength_level": "极强",
-    "strength_score": 84.24,
-    "yong_shen": "土",
-    "xi_shen": "火",
-    "ji_shen": "金",
-    "chou_shen": "水",
+    "strength_level": "极弱",
+    "strength_score": 18.37,
+    "yong_shen": "金",
+    "xi_shen": "水",
+    "ji_shen": "土",
+    "chou_shen": "火",
     "logic_type": "扶抑平衡"
   },
   "stars": [
     {
       "name": "天乙贵人",
-      "pos": "日柱",
+      "pos": "年柱",
       "desc": "玉堂金马，逢凶化吉"
     },
     {
@@ -307,34 +279,39 @@
       "desc": "玉堂金马，逢凶化吉"
     },
     {
-      "name": "文昌贵人",
-      "pos": "日柱",
-      "desc": "聪明好学，文艺秀发"
-    },
-    {
-      "name": "文昌贵人",
-      "pos": "时柱",
-      "desc": "聪明好学，文艺秀发"
-    },
-    {
-      "name": "禄神",
+      "name": "咸池",
       "pos": "年柱",
-      "desc": "辛禄在酉"
+      "desc": "一名桃花，主性情风流"
     },
     {
-      "name": "禄神",
-      "pos": "月柱",
-      "desc": "辛禄在酉"
+      "name": "咸池",
+      "pos": "时柱",
+      "desc": "一名桃花，主性情风流"
+    },
+    {
+      "name": "截路空亡",
+      "pos": "时柱",
+      "desc": "行路受阻，晚年寥落"
+    },
+    {
+      "name": "文昌贵人",
+      "pos": "日柱",
+      "desc": "聪明好学，文艺秀发"
     },
     {
       "name": "禄神",
       "pos": "日柱",
-      "desc": "乙禄在卯"
+      "desc": "甲禄在寅"
     },
     {
-      "name": "禄神",
+      "name": "羊刃",
+      "pos": "年柱",
+      "desc": "甲羊刃在卯"
+    },
+    {
+      "name": "羊刃",
       "pos": "时柱",
-      "desc": "乙禄在卯"
+      "desc": "甲羊刃在卯"
     }
   ]
 }

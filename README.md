@@ -57,7 +57,7 @@ CLI 示例：
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
-    --birth "1993-08-04 05:30:00" --location 深圳
+    --birth "1999-9-9 05:30:00" --location 深圳
 ```
 
 参数说明：
@@ -104,7 +104,7 @@ CLI 示例：
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
-    --birth "1993-08-04 05:30:00" --location 深圳 > chart.json
+    --birth "1999-9-9 05:30:00" --location 深圳 > chart.json
 
 analyze --chart chart.json --topic overall
 analyze --chart chart.json --topic career --format text

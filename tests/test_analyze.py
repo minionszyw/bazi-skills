@@ -16,8 +16,8 @@ def test_analyze_overall_builds_method_steps_and_queries():
     result = analyze_chart(CHART, topic="overall")
 
     assert result["topic"] == "overall"
-    assert result["chart_summary"]["day_master"] == "癸"
-    assert result["chart_summary"]["geju"]["name"] == "偏印格"
+    assert result["chart_summary"]["day_master"] == "壬"
+    assert result["chart_summary"]["geju"]["name"] == "七杀格"
     assert len(result["steps"]) >= 5
     assert result["search_query_layers"]["required"]
     assert "月令" in result["search_queries"]
