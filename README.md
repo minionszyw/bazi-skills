@@ -101,17 +101,17 @@ analyze --chart chart.json --topic overall --no-evidence
 
 参数说明：
 
-| 参数 | 必填 | 说明 |
-| :--- | :--- | :--- |
-| `--chart` | 否 | 排盘 JSON 文件路径，默认从 stdin 读取；用 `-` 表示 stdin |
-| `--topic` | 否 | 分析主题，默认 `overall` |
-| `--with-evidence` | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |
-| `--no-evidence` | 否 | 只输出分析步骤与检索词，不嵌入古籍依据 |
-| `--evidence-tier` | 否 | evidence 检索层级，可重复；可选 `required`、`topic_specific`、`optional` |
-| `--book` | 否 | 古籍代号，默认 `yuanhai` |
-| `--limit` | 否 | 每个检索词返回条数，默认 `2` |
-| `--max-chars` | 否 | 每条原文最大字符数，默认 `260` |
-| `--format` | 否 | 输出格式：`json` / `text` |
+| 参数 | 短选项 | 必填 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `--chart` | `-f` | 否 | 排盘 JSON 文件路径，默认从 stdin 读取；用 `-` 表示 stdin |
+| `--topic` | `-t` | 否 | 分析主题，默认 `overall` |
+| `--with-evidence` | | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |
+| `--no-evidence` | | 否 | 只输出分析步骤与检索词，不嵌入古籍依据 |
+| `--evidence-tier` | | 否 | evidence 检索层级，可重复；可选 `required`、`topic_specific`、`optional` |
+| `--book` | | 否 | 古籍代号，默认 `yuanhai` |
+| `--limit` | | 否 | 每个检索词返回条数，默认 `2` |
+| `--max-chars` | | 否 | 每条原文最大字符数，默认 `260` |
+| `--format` | | 否 | 输出格式：`json` / `text` |
 
 支持的分析主题：
 
