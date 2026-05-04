@@ -1,33 +1,26 @@
-# 八字排盘引擎
+# 八字命理工具链
 
-遵循《渊海子平》核心标准，结合现代天文精密算法构建的八字排盘分析引擎。它不仅能完成基础的干支提取，还能执行深度的命理逻辑推演。
+遵循《渊海子平》核心标准，结合现代天文精密算法构建的八字命理工具链，包含三个独立 CLI：
 
-## 🌟 核心特性
+| 工具 | 用途 |
+| :--- | :--- |
+| `paipan` | 八字排盘，生成完整命盘 JSON |
+| `analyze` | 命理分析，输出古法步骤、阶段结论与古籍依据 |
+| `search` | 古籍检索，全文检索本地《渊海子平》语料 |
 
-### 1. 高精度时间修正 (Phase 1)
-*   **真太阳时校正**：内置均时差 (EoT) 公式与经度时差计算，消除“北京时间”与出生地实际地方时的偏差。
-*   **夏令时自动处理**：精准识别 1986-1991 年间中国夏令时政策，自动回拨偏差。
+典型工作流：
 
-### 2. 完备的数据提取 (Phase 2)
-*   **核心命盘**：四柱干支、十神（天干/地支藏干）、纳音五行、每柱旬空。
-*   **动态运程**：精确到分钟的起运时刻、大运流转、起运前小运展示。
-*   **辅助命盘**：十二长生（地势）、胎元、命宫、身宫。
+```text
+paipan 排盘 → analyze 生成分析步骤与分层检索词 → search 按需补充古籍原文 → 综合中文回复
+```
 
-### 3. 深度自研算法 (Phase 3)
-*   **月令分司用事**：根据分钟级交节深度判定司权天干，并支持“真气引出”权重逻辑。
-*   **五行量化状态机**：结合“旺相休囚死”气数修正与地支通根系数的能量评分系统。
-*   **严苛格局审计**：支持从格、专旺格等特殊格局识别，以及格局“成败病药”质量分析。
-*   **古籍对账神煞**：严格对齐《渊海子平》标准的玉堂天乙、天月二德、咸池、截路空亡等专业神煞。
-
-## 🚀 快速开始
-
-### 本地安装
+## 安装
 
 项目依赖统一由 `pyproject.toml` 管理。
 
 ```bash
 git clone <repo-url>
-cd bazi
+cd bazi-skills
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 pip install -e .
@@ -39,21 +32,19 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-### AGENT Skill 安装
+### Agent Skill 安装
 
-项目内置 `skills/bazi`，可复制到本地 AGENT skills 目录使用：
+项目内置 `skills/bazi`，可复制到本地 Agent skills 目录使用：
 
 ```bash
 cp -R skills/bazi <AGENT_SKILLS_DIR>/bazi
 ```
 
-使用 skill 前，AGENT 的运行环境需要能找到本项目安装后的 CLI：`paipan`、`analyze`、`search`。如果使用虚拟环境安装，请在启动 AGENT 前激活同一个 venv，或把 `venv/bin` 加入 `PATH`。
+使用 skill 前，Agent 的运行环境需要能找到本项目安装后的 CLI：`paipan`、`analyze`、`search`。如果使用虚拟环境安装，请在启动 Agent 前激活同一个 venv，或把 `venv/bin` 加入 `PATH`。
 
-### 八字排盘
+## paipan — 八字排盘
 
-用途：生成命盘 JSON。
-
-CLI 示例：
+生成命盘 JSON，包含四柱干支、十神、运程、格局、旺衰、用神等完整字段。
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
@@ -75,11 +66,29 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 | `--date` | `-d` | 否 | 查询指定日期的流年/流月/流日，格式：`YYYY-MM-DD` |
 | `--xiao-yun` | | 否 | 展开每步大运的小运列表（默认折叠） |
 
-### 命理分析
+### 核心算法
 
-用途：根据排盘 JSON 生成古法分析步骤、阶段结论、分层检索词与核心古籍依据。
+**高精度时间修正**
 
-CLI 示例：
+- 真太阳时校正：内置均时差 (EoT) 公式与经度时差计算，消除"北京时间"与出生地实际地方时的偏差
+- 夏令时自动处理：精准识别 1986-1991 年间中国夏令时政策，自动回拨偏差
+
+**完备的数据提取**
+
+- 核心命盘：四柱干支、十神（天干/地支藏干）、纳音五行、每柱旬空
+- 动态运程：精确到分钟的起运时刻、大运流转、起运前小运展示
+- 辅助命盘：十二长生（地势）、胎元、命宫、身宫
+
+**深度自研算法**
+
+- 月令分司用事：根据分钟级交节深度判定司权天干，支持"真气引出"权重逻辑
+- 五行量化状态机：结合"旺相休囚死"气数修正与地支通根系数的能量评分系统
+- 严苛格局审计：支持从格、专旺格等特殊格局识别，以及格局"成败病药"质量分析
+- 古籍对账神煞：严格对齐《渊海子平》标准的玉堂天乙、天月二德、咸池、截路空亡等专业神煞
+
+## analyze — 命理分析
+
+读取 `paipan` 输出的命盘 JSON，生成古法分析步骤、阶段结论、分层检索词与核心古籍依据。
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
@@ -87,8 +96,7 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 
 analyze --chart chart.json --topic overall
 analyze --chart chart.json --topic career --format text
-analyze --chart chart.json --topic wealth
-analyze --chart chart.json --topic health
+analyze --chart chart.json --topic overall --no-evidence
 ```
 
 参数说明：
@@ -105,13 +113,7 @@ analyze --chart chart.json --topic health
 | `--max-chars` | 否 | 每条原文最大字符数，默认 `260` |
 | `--format` | 否 | 输出格式：`json` / `text` |
 
-`analyze` 默认会对核心分层检索词调用 `search`，并在输出中附加 `evidence`。如果只需要分析步骤和检索词，可使用：
-
-```bash
-analyze --chart chart.json --topic overall --no-evidence
-```
-
-当前支持的主题：
+支持的分析主题：
 
 | 主题 | 说明 |
 | :--- | :--- |
@@ -127,11 +129,19 @@ analyze --chart chart.json --topic overall --no-evidence
 | `social` | 人际合作分析 |
 | `remedy` | 趋避建议 |
 
-### 古籍检索
+`analyze` 输出会为每个步骤附加 `steps[].method_refs`，用于查看该步骤绑定的古籍方法来源、方法原则和对账检索词；同时保留扁平 `search_queries` 和分层 `search_query_layers`：
 
-用途：检索本地古籍原文，适合在排盘后根据命盘要素主动查找依据。当前内置 `yuanhai`（《渊海子平》）语料。
+| 层级 | 用途 |
+| :--- | :--- |
+| `required` | 月令、日主、旺衰、用神、格局等核心依据 |
+| `topic_specific` | 事业、财运、婚姻、健康等专题依据 |
+| `optional` | 冲合刑害、大运流年等补充依据 |
 
-CLI 示例：
+综合回复引用古籍时，建议固定为 `《书名·篇名》：原文短句`，再接白话解释。
+
+## search — 古籍检索
+
+全文检索本地古籍原文，适合在排盘后根据命盘要素主动查找依据。当前内置 `yuanhai`（《渊海子平》）语料。
 
 ```bash
 search "月令" --book yuanhai --limit 3 --format text
@@ -148,23 +158,8 @@ search "天乙贵人" --book yuanhai --limit 3
 | `--max-chars` | 否 | 每条正文最大字符数，默认 `500` |
 | `--format` | 否 | 输出格式：`json` / `text` |
 
-典型流程：
+## 质量保证
 
-```text
-获取命主出生信息 -> paipan 排盘 -> analyze 生成分析步骤、分层检索词与核心 evidence -> search 按需补充古籍原文 -> 综合中文回复
-```
-
-`analyze` 输出会为每个步骤附加 `steps[].method_refs`，用于查看该步骤绑定的古籍方法来源、方法原则和对账检索词；同时保留扁平 `search_queries` 和分层 `search_query_layers`：
-
-| 层级 | 用途 |
-| :--- | :--- |
-| `required` | 月令、日主、旺衰、用神、格局等核心依据 |
-| `topic_specific` | 事业、财运、婚姻、健康等专题依据 |
-| `optional` | 冲合刑害、大运流年等补充依据 |
-
-综合回复引用古籍时，建议固定为 `《书名·篇名》：原文短句`，再接白话解释。
-
-## 🧪 质量保证
 项目包含 50 例基于《千里命稿》的黄金审计测试集：8 例端到端排盘命例，42 例古籍四柱直测命例。`expected` 字段以古籍原文为准；古籍没有明确标注的字段保留为 `古籍未标注`，不计入对应字段覆盖率。
 
 ```bash
@@ -191,7 +186,9 @@ PYTHONPATH=. python3 -m pytest -q
 PYTHONPATH=. python3 tests/supreme_audit.py
 ```
 
-## ⚖️ 命理标准
+## 命理标准
+
 本引擎算法主要参考以下经典：
-*   《渊海子平》 (明·徐大升 著)
-*   《千里命稿》 (韦千里 著)
+
+- 《渊海子平》（明·徐大升 著）
+- 《千里命稿》（韦千里 著）
