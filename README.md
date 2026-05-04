@@ -133,6 +133,7 @@ analyze --chart chart.json --topic overall --no-evidence
 
 | 字段 | 用途 |
 | :--- | :--- |
+| `judgement_hierarchy` | 主次裁断规则，用于处理格局、用神、运限、神煞等结论冲突 |
 | `steps[].method_refs` | 该步骤绑定的古籍方法来源、方法原则和对账检索词 |
 | `steps[].evidence_queries` | 该步骤默认 evidence 使用的检索词 |
 | `evidence_plan` | 按步骤汇总的 evidence 检索计划 |

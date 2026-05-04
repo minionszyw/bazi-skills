@@ -150,6 +150,7 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
         "topic": topic,
         "title": TOPIC_TITLES[topic],
         "chart_summary": _chart_summary(ctx),
+        "judgement_hierarchy": _judgement_hierarchy(ctx, topic),
         "steps": steps,
         "evidence_plan": evidence_plan,
         "search_query_layers": query_layers,
@@ -269,6 +270,94 @@ def _specific_terms(items: list[Any]) -> list[str]:
         if len(value) > 1:
             result.append(value)
     return result
+
+
+def _judgement_hierarchy(ctx: dict[str, Any], topic: str) -> dict[str, Any]:
+    return {
+        "principle": "先定主轴，再看成败，再看触发；神煞和单项取象不得反压格局、旺衰、用神与运限。",
+        "priority": [
+            {
+                "rank": 1,
+                "name": "日主与月令",
+                "applies_to": ["foundation", "strength"],
+                "rule": "以日干为命主，以月令为提纲；先确认命局气势来源和日主旺衰。",
+            },
+            {
+                "rank": 2,
+                "name": "格局成败",
+                "applies_to": ["geju"],
+                "rule": "格局只定主结构，须看是否成格、破格、清浊和能否承接用神。",
+            },
+            {
+                "rank": 3,
+                "name": "用神喜忌",
+                "applies_to": ["useful_gods", "remedy_scene", "remedy_avoid"],
+                "rule": "用神、喜神、忌神决定取舍方向；专题结论不得违背用忌。",
+            },
+            {
+                "rank": 4,
+                "name": "组合护破",
+                "applies_to": ["interactions"],
+                "rule": "冲合刑害用于判断护格、破格、宫位受动和喜忌被引发，不能脱离主结构单断。",
+            },
+            {
+                "rank": 5,
+                "name": "运限触发",
+                "applies_to": ["fortune"],
+                "rule": "大运流年负责阶段应期；原局有象，运限触发后才提高事件权重。",
+            },
+            {
+                "rank": 6,
+                "name": "专题十神与宫位",
+                "applies_to": [
+                    "official",
+                    "output",
+                    "wealth",
+                    "peers",
+                    "spouse_star",
+                    "spouse_palace",
+                    "spouse_relation",
+                    "parents_star",
+                    "parents_palace",
+                    "parents_relation",
+                    "children_star",
+                    "children_palace",
+                    "children_relation",
+                    "siblings_relation",
+                ],
+                "rule": "十神和宫位只解释具体领域，必须回到旺衰、格局、用忌和运限校验。",
+            },
+            {
+                "rank": 7,
+                "name": "神煞辅证",
+                "applies_to": ["study_stars"],
+                "rule": "神煞只作辅助取象；吉煞不单独定吉，凶煞不单独定凶。",
+            },
+        ],
+        "conflict_rules": [
+            "格局、用神与神煞冲突时，以格局成败、用神喜忌和运限触发为主，神煞只提示局部取象。",
+            "原局结论与流年大运冲突时，原局定底色，运限定阶段变化，不可用单一年份推翻原局。",
+            "专题判断与总论冲突时，专题只能缩小到对应领域，不可改写命局总层级。",
+            "检索证据不足或只命中宽泛词时，应降低结论强度，并追加 `search` 补查更具体关键词。",
+        ],
+        "current_chart_application": _current_chart_application(ctx, topic),
+    }
+
+
+def _current_chart_application(ctx: dict[str, Any], topic: str) -> list[str]:
+    useful = ctx["useful_gods"]
+    geju = ctx["geju"]
+    items = [
+        f"本次主题：{TOPIC_TITLES[topic]}。",
+        f"先以{ctx.get('day_master')}日主和{ctx.get('month_branch')}月令定主轴。",
+        f"排盘格局为{geju.get('name')}，状态为{geju.get('status')}，需与旺衰和用忌合看。",
+        f"旺衰为{ctx['strength'].get('level')}，用神为{useful.get('yong_shen')}，喜神为{useful.get('xi_shen')}，忌神为{useful.get('ji_shen')}。",
+    ]
+    if ctx["interactions"]:
+        items.append("组合关系需检查是否护格、破格或触动关键宫位：" + "、".join(ctx["interactions"][:3]) + "。")
+    if ctx["stars"]:
+        items.append("神煞只作辅助取象，不得越过格局、用神和运限定论：" + "、".join(ctx["stars"][:3]) + "。")
+    return items
 
 
 def _chart_summary(ctx: dict[str, Any]) -> dict[str, Any]:

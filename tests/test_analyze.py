@@ -24,6 +24,7 @@ def test_analyze_overall_builds_method_steps_and_queries():
     assert "月令" in result["search_query_layers"]["required"]
     assert any(step["search_queries"] for step in result["steps"])
     assert result["evidence_plan"]
+    assert result["judgement_hierarchy"]
     assert all(step["evidence_queries"] for step in result["steps"])
     assert all(step["method_refs"] for step in result["steps"])
     assert any(ref["id"] == "yuanhai.kanming.foundation" for ref in result["steps"][0]["method_refs"])
@@ -46,9 +47,22 @@ def test_all_supported_topics_build_steps_and_queries():
 
         assert result["topic"] == topic
         assert result["title"]
+        assert result["judgement_hierarchy"]["priority"]
         assert result["steps"]
         assert result["search_queries"]
         assert all(step["method_refs"] for step in result["steps"])
+
+
+def test_judgement_hierarchy_encodes_primary_secondary_rules():
+    result = analyze_chart(CHART, topic="overall")
+    hierarchy = result["judgement_hierarchy"]
+
+    names = [item["name"] for item in hierarchy["priority"]]
+    assert names[:3] == ["日主与月令", "格局成败", "用神喜忌"]
+    assert names[-1] == "神煞辅证"
+    assert any("凶煞不单独定凶" in item["rule"] for item in hierarchy["priority"])
+    assert any("神煞只提示局部取象" in rule for rule in hierarchy["conflict_rules"])
+    assert any("七杀格" in item for item in hierarchy["current_chart_application"])
 
 
 def test_topic_step_kinds_are_backed_by_yuanhai_methods():
