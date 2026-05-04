@@ -23,6 +23,8 @@ def test_analyze_overall_builds_method_steps_and_queries():
     assert "月令" in result["search_queries"]
     assert "月令" in result["search_query_layers"]["required"]
     assert any(step["search_queries"] for step in result["steps"])
+    assert result["evidence_plan"]
+    assert all(step["evidence_queries"] for step in result["steps"])
     assert all(step["method_refs"] for step in result["steps"])
     assert any(ref["id"] == "yuanhai.kanming.foundation" for ref in result["steps"][0]["method_refs"])
 
@@ -138,7 +140,8 @@ def test_analyze_cli_can_attach_evidence(tmp_path):
 
     result = json.loads(completed.stdout)
     assert result["evidence"]
-    assert result["evidence_meta"]["tiers"] == ["required", "topic_specific"]
+    assert result["evidence_meta"]["mode"] == "step_plan"
+    assert result["evidence_meta"]["tiers"] == []
     assert any(items for items in result["evidence"].values())
 
 
@@ -168,4 +171,48 @@ def test_analyze_cli_attaches_evidence_by_default(tmp_path):
 
     result = json.loads(completed.stdout)
     assert result["evidence"]
+    assert result["evidence_meta"]["mode"] == "step_plan"
+    assert "论偏官即七杀" in result["evidence"]
+    assert "刑冲破害" in result["evidence"]
+    assert "论起大运法" in result["evidence"]
+
+
+def test_default_evidence_plan_covers_each_step_method_audit_query():
+    result = analyze_chart(CHART, topic="overall")
+
+    for step in result["steps"]:
+        planned = set(step["evidence_queries"])
+        audits = {ref["audit_query"] for ref in step["method_refs"]}
+        assert audits <= planned
+
+
+def test_layer_evidence_mode_is_still_available(tmp_path):
+    chart_path = tmp_path / "chart.json"
+    chart_path.write_text(json.dumps(CHART, ensure_ascii=False), encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "src.analyze",
+            "--chart",
+            str(chart_path),
+            "--topic",
+            "overall",
+            "--evidence-tier",
+            "required",
+            "--limit",
+            "1",
+            "--max-chars",
+            "80",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    result = json.loads(completed.stdout)
+    assert result["evidence_meta"]["mode"] == "layers"
+    assert result["evidence_meta"]["tiers"] == ["required"]
     assert set(result["evidence"]).issubset(set(result["search_query_layers"]["required"]))

@@ -78,14 +78,20 @@ def attach_evidence(
     max_chars: int,
     tiers: list[str] | None = None,
 ) -> dict[str, Any]:
-    selected_tiers = tiers or ["required", "topic_specific"]
-    queries = _evidence_queries(result, selected_tiers)
+    selected_tiers = tiers or []
+    if tiers:
+        queries = _layer_evidence_queries(result, selected_tiers)
+        mode = "layers"
+    else:
+        queries = _planned_evidence_queries(result)
+        mode = "step_plan"
     evidence = {}
     for query in queries:
         evidence[query] = search(query, book=book, limit=limit, max_chars=max_chars)
     result["evidence"] = evidence
     result["evidence_meta"] = {
         "book": book,
+        "mode": mode,
         "tiers": selected_tiers,
         "limit": limit,
         "max_chars": max_chars,
@@ -93,7 +99,20 @@ def attach_evidence(
     return result
 
 
-def _evidence_queries(result: dict[str, Any], tiers: list[str]) -> list[str]:
+def _planned_evidence_queries(result: dict[str, Any]) -> list[str]:
+    queries = []
+    for item in result.get("evidence_plan") or []:
+        queries.extend(item.get("queries", []))
+    if not queries:
+        layers = result.get("search_query_layers") or {}
+        queries.extend(layers.get("required", []))
+        queries.extend(layers.get("topic_specific", []))
+    if not queries:
+        queries = result.get("search_queries", [])
+    return list(dict.fromkeys(query for query in queries if query))
+
+
+def _layer_evidence_queries(result: dict[str, Any], tiers: list[str]) -> list[str]:
     layers = result.get("search_query_layers") or {}
     queries = []
     for tier in tiers:

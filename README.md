@@ -11,7 +11,7 @@
 典型工作流：
 
 ```text
-paipan 排盘 → analyze 生成分析步骤与分层检索词 → search 按需补充古籍原文 → 综合中文回复
+paipan 排盘 → analyze 生成分析步骤与步骤证据 → search 按需补充古籍原文 → 综合中文回复
 ```
 
 ## 安装
@@ -88,7 +88,7 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 
 ## analyze — 命理分析
 
-读取 `paipan` 输出的命盘 JSON，生成古法分析步骤、阶段结论、分层检索词与核心古籍依据。
+读取 `paipan` 输出的命盘 JSON，生成古法分析步骤、阶段结论、步骤证据计划与核心古籍依据。
 
 ```bash
 paipan --name 张三 --gender 1 --calendar LUNAR \
@@ -107,7 +107,7 @@ analyze --chart chart.json --topic overall --no-evidence
 | `--topic` | `-t` | 否 | 分析主题，默认 `overall` |
 | `--with-evidence` | | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |
 | `--no-evidence` | | 否 | 只输出分析步骤与检索词，不嵌入古籍依据 |
-| `--evidence-tier` | | 否 | evidence 检索层级，可重复；可选 `required`、`topic_specific`、`optional` |
+| `--evidence-tier` | | 否 | 手动指定分层检索层级，可重复；可选 `required`、`topic_specific`、`optional` |
 | `--book` | | 否 | 古籍代号，默认 `yuanhai` |
 | `--limit` | | 否 | 每个检索词返回条数，默认 `2` |
 | `--max-chars` | | 否 | 每条原文最大字符数，默认 `260` |
@@ -129,13 +129,24 @@ analyze --chart chart.json --topic overall --no-evidence
 | `social` | 人际合作分析 |
 | `remedy` | 趋避建议 |
 
-`analyze` 输出会为每个步骤附加 `steps[].method_refs`，用于查看该步骤绑定的古籍方法来源、方法原则和对账检索词；同时保留扁平 `search_queries` 和分层 `search_query_layers`：
+默认开启 evidence 时，`analyze` 使用 `evidence_plan` 按分析步骤检索古籍依据。每个步骤会附加：
+
+| 字段 | 用途 |
+| :--- | :--- |
+| `steps[].method_refs` | 该步骤绑定的古籍方法来源、方法原则和对账检索词 |
+| `steps[].evidence_queries` | 该步骤默认 evidence 使用的检索词 |
+| `evidence_plan` | 按步骤汇总的 evidence 检索计划 |
+| `evidence` | 默认嵌入的古籍检索结果 |
+
+`search_queries` 和 `search_query_layers` 作为人工补充检索入口保留：
 
 | 层级 | 用途 |
 | :--- | :--- |
 | `required` | 月令、日主、旺衰、用神、格局等核心依据 |
 | `topic_specific` | 事业、财运、婚姻、健康等专题依据 |
 | `optional` | 冲合刑害、大运流年等补充依据 |
+
+不传 `--evidence-tier` 时使用步骤证据计划；传入 `--evidence-tier` 时改用指定层级检索。
 
 综合回复引用古籍时，建议固定为 `《书名·篇名》：原文短句`，再接白话解释。
 

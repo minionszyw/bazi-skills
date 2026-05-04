@@ -92,6 +92,10 @@ def _tokens(query: str) -> list[str]:
     compact = re.sub(r"\s+", "", query)
     if compact and compact not in tokens:
         tokens.insert(0, compact)
+    if len(compact) > 2 and compact.endswith("格"):
+        stem = compact[:-1]
+        if stem not in tokens:
+            tokens.append(stem)
     return tokens
 
 
@@ -99,14 +103,20 @@ def _score(entry: Entry, tokens: Iterable[str]) -> int:
     score = 0
     title = entry.title
     text = entry.text
+    has_token_match = False
     for token in tokens:
         if not token:
             continue
-        score += title.count(token) * 80
-        score += text.count(token) * 30
+        title_count = title.count(token)
+        text_count = text.count(token)
+        has_token_match = has_token_match or title_count > 0 or text_count > 0
+        score += title_count * 80
+        score += text_count * 30
         for char in token:
             if "\u4e00" <= char <= "\u9fff":
                 score += title.count(char)
+    if not has_token_match:
+        return 0
     return score
 
 

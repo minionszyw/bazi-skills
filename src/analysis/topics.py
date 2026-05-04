@@ -115,8 +115,8 @@ TOPIC_STEPS = {
 
 TEN_GOD_QUERIES = {
     "正官": ["正官", "官星", "财官"],
-    "七杀": ["偏官", "七杀", "杀印相生"],
-    "偏官": ["偏官", "七杀", "杀印相生"],
+    "七杀": ["论偏官即七杀", "偏官", "七杀", "杀印相生"],
+    "偏官": ["论偏官即七杀", "偏官", "七杀", "杀印相生"],
     "正印": ["印绶", "正印", "官印"],
     "偏印": ["印绶", "偏印", "枭神"],
     "食神": ["食神", "食神生财"],
@@ -144,12 +144,14 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
     steps = [_build_step(ctx, step) for step in TOPIC_STEPS[topic]]
     query_layers = _query_layers(topic, steps)
     queries = _dedupe(query for step in steps for query in step["search_queries"])
+    evidence_plan = _evidence_plan(ctx, steps)
 
     return {
         "topic": topic,
         "title": TOPIC_TITLES[topic],
         "chart_summary": _chart_summary(ctx),
         "steps": steps,
+        "evidence_plan": evidence_plan,
         "search_query_layers": query_layers,
         "search_queries": queries,
         "notes": [
@@ -198,6 +200,75 @@ def _query_layers(topic: str, steps: list[dict[str, Any]]) -> dict[str, list[str
         "topic_specific": _dedupe(topic_specific),
         "optional": _dedupe(optional),
     }
+
+
+def _evidence_plan(ctx: dict[str, Any], steps: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    plan = []
+    for step in steps:
+        queries = [ref["audit_query"] for ref in step.get("method_refs", [])]
+        queries.extend(_specific_evidence_queries(ctx, step.get("kind")))
+        queries = _dedupe(queries)
+        step["evidence_queries"] = queries
+        plan.append(
+            {
+                "step": step["name"],
+                "kind": step["kind"],
+                "queries": queries,
+            }
+        )
+    return plan
+
+
+def _specific_evidence_queries(ctx: dict[str, Any], kind: str) -> list[str]:
+    useful = ctx["useful_gods"]
+    geju_name = str(ctx["geju"].get("name") or "")
+    queries = {
+        "foundation": [f"{ctx.get('day_master')}日", f"{ctx.get('month_branch')}月"],
+        "strength": ["旺相休囚", "身旺", "身弱"],
+        "useful_gods": ["用神", "喜忌"],
+        "geju": [geju_name],
+        "interactions": ["刑冲破害"],
+        "fortune": ["论起大运法", "岁运"],
+        "official": ["正官论", "论偏官即七杀", "论印绶"],
+        "output": ["论食神", "论伤官"],
+        "wealth": ["论正财"],
+        "peers": ["比肩", "劫财"],
+        "spouse_star": ["论偏官即七杀", "论正财", "女命总断歌"],
+        "spouse_palace": ["日支", "刑冲破害"],
+        "spouse_relation": ["六亲总篇", "女命总断歌", "刑冲破害"],
+        "health_balance": ["疾病", "五行偏枯"],
+        "climate": ["月令提纲", "节气深浅"],
+        "study_print": ["论印绶", "论食神"],
+        "study_stars": ["文昌贵人", "学堂"],
+        "parents_star": ["论印绶", "论正财", "论父母"],
+        "parents_palace": ["看命入式", "年为根", "月为苗"],
+        "parents_relation": ["六亲总篇", "论父母", "刑冲破害"],
+        "children_star": ["论食神", "论伤官", "论偏官即七杀", "子息"],
+        "children_palace": ["时为子息", "子息"],
+        "children_relation": ["子息", "刑冲破害"],
+        "siblings_relation": ["比肩", "劫财", "六亲总篇"],
+        "remedy_scene": ["五言独步", "用神"],
+        "remedy_avoid": ["五言独步", "病药"],
+    }.get(kind, [])
+
+    if kind in {"useful_gods", "remedy_scene"}:
+        queries.extend(_specific_terms([useful.get("yong_shen"), useful.get("xi_shen")]))
+    if kind == "remedy_avoid":
+        queries.extend(_specific_terms([useful.get("ji_shen"), useful.get("chou_shen")]))
+    if kind in {"geju", "official", "spouse_star", "children_star"} and (
+        "七杀" in geju_name or "偏官" in geju_name
+    ):
+        queries.append("论偏官即七杀")
+    return queries
+
+
+def _specific_terms(items: list[Any]) -> list[str]:
+    result = []
+    for item in items:
+        value = str(item or "").strip()
+        if len(value) > 1:
+            result.append(value)
+    return result
 
 
 def _chart_summary(ctx: dict[str, Any]) -> dict[str, Any]:
