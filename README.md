@@ -111,6 +111,7 @@ analyze --chart chart.json --topic overall --no-evidence
 | `--book` | | 否 | 古籍代号，默认 `yuanhai` |
 | `--limit` | | 否 | 每个检索词返回条数，默认 `2` |
 | `--max-chars` | | 否 | 每条原文最大字符数，默认 `260` |
+| `--view` | | 否 | JSON 输出视图：`compact` / `full`，默认 `compact` |
 | `--format` | | 否 | 输出格式：`json` / `text` |
 
 支持的分析主题：
@@ -129,17 +130,25 @@ analyze --chart chart.json --topic overall --no-evidence
 | `social` | 人际合作分析 |
 | `remedy` | 趋避建议 |
 
-默认开启 evidence 时，`analyze` 使用 `evidence_plan` 按分析步骤检索古籍依据。每个步骤会附加：
+默认开启 evidence 时，`analyze` 使用步骤证据计划检索古籍依据。JSON 默认 `compact` 视图，适合 Agent 直接生成回复：
 
 | 字段 | 用途 |
 | :--- | :--- |
 | `judgement_hierarchy` | 主次裁断规则，用于处理格局、用神、运限、神煞等结论冲突 |
+| `chart_summary` | 命盘摘要 |
+| `steps` | 精简后的分析步骤、输入依据和阶段结论 |
+| `evidence` | 默认嵌入的古籍检索结果 |
+
+审计、调试或开发时使用 `--view full`，会额外输出：
+
+| 字段 | 用途 |
+| :--- | :--- |
 | `steps[].method_refs` | 该步骤绑定的古籍方法来源、方法原则和对账检索词 |
 | `steps[].evidence_queries` | 该步骤默认 evidence 使用的检索词 |
 | `evidence_plan` | 按步骤汇总的 evidence 检索计划 |
-| `evidence` | 默认嵌入的古籍检索结果 |
-
-`search_queries` 和 `search_query_layers` 作为人工补充检索入口保留：
+| `evidence_meta` | evidence 检索模式、层级和截断参数 |
+| `search_queries` | 兼容旧调用的扁平检索词列表 |
+| `search_query_layers` | 人工补充检索入口 |
 
 | 层级 | 用途 |
 | :--- | :--- |

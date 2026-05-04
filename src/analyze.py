@@ -50,7 +50,13 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         choices=EVIDENCE_TIERS,
         default=None,
-        help="指定 evidence 检索层级，可重复；默认检索 required 与 topic_specific",
+        help="手动指定 evidence 检索层级，可重复；默认使用步骤证据计划",
+    )
+    parser.add_argument(
+        "--view",
+        choices=["compact", "full"],
+        default="compact",
+        help="JSON 输出视图：compact 默认精简输出，full 输出审计字段",
     )
     parser.add_argument("--format", choices=["json", "text"], default="json", help="输出格式")
     return parser
@@ -158,6 +164,30 @@ def render_text(result: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def compact_result(result: dict[str, Any]) -> dict[str, Any]:
+    compact = {
+        "topic": result["topic"],
+        "title": result["title"],
+        "chart_summary": result["chart_summary"],
+        "judgement_hierarchy": result["judgement_hierarchy"],
+        "steps": [_compact_step(step) for step in result["steps"]],
+        "notes": result["notes"],
+    }
+    if "evidence" in result:
+        compact["evidence"] = result["evidence"]
+    return compact
+
+
+def _compact_step(step: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "name": step["name"],
+        "kind": step["kind"],
+        "method": step["method"],
+        "inputs": step["inputs"],
+        "conclusion": step["conclusion"],
+    }
+
+
 def main():
     parser = build_parser()
     args = parser.parse_args()
@@ -179,7 +209,8 @@ def main():
     if args.format == "text":
         print(render_text(result))
     else:
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        output = result if args.view == "full" else compact_result(result)
+        print(json.dumps(output, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
