@@ -63,3 +63,64 @@ def test_bazi_ask_today_regenerates_query_date_from_chart():
     assert result["intent"]["date"] == "2026-05-05"
     assert fortune_steps
     assert any("流日：" in item for item in fortune_steps[0]["inputs"])
+
+
+def test_bazi_ask_tomorrow_sets_query_date():
+    result = run_ask(
+        "--question",
+        "明天运势如何",
+        "--chart",
+        str(CHART),
+        "--today",
+        "2026-05-05",
+        "--no-evidence",
+    )
+
+    assert result["intent"]["name"] == "daily"
+    assert result["intent"]["date"] == "2026-05-06"
+    assert result["intent"]["time_scope"] == "day"
+
+
+def test_bazi_ask_year_career_sets_year_scope_and_career_topic():
+    result = run_ask("--question", "2026年事业运", "--chart", str(CHART), "--no-evidence")
+
+    assert result["intent"]["topic"] == "career"
+    assert result["intent"]["date"] == "2026-01-01"
+    assert result["intent"]["time_scope"] == "year"
+    assert result["result"]["title"] == "事业分析"
+
+
+def test_bazi_ask_month_and_range_scopes():
+    month = run_ask(
+        "--question",
+        "这个月运势",
+        "--chart",
+        str(CHART),
+        "--today",
+        "2026-05-05",
+        "--no-evidence",
+    )
+    range_result = run_ask(
+        "--question",
+        "未来三个月财运",
+        "--chart",
+        str(CHART),
+        "--today",
+        "2026-05-05",
+        "--no-evidence",
+    )
+
+    assert month["intent"]["date"] == "2026-05-01"
+    assert month["intent"]["time_scope"] == "month"
+    assert range_result["intent"]["topic"] == "wealth"
+    assert range_result["intent"]["time_scope"] == "range_3_months"
+
+
+def test_bazi_ask_decision_scenarios_map_to_relevant_topics():
+    job = run_ask("--question", "适合换工作吗", "--chart", str(CHART), "--no-evidence")
+    investment = run_ask("--question", "适合投资吗", "--chart", str(CHART), "--no-evidence")
+
+    assert job["intent"]["topic"] == "career"
+    assert job["intent"]["scenario"] == "job_change"
+    assert investment["intent"]["topic"] == "wealth"
+    assert investment["intent"]["scenario"] == "investment"

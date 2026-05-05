@@ -24,6 +24,8 @@ bazi ask --question "请你帮我进行八字命理分析"
 bazi ask --question "分析我的财运" --chart chart.json
 bazi ask --question "如何提升财运" --chart chart.json
 bazi ask --question "今日运势分析" --chart chart.json
+bazi ask --question "适合换工作吗" --chart chart.json
+bazi ask --question "未来三个月财运" --chart chart.json
 ```
 
 首次信息完整时可直接排盘并保存：
@@ -35,7 +37,7 @@ bazi ask --question "请你帮我进行八字命理分析" \
   --save-chart chart.json
 ```
 
-输出中的 `required_inputs` 非空时，先向用户补问对应字段；`result` 为 compact 分析结果。
+输出中的 `required_inputs` 非空时，先向用户补问对应字段；`intent` 会标注主题、焦点、日期、时间范围和现实场景；`result` 为 compact 分析结果。
 
 ## 安装
 

@@ -1,7 +1,8 @@
 import argparse
 import json
 import sys
-from datetime import date
+import re
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Optional
 
@@ -47,21 +48,27 @@ def load_json(path: str) -> dict[str, Any]:
 
 
 def resolve_intent(question: str, explicit_date: Optional[str], today: Optional[str]) -> dict[str, Any]:
-    query_date = explicit_date or _date_from_question(question, today)
+    timing = _timing_from_question(question, explicit_date, today)
+    query_date = timing["date"]
     topic = "overall"
     focus = None
     name = "overall"
+    scenario = "general"
 
     if any(word in question for word in ["提升财运", "改善财运", "增强财运", "如何提升财运"]):
-        topic, focus, name = "remedy", "wealth", "improve-wealth"
+        topic, focus, name, scenario = "remedy", "wealth", "improve-wealth", "improvement"
+    elif any(word in question for word in ["投资", "理财", "买股票", "炒股"]):
+        topic, name, scenario = "wealth", "wealth", "investment"
     elif any(word in question for word in ["财运", "财富", "求财"]):
         topic, name = "wealth", "wealth"
     elif any(word in question for word in ["提升事业", "改善事业", "事业提升"]):
-        topic, focus, name = "remedy", "career", "improve-career"
-    elif "事业" in question:
+        topic, focus, name, scenario = "remedy", "career", "improve-career", "improvement"
+    elif any(word in question for word in ["换工作", "跳槽", "转行", "离职"]):
+        topic, name, scenario = "career", "career", "job_change"
+    elif any(word in question for word in ["事业", "工作", "职场"]):
         topic, name = "career", "career"
     elif any(word in question for word in ["改善婚姻", "提升婚姻", "感情改善"]):
-        topic, focus, name = "remedy", "marriage", "improve-marriage"
+        topic, focus, name, scenario = "remedy", "marriage", "improve-marriage", "improvement"
     elif any(word in question for word in ["婚姻", "感情", "恋爱"]):
         topic, name = "marriage", "marriage"
     elif any(word in question for word in ["健康"]):
@@ -79,16 +86,40 @@ def resolve_intent(question: str, explicit_date: Optional[str], today: Optional[
     elif any(word in question for word in ["提升", "改善", "化解", "趋避"]):
         topic, name = "remedy", "remedy"
 
-    if query_date and name == "overall":
+    if query_date and name == "overall" and timing["scope"] == "day":
         name = "daily"
 
-    return {"name": name, "topic": topic, "focus": focus, "date": query_date}
+    return {
+        "name": name,
+        "topic": topic,
+        "focus": focus,
+        "date": query_date,
+        "time_scope": timing["scope"],
+        "time_label": timing["label"],
+        "scenario": scenario,
+    }
 
 
-def _date_from_question(question: str, today: Optional[str]) -> Optional[str]:
+def _timing_from_question(question: str, explicit_date: Optional[str], today: Optional[str]) -> dict[str, Optional[str]]:
+    base = date.fromisoformat(today) if today else date.today()
+    if explicit_date:
+        return {"date": explicit_date, "scope": "day", "label": explicit_date}
+    year_match = re.search(r"(20\d{2})年", question)
+    if year_match:
+        year = int(year_match.group(1))
+        return {"date": f"{year}-01-01", "scope": "year", "label": f"{year}年"}
+    if any(word in question for word in ["明日", "明天"]):
+        target = base + timedelta(days=1)
+        return {"date": target.isoformat(), "scope": "day", "label": "明天"}
     if any(word in question for word in ["今日", "今天", "当日", "今日运势", "今天运势"]):
-        return today or date.today().isoformat()
-    return None
+        return {"date": base.isoformat(), "scope": "day", "label": "今天"}
+    if any(word in question for word in ["今年", "本年"]):
+        return {"date": f"{base.year}-01-01", "scope": "year", "label": "今年"}
+    if any(word in question for word in ["这个月", "本月", "当月"]):
+        return {"date": f"{base.year}-{base.month:02d}-01", "scope": "month", "label": "本月"}
+    if "未来三个月" in question:
+        return {"date": base.isoformat(), "scope": "range_3_months", "label": "未来三个月"}
+    return {"date": None, "scope": "natal", "label": "原局"}
 
 
 def missing_inputs(args: argparse.Namespace, chart: Optional[dict[str, Any]]) -> list[str]:

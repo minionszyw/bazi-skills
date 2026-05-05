@@ -19,9 +19,10 @@ bazi ask -> 中文综合回复
 1. 对用户原话调用 `bazi ask --question "<用户问题>"`；若已有命盘文件，追加 `--chart /tmp/bazi_current_chart.json`。
 2. 如果输出 `required_inputs` 非空，按字段向用户补问，不要猜测。
 3. 信息完整后再次调用 `bazi ask`，传入 `--name`、`--gender`、`--calendar`、`--birth`、`--location`，并用 `--save-chart /tmp/bazi_current_chart.json` 保存会话命盘。
-4. 后续追问一律复用 `/tmp/bazi_current_chart.json`；`bazi ask` 会自动识别财运、今日运势、提升财运等场景。
-5. 默认读取 `result.judgement_hierarchy`、`result.steps` 和 `result.evidence` 组织回复；依据不足时再用 `analyze --view full` 或 `search` 补查。
-6. 中文回复按“命盘事实 -> 裁断主次 -> 分析步骤 -> 古籍依据 -> 白话结论 -> 注意事项”组织；古籍引用用 `《书名·篇名》：原文短句`，除非用户明确要求，不要原样粘贴完整 JSON。
+4. 后续追问一律复用 `/tmp/bazi_current_chart.json`；`bazi ask` 会自动识别财运、今日/明天/今年/本月运势、提升财运、换工作、投资等场景。
+5. 默认读取 `intent`、`result.judgement_hierarchy`、`result.steps` 和 `result.evidence` 组织回复；`intent.time_scope` 用于说明时间范围，`intent.scenario` 用于说明现实场景。依据不足时再用 `analyze --view full` 或 `search` 补查。
+6. 涉及投资、换工作、婚恋选择等现实决策时，只给趋势和风险提示，不替用户作保证性决定。
+7. 中文回复按“命盘事实 -> 裁断主次 -> 分析步骤 -> 古籍依据 -> 白话结论 -> 注意事项”组织；古籍引用用 `《书名·篇名》：原文短句`，除非用户明确要求，不要原样粘贴完整 JSON。
 
 ## 安全调用约束
 
@@ -55,7 +56,7 @@ bazi ask --question "<用户问题>" --name "<姓名>" --gender <1|0> \
 输出说明：
 
 - `required_inputs`：缺少的出生字段；非空时先补问用户。
-- `intent`：工具识别出的意图、分析主题、焦点和日期。
+- `intent`：工具识别出的意图、分析主题、焦点、日期、时间范围和现实场景。
 - `result`：分析结果，结构与 `analyze --view compact` 一致。
 
 ## 八字排盘
