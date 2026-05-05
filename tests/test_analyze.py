@@ -99,6 +99,29 @@ def test_analyze_family_and_health_topics_include_expected_methods():
     assert any(step["name"] == "看子女星" for step in children["steps"])
 
 
+def test_analyze_remedy_focus_wealth_combines_wealth_and_remedy_steps():
+    result = analyze_chart(CHART, topic="remedy", focus="wealth")
+    step_kinds = [step["kind"] for step in result["steps"]]
+
+    assert result["topic"] == "remedy"
+    assert result["focus"] == "wealth"
+    assert result["title"] == "财运趋避建议"
+    assert "wealth" in step_kinds
+    assert "output" in step_kinds
+    assert "remedy_scene" in step_kinds
+    assert "remedy_avoid" in step_kinds
+    assert any("财运趋避建议" in item for item in result["judgement_hierarchy"]["current_chart_application"])
+
+
+def test_analyze_rejects_focus_without_remedy_topic():
+    try:
+        analyze_chart(CHART, topic="wealth", focus="career")
+    except ValueError as exc:
+        assert "focus 仅支持" in str(exc)
+    else:
+        raise AssertionError("focus without remedy topic should fail")
+
+
 def test_analyze_cli_reads_chart_file(tmp_path):
     chart_path = tmp_path / "chart.json"
     chart_path.write_text(json.dumps(CHART, ensure_ascii=False), encoding="utf-8")
@@ -189,6 +212,42 @@ def test_analyze_cli_attaches_evidence_by_default(tmp_path):
     assert "论偏官即七杀" in result["evidence"]
     assert "刑冲破害" in result["evidence"]
     assert "论起大运法" in result["evidence"]
+
+
+def test_analyze_cli_remedy_focus_wealth(tmp_path):
+    chart_path = tmp_path / "chart.json"
+    chart_path.write_text(json.dumps(CHART, ensure_ascii=False), encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "src.analyze",
+            "--chart",
+            str(chart_path),
+            "--topic",
+            "remedy",
+            "--focus",
+            "wealth",
+            "--limit",
+            "1",
+            "--max-chars",
+            "80",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    result = json.loads(completed.stdout)
+    step_kinds = [step["kind"] for step in result["steps"]]
+    assert result["topic"] == "remedy"
+    assert result["focus"] == "wealth"
+    assert result["title"] == "财运趋避建议"
+    assert "wealth" in step_kinds
+    assert "remedy_scene" in step_kinds
+    assert result["evidence"]
 
 
 def test_default_evidence_plan_covers_each_step_method_audit_query():

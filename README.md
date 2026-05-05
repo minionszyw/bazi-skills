@@ -96,6 +96,7 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
 
 analyze --chart chart.json --topic overall
 analyze --chart chart.json --topic career --format text
+analyze --chart chart.json --topic remedy --focus wealth
 analyze --chart chart.json --topic overall --no-evidence
 ```
 
@@ -105,6 +106,7 @@ analyze --chart chart.json --topic overall --no-evidence
 | :--- | :--- | :--- | :--- |
 | `--chart` | `-f` | 否 | 排盘 JSON 文件路径，默认从 stdin 读取；用 `-` 表示 stdin |
 | `--topic` | `-t` | 否 | 分析主题，默认 `overall` |
+| `--focus` | | 否 | 专题趋避焦点，仅与 `--topic remedy` 搭配，例如 `wealth` |
 | `--with-evidence` | | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |
 | `--no-evidence` | | 否 | 只输出分析步骤与检索词，不嵌入古籍依据 |
 | `--evidence-tier` | | 否 | 手动指定分层检索层级，可重复；可选 `required`、`topic_specific`、`optional` |

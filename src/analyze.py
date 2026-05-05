@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from src.analysis import SUPPORTED_TOPICS, analyze_chart
+from src.analysis import SUPPORTED_FOCUS, SUPPORTED_TOPICS, analyze_chart
 from src.search import search
 
 EVIDENCE_TIERS = ("required", "topic_specific", "optional")
@@ -27,6 +27,12 @@ def build_parser() -> argparse.ArgumentParser:
         choices=SUPPORTED_TOPICS,
         default="overall",
         help="分析主题，默认 overall",
+    )
+    parser.add_argument(
+        "--focus",
+        choices=SUPPORTED_FOCUS,
+        default=None,
+        help="专题趋避焦点；仅与 --topic remedy 搭配，例如 --focus wealth",
     )
     evidence_group = parser.add_mutually_exclusive_group()
     evidence_group.add_argument(
@@ -167,6 +173,7 @@ def render_text(result: dict[str, Any]) -> str:
 def compact_result(result: dict[str, Any]) -> dict[str, Any]:
     compact = {
         "topic": result["topic"],
+        "focus": result.get("focus"),
         "title": result["title"],
         "chart_summary": result["chart_summary"],
         "judgement_hierarchy": result["judgement_hierarchy"],
@@ -193,7 +200,7 @@ def main():
     args = parser.parse_args()
     try:
         chart = load_chart(args.chart)
-        result = analyze_chart(chart, topic=args.topic)
+        result = analyze_chart(chart, topic=args.topic, focus=args.focus)
         if args.with_evidence:
             result = attach_evidence(
                 result,

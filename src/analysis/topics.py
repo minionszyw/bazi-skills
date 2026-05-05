@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Optional
 
 from src.analysis.context import build_context
 from src.analysis.methods import method_queries_for_kind, methods_for_kind
@@ -17,6 +17,17 @@ SUPPORTED_TOPICS = (
     "siblings",
     "social",
     "remedy",
+)
+SUPPORTED_FOCUS = (
+    "career",
+    "wealth",
+    "marriage",
+    "health",
+    "study",
+    "parents",
+    "children",
+    "siblings",
+    "social",
 )
 TOPIC_TITLES = {
     "overall": "原命局总论",
@@ -136,21 +147,27 @@ FIVE_ELEMENT_SCENES = {
 }
 
 
-def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, Any]:
+def analyze_chart(chart: dict[str, Any], topic: str = "overall", focus: Optional[str] = None) -> dict[str, Any]:
     if topic not in SUPPORTED_TOPICS:
         raise ValueError(f"不支持的 topic：{topic}，可选：{', '.join(SUPPORTED_TOPICS)}")
+    if focus and focus not in SUPPORTED_FOCUS:
+        raise ValueError(f"不支持的 focus：{focus}，可选：{', '.join(SUPPORTED_FOCUS)}")
+    if focus and topic != "remedy":
+        raise ValueError("focus 仅支持与 topic=remedy 搭配使用")
 
     ctx = build_context(chart)
-    steps = [_build_step(ctx, step) for step in TOPIC_STEPS[topic]]
+    step_templates = _step_templates_for(topic, focus)
+    steps = [_build_step(ctx, step) for step in step_templates]
     query_layers = _query_layers(topic, steps)
     queries = _dedupe(query for step in steps for query in step["search_queries"])
     evidence_plan = _evidence_plan(ctx, steps)
 
     return {
         "topic": topic,
-        "title": TOPIC_TITLES[topic],
+        "focus": focus,
+        "title": _analysis_title(topic, focus),
         "chart_summary": _chart_summary(ctx),
-        "judgement_hierarchy": _judgement_hierarchy(ctx, topic),
+        "judgement_hierarchy": _judgement_hierarchy(ctx, topic, focus),
         "steps": steps,
         "evidence_plan": evidence_plan,
         "search_query_layers": query_layers,
@@ -160,6 +177,19 @@ def analyze_chart(chart: dict[str, Any], topic: str = "overall") -> dict[str, An
             "古籍原文应作为判断依据之一，最终回复需结合用户具体问题与现实背景。",
         ],
     }
+
+
+def _step_templates_for(topic: str, focus: Optional[str]) -> list[StepTemplate]:
+    if topic == "remedy" and focus:
+        return TOPIC_STEPS[focus] + TOPIC_STEPS["remedy"]
+    return TOPIC_STEPS[topic]
+
+
+def _analysis_title(topic: str, focus: Optional[str]) -> str:
+    if topic == "remedy" and focus:
+        focus_title = TOPIC_TITLES[focus].removesuffix("分析")
+        return f"{focus_title}趋避建议"
+    return TOPIC_TITLES[topic]
 
 
 def _build_step(ctx: dict[str, Any], template: StepTemplate) -> dict[str, Any]:
@@ -272,7 +302,7 @@ def _specific_terms(items: list[Any]) -> list[str]:
     return result
 
 
-def _judgement_hierarchy(ctx: dict[str, Any], topic: str) -> dict[str, Any]:
+def _judgement_hierarchy(ctx: dict[str, Any], topic: str, focus: Optional[str] = None) -> dict[str, Any]:
     return {
         "principle": "先定主轴，再看成败，再看触发；神煞和单项取象不得反压格局、旺衰、用神与运限。",
         "priority": [
@@ -340,15 +370,15 @@ def _judgement_hierarchy(ctx: dict[str, Any], topic: str) -> dict[str, Any]:
             "专题判断与总论冲突时，专题只能缩小到对应领域，不可改写命局总层级。",
             "检索证据不足或只命中宽泛词时，应降低结论强度，并追加 `search` 补查更具体关键词。",
         ],
-        "current_chart_application": _current_chart_application(ctx, topic),
+        "current_chart_application": _current_chart_application(ctx, topic, focus),
     }
 
 
-def _current_chart_application(ctx: dict[str, Any], topic: str) -> list[str]:
+def _current_chart_application(ctx: dict[str, Any], topic: str, focus: Optional[str] = None) -> list[str]:
     useful = ctx["useful_gods"]
     geju = ctx["geju"]
     items = [
-        f"本次主题：{TOPIC_TITLES[topic]}。",
+        f"本次主题：{_analysis_title(topic, focus)}。",
         f"先以{ctx.get('day_master')}日主和{ctx.get('month_branch')}月令定主轴。",
         f"排盘格局为{geju.get('name')}，状态为{geju.get('status')}，需与旺衰和用忌合看。",
         f"旺衰为{ctx['strength'].get('level')}，用神为{useful.get('yong_shen')}，喜神为{useful.get('xi_shen')}，忌神为{useful.get('ji_shen')}。",
