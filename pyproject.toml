@@ -24,6 +24,7 @@ dev = [
 paipan = "src.paipan:main"
 analyze = "src.analyze:main"
 search = "src.search:main"
+bazi = "src.bazi:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

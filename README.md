@@ -1,9 +1,10 @@
 # 八字命理工具链
 
-遵循《渊海子平》核心标准，结合现代天文精密算法构建的八字命理工具链，包含三个独立 CLI：
+遵循《渊海子平》核心标准，结合现代天文精密算法构建的八字命理工具链，包含一个编排 CLI 和三个基础 CLI：
 
 | 工具 | 用途 |
 | :--- | :--- |
+| `bazi ask` | 自然语言编排，自动串联排盘、分析与证据检索 |
 | `paipan` | 八字排盘，生成完整命盘 JSON |
 | `analyze` | 命理分析，输出古法步骤、阶段结论与古籍依据 |
 | `search` | 古籍检索，全文检索本地《渊海子平》语料 |
@@ -11,8 +12,30 @@
 典型工作流：
 
 ```text
-paipan 排盘 → analyze 生成分析步骤与步骤证据 → search 按需补充古籍原文 → 综合中文回复
+bazi ask 编排 → paipan 排盘 → analyze 分析 → search 按需补证 → 综合中文回复
 ```
+
+## bazi ask — 自然语言编排
+
+`bazi ask` 适合 Agent 使用。它接收用户原话，自动识别原命局、财运、今日运势、提升财运等常见场景。
+
+```bash
+bazi ask --question "请你帮我进行八字命理分析"
+bazi ask --question "分析我的财运" --chart chart.json
+bazi ask --question "如何提升财运" --chart chart.json
+bazi ask --question "今日运势分析" --chart chart.json
+```
+
+首次信息完整时可直接排盘并保存：
+
+```bash
+bazi ask --question "请你帮我进行八字命理分析" \
+  --name 张三 --gender 1 --calendar LUNAR \
+  --birth "1999-9-9 05:30:00" --location 深圳 \
+  --save-chart chart.json
+```
+
+输出中的 `required_inputs` 非空时，先向用户补问对应字段；`result` 为 compact 分析结果。
 
 ## 安装
 
