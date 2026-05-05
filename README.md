@@ -95,6 +95,8 @@ paipan --name 张三 --gender 1 --calendar LUNAR \
     --birth "1999-9-9 05:30:00" --location 深圳 > chart.json
 
 analyze --chart chart.json --topic overall
+analyze --chart chart.json --intent wealth
+analyze --chart chart.json --intent improve-wealth
 analyze --chart chart.json --topic career --format text
 analyze --chart chart.json --topic remedy --focus wealth
 analyze --chart chart.json --topic overall --no-evidence
@@ -105,6 +107,7 @@ analyze --chart chart.json --topic overall --no-evidence
 | 参数 | 短选项 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `--chart` | `-f` | 否 | 排盘 JSON 文件路径，默认从 stdin 读取；用 `-` 表示 stdin |
+| `--intent` | `-i` | 否 | 常用意图，例如 `overall`、`wealth`、`improve-wealth`，会自动映射 topic/focus |
 | `--topic` | `-t` | 否 | 分析主题，默认 `overall` |
 | `--focus` | | 否 | 专题趋避焦点，仅与 `--topic remedy` 搭配，例如 `wealth` |
 | `--with-evidence` | | 否 | 调用 `search` 并嵌入古籍依据，默认开启 |

@@ -133,7 +133,7 @@ def test_analyze_cli_reads_chart_file(tmp_path):
             "src.analyze",
             "--chart",
             str(chart_path),
-            "--topic",
+            "--intent",
             "wealth",
             "--no-evidence",
         ],
@@ -225,10 +225,8 @@ def test_analyze_cli_remedy_focus_wealth(tmp_path):
             "src.analyze",
             "--chart",
             str(chart_path),
-            "--topic",
-            "remedy",
-            "--focus",
-            "wealth",
+            "--intent",
+            "improve-wealth",
             "--limit",
             "1",
             "--max-chars",
@@ -248,6 +246,31 @@ def test_analyze_cli_remedy_focus_wealth(tmp_path):
     assert "wealth" in step_kinds
     assert "remedy_scene" in step_kinds
     assert result["evidence"]
+
+
+def test_analyze_cli_intent_rejects_conflicting_topic(tmp_path):
+    chart_path = tmp_path / "chart.json"
+    chart_path.write_text(json.dumps(CHART, ensure_ascii=False), encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "src.analyze",
+            "--chart",
+            str(chart_path),
+            "--intent",
+            "improve-wealth",
+            "--topic",
+            "wealth",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+
+    assert completed.returncode == 1
+    assert "intent=improve-wealth" in completed.stderr
 
 
 def test_default_evidence_plan_covers_each_step_method_audit_query():

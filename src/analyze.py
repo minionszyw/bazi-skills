@@ -2,12 +2,31 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 from src.analysis import SUPPORTED_FOCUS, SUPPORTED_TOPICS, analyze_chart
 from src.search import search
 
 EVIDENCE_TIERS = ("required", "topic_specific", "optional")
+INTENT_MAP = {
+    "overall": ("overall", None),
+    "career": ("career", None),
+    "wealth": ("wealth", None),
+    "marriage": ("marriage", None),
+    "health": ("health", None),
+    "study": ("study", None),
+    "parents": ("parents", None),
+    "children": ("children", None),
+    "siblings": ("siblings", None),
+    "social": ("social", None),
+    "remedy": ("remedy", None),
+    "improve-career": ("remedy", "career"),
+    "improve-wealth": ("remedy", "wealth"),
+    "improve-marriage": ("remedy", "marriage"),
+    "improve-health": ("remedy", "health"),
+    "improve-study": ("remedy", "study"),
+    "improve-social": ("remedy", "social"),
+}
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -25,8 +44,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--topic",
         "-t",
         choices=SUPPORTED_TOPICS,
-        default="overall",
+        default=None,
         help="分析主题，默认 overall",
+    )
+    parser.add_argument(
+        "--intent",
+        "-i",
+        choices=sorted(INTENT_MAP),
+        default=None,
+        help="常用意图，例如 overall、wealth、improve-wealth；会自动映射 topic/focus",
     )
     parser.add_argument(
         "--focus",
@@ -80,6 +106,17 @@ def load_chart(path: str) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError("排盘 JSON 顶层必须是对象")
     return data
+
+
+def resolve_topic_focus(intent: Optional[str], topic: Optional[str], focus: Optional[str]) -> tuple[str, Optional[str]]:
+    if intent:
+        intent_topic, intent_focus = INTENT_MAP[intent]
+        if topic and topic != intent_topic:
+            raise ValueError(f"intent={intent} 已映射 topic={intent_topic}，不能同时指定 topic={topic}")
+        if focus and focus != intent_focus:
+            raise ValueError(f"intent={intent} 已映射 focus={intent_focus}，不能同时指定 focus={focus}")
+        return intent_topic, intent_focus
+    return topic or "overall", focus
 
 
 def attach_evidence(
@@ -200,7 +237,8 @@ def main():
     args = parser.parse_args()
     try:
         chart = load_chart(args.chart)
-        result = analyze_chart(chart, topic=args.topic, focus=args.focus)
+        topic, focus = resolve_topic_focus(args.intent, args.topic, args.focus)
+        result = analyze_chart(chart, topic=topic, focus=focus)
         if args.with_evidence:
             result = attach_evidence(
                 result,
