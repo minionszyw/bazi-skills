@@ -15,30 +15,6 @@
 bazi ask 编排 → paipan 排盘 → analyze 分析 → search 按需补证 → 综合中文回复
 ```
 
-## bazi ask — 自然语言编排
-
-`bazi ask` 适合 Agent 使用。它接收用户原话，自动识别原命局、财运、今日运势、提升财运等常见场景。
-
-```bash
-bazi ask --question "请你帮我进行八字命理分析"
-bazi ask --question "分析我的财运" --chart chart.json
-bazi ask --question "如何提升财运" --chart chart.json
-bazi ask --question "今日运势分析" --chart chart.json
-bazi ask --question "适合换工作吗" --chart chart.json
-bazi ask --question "未来三个月财运" --chart chart.json
-```
-
-首次信息完整时可直接排盘并保存：
-
-```bash
-bazi ask --question "请你帮我进行八字命理分析" \
-  --name 张三 --gender 1 --calendar LUNAR \
-  --birth "1999-9-9 05:30:00" --location 深圳 \
-  --save-chart chart.json
-```
-
-输出中的 `required_inputs` 非空时，先向用户补问对应字段；`intent` 会标注主题、焦点、日期、时间范围和现实场景；`result` 为 compact 分析结果。
-
 ## 安装
 
 项目依赖统一由 `pyproject.toml` 管理。
@@ -66,6 +42,30 @@ cp -R skills/bazi <AGENT_SKILLS_DIR>/bazi
 ```
 
 使用 skill 前，Agent 的运行环境需要能找到本项目安装后的 CLI：`paipan`、`analyze`、`search`。如果使用虚拟环境安装，请在启动 Agent 前激活同一个 venv，或把 `venv/bin` 加入 `PATH`。
+
+## bazi ask — 自然语言编排
+
+`bazi ask` 适合 Agent 使用。它接收用户原话，自动识别原命局、财运、今日运势、提升财运等常见场景。
+
+```bash
+bazi ask --question "请你帮我进行八字命理分析"
+bazi ask --question "分析我的财运" --chart chart.json
+bazi ask --question "如何提升财运" --chart chart.json
+bazi ask --question "今日运势分析" --chart chart.json
+bazi ask --question "适合换工作吗" --chart chart.json
+bazi ask --question "未来三个月财运" --chart chart.json
+```
+
+首次信息完整时可直接排盘并保存：
+
+```bash
+bazi ask --question "请你帮我进行八字命理分析" \
+  --name 张三 --gender 1 --calendar LUNAR \
+  --birth "1999-9-9 05:30:00" --location 深圳 \
+  --save-chart chart.json
+```
+
+输出中的 `required_inputs` 非空时，先向用户补问对应字段；`intent` 会标注主题、焦点、日期、时间范围和现实场景；`result` 为 compact 分析结果。
 
 ## paipan — 八字排盘
 
